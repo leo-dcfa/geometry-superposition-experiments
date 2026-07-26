@@ -5,11 +5,46 @@ weakens them. Every number below is either **SEALED** (fixed, with the commit
 that fixed it) or **DRAFT** (proposed, awaiting sign-off, not yet used to
 judge anything).
 
-Status: **G00 PASSED; all pre-registration SEALED; Phase 1 open.**
+Status: **G00 PASSED. G1 FAILED — P1 not supported; per SPEC §5 the study
+stops here and writes up the null. Phase 2 does not open.**
 Original status line: **G00 PASSED** (2026-07-26, commit recorded below). No
 hypothesis-relevant quantity has been read: the only capacity numbers measured
 so far are from the Euclidean positive control (00d), which is scored against
 published external behaviour rather than against a curved arm.
+
+---
+
+## 0. Gate G1 — Phase 1 verdict: **FAIL**
+
+P1 predicted N*(κ) decreasing in κ. It is not supported, and the Phase-1 run
+that appeared to show a trend is retracted as confounded. Full detail:
+`CSC_RESULTS/phase1/RESULTS.md` and `RESULTS_1b.md`.
+
+| Finding | Measurement |
+|---|---|
+| Phase 1's κ-trend was confounded with the init gain | Spearman(\|κ\|, gain) = 0.971 by construction of the fixed-radius calibration (D12) |
+| An init-scale knob with no geometric content drives capacity | flat-arm ρ(gain, capacity) up to −0.616, and **opposite in sign between readouts** (+0.467 for softmax) |
+| The κ-trend is not a stable property | sign flips with gain, with dimension, and between readouts |
+| The predicted regime *was* reached | realized x = 1.44–1.73 at d=8, where volume predicts 7–15× |
+| Observed effect | none — hyperbolic arms at or below Euclidean |
+| SPEC's min-pairwise-distance prediction | **falsified in the opposite direction**: the floor holds in E² (0.209) and collapses in H² (0.0005 at κ=−4) |
+| Best arm on capacity *and* interference | `normalized` — a flat R3 control — in both readouts |
+
+**What this does and does not establish.** It establishes that, in this toy
+setting, curvature does not buy capacity by itself, and that the volume
+argument's second link — room → use of room — does not hold: the optimizer
+leaves the extra volume unused. It does not establish anything about language
+models, and it does not rule out a curved space realizing its volume advantage
+under a readout with an absolute length scale. That is the concrete follow-up
+(see RESULTS_1b).
+
+**Two decisions that earned their cost.** The two-instrument rule (D1/D9) is
+the reason this is a null rather than a false positive: `norm_affine` alone
+would have reported spherical curvature helping (ρ = +0.44, which SPEC §1 says
+falsifies H-MAIN), and `softmax` alone would have reported hyperbolic curvature
+helping (ρ = −0.33, p = 0.005). Either single-readout study would have
+published a clean, wrong result. The R3 controls are the reason we know the
+best-performing geometry here is flat.
 
 ---
 
