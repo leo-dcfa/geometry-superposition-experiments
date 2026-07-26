@@ -18,14 +18,32 @@ curvature should buy superposition capacity.
 The capacity hypothesis was pre-registered, tested, and refuted (CSC-1). Rather
 than stop there, we traced the refutation to a specific and general cause:
 
-> **Curvature is a property of a metric. A representational advantage from
-> curvature appears only when the training objective makes the metric
-> load-bearing. Under objectives that do not — such as reconstruction — no
-> metric-faithful structure is learned in any geometry, so curvature has
-> nothing to act on.**
+> **Curvature is a property of a metric. The representational advantage from
+> curvature scales with how directly the training objective specifies
+> distances — largest under explicit metric supervision, modest under
+> contrastive objectives supplying only adjacency, and absent under objectives
+> with no metric content, where no metric-faithful structure is learned in any
+> geometry.**
 
-This is a constraint on when hyperbolic representations can help, and it is
-checkable before committing to one: *does your loss score distances?*
+This is checkable before committing to hyperbolic geometry: *how much does your
+loss say about distances?* But note the word **scales** — an earlier version of
+this document stated it as a threshold, and E6 showed it is a gradient with
+most practical objectives sitting low on it.
+
+**The dose-response, across four objectives and two experiments (d=4):**
+
+| objective | supervises | curvature advantage |
+|---|---|---|
+| full distance matrix | every pairwise distance | **5.43×** |
+| sampled distance pairs | sampled distances | **4.08×** |
+| contrastive (InfoNCE on edges) | which pairs are adjacent | **1.31×** |
+| reconstruction | nothing metric | **1.00×** |
+
+The realistic setting — contrastive, no distance targets — yields ~30% lower
+distortion. Real, consistent across depths and dimensions, and **much smaller
+than the metric-supervised case**. Set against hyperbolic optimization's
+measured 2.3–3.5× seed spread (versus Euclidean's 1.2×), whether 1.3× justifies
+the cost is a genuine question rather than a rhetorical one.
 
 ## The three results that carry the argument
 
@@ -41,7 +59,7 @@ under four readouts spanning both scale families, across dimensions 2–8, with
 init gain crossed factorially against curvature (`csc1/phase1`, `csc2/e1`).
 Where a trend appeared it was unstable across gain, dimension and readout.
 
-**3. The break is at the objective.** Interpolating between the two setups in
+**3. The advantage scales with the objective's metric content.** Interpolating between the two setups in
 four steps, changing one thing each time (`csc2/e5`, 1200 runs, 10 seeds):
 
 | stage | what is added | advantage (d=4) | survives? |
@@ -53,7 +71,9 @@ four steps, changing one thing each time (`csc2/e5`, 1200 runs, 10 seeds):
 
 S1 reproduces the direct-embedding result; S4 reproduces the autoencoder null.
 The distance readout is exonerated. Stochastic sampling is exonerated. **Only
-the objective kills it.**
+the objective kills it.** E6 then extends this from a binary to the
+dose-response above, using a contrastive objective that receives no distance
+targets at all — the setting a practitioner would actually be in.
 
 And the failure is total rather than partial. Absolute distortion at d=4,
 depth 4: S1–S3 reach 0.10 (flat) / 0.02 (hyperbolic); S4 reaches 0.80 / 0.74 —
@@ -101,9 +121,10 @@ exchangeable features, so the geometry had nothing to match.
 
 ## Testable predictions
 
-1. Objectives that score distances — contrastive, triplet, metric-learning,
-   link prediction — should show the curvature advantage in learned models.
-   S2/S3 already demonstrate this for directly supervised tree distances.
+1. Objectives that score distances should show the advantage in proportion to
+   how much they say about distances. Confirmed for explicit supervision
+   (4–5×) and for contrastive adjacency (1.31×); triplet and link-prediction
+   objectives should land in between and are untested.
 2. Next-token prediction through a distance readout is not obviously
    metric-structured, which predicts curvature buys little in LMs *unless* an
    explicit metric term is added.
@@ -129,6 +150,13 @@ wrong result.
 | 5 | Probe metric distorted in an **N-dependent** way (0.60 vs 0.795 at N=2, reversing to read high at N=8) | Corrupted precisely the N-scaling that H-MAIN claims |
 | 6 | Falsifier F1.1 rejected *true* hypotheses 53% of the time | A confident false null; needed 58 seeds vs 3 for the same claim |
 | 7 | Our own calibration rule tied init gain to κ (Spearman 0.971) | An unfalsifiable P1 — every arm forced to identical predicted capacity |
+
+An eighth, caught by E6 rather than by an instrument check: the mechanism claim
+was first written as a **threshold** ("does your loss score distances?") on the
+strength of E5 alone, where the contrast was 5× versus 1×. E6's contrastive arm
+— the realistic case — came in at 1.31×, against a registered prediction of
+>2×. Recorded as a MISS in `CSC_RESULTS/csc2/RESULTS_e6.md`. Two experiments
+agreeing on a mechanism did not make the first framing of it correct.
 
 Defect 7 is the instructive one: it was written the same day, looked
 principled, and would have made the hypothesis untestable in the direction of
