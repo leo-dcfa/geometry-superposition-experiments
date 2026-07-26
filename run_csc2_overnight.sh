@@ -12,7 +12,7 @@
 # before it intact and inspectable.
 set -u
 W=${WORKERS:-20}
-LOG=${LOG_DIR:-/tmp/csc2}
+LOG=${LOG_DIR:-/tmp/claude-1000/-home-leo-research-csc/ef7bc7dd-d249-40f4-a1e0-4a627675a589/scratchpad/csc2}
 mkdir -p "$LOG"
 
 run () {
