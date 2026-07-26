@@ -1,0 +1,4604 @@
+{
+  "git_commit": "9c8c3ff7500022ad55a9d7159a5972701707649a-dirty",
+  "phase": "csc2-e7",
+  "question": "what is the measured distortion advantage worth in WIDTH?",
+  "objective": "contrastive (InfoNCE on tree edges) \u2014 the realistic setting",
+  "caveat": "embedding width for a tree metric, NOT hidden width of a general network; a saving here does not transfer to arbitrary architectures",
+  "settings": {
+    "depths": [
+      4,
+      5,
+      6
+    ],
+    "euclidean_dims": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      10,
+      12,
+      16,
+      24,
+      32
+    ],
+    "reference_dims": [
+      2,
+      4,
+      8
+    ],
+    "curvatures": [
+      -4.0,
+      -2.0,
+      -1.0,
+      -0.5
+    ],
+    "seeds": 8,
+    "steps": 3000
+  },
+  "results": {
+    "depth4": {
+      "n_nodes": 31,
+      "euclidean_distortion_curve": {
+        "2": 0.24182777106761932,
+        "3": 0.16864698939025402,
+        "4": 0.15948345325887203,
+        "5": 0.15671269968152046,
+        "6": 0.15493020601570606,
+        "8": 0.15275885723531246,
+        "10": 0.15482674911618233,
+        "12": 0.15556763298809528,
+        "16": 0.15742485970258713,
+        "24": 0.15987293422222137,
+        "32": 0.162660364061594
+      },
+      "by_reference_dim": {
+        "2": {
+          "hyperbolic_dim": 2,
+          "best_kappa": -4.0,
+          "hyperbolic_distortion": 0.22245370410382748,
+          "euclidean_distortion_at_same_dim": 0.24182777106761932,
+          "distortion_advantage": 1.0870925797430158,
+          "equivalent_euclidean_dim": 2.2266340451436637,
+          "width_saving_factor": 1.1133170225718318,
+          "euclidean_never_matches_within_sweep": false
+        },
+        "4": {
+          "hyperbolic_dim": 4,
+          "best_kappa": -1.0,
+          "hyperbolic_distortion": 0.12466115038841963,
+          "euclidean_distortion_at_same_dim": 0.15948345325887203,
+          "distortion_advantage": 1.2793356451625302,
+          "equivalent_euclidean_dim": null,
+          "width_saving_factor": null,
+          "euclidean_never_matches_within_sweep": true
+        },
+        "8": {
+          "hyperbolic_dim": 8,
+          "best_kappa": -1.0,
+          "hyperbolic_distortion": 0.13229968957602978,
+          "euclidean_distortion_at_same_dim": 0.15275885723531246,
+          "distortion_advantage": 1.1546425976118806,
+          "equivalent_euclidean_dim": null,
+          "width_saving_factor": null,
+          "euclidean_never_matches_within_sweep": true
+        }
+      }
+    },
+    "depth5": {
+      "n_nodes": 63,
+      "euclidean_distortion_curve": {
+        "2": 0.26069366186857224,
+        "3": 0.1843260508030653,
+        "4": 0.16905755177140236,
+        "5": 0.16092588379979134,
+        "6": 0.15679993107914925,
+        "8": 0.1532606054097414,
+        "10": 0.15179783664643764,
+        "12": 0.15272226184606552,
+        "16": 0.15351574681699276,
+        "24": 0.15717896819114685,
+        "32": 0.15890666842460632
+      },
+      "by_reference_dim": {
+        "2": {
+          "hyperbolic_dim": 2,
+          "best_kappa": -0.5,
+          "hyperbolic_distortion": 0.20465605333447456,
+          "euclidean_distortion_at_same_dim": 0.26069366186857224,
+          "distortion_advantage": 1.2738135892932225,
+          "equivalent_euclidean_dim": 2.693044834856751,
+          "width_saving_factor": 1.3465224174283754,
+          "euclidean_never_matches_within_sweep": false
+        },
+        "4": {
+          "hyperbolic_dim": 4,
+          "best_kappa": -0.5,
+          "hyperbolic_distortion": 0.13054546993225813,
+          "euclidean_distortion_at_same_dim": 0.16905755177140236,
+          "distortion_advantage": 1.2950089486761103,
+          "equivalent_euclidean_dim": null,
+          "width_saving_factor": null,
+          "euclidean_never_matches_within_sweep": true
+        },
+        "8": {
+          "hyperbolic_dim": 8,
+          "best_kappa": -0.5,
+          "hyperbolic_distortion": 0.1379155032336712,
+          "euclidean_distortion_at_same_dim": 0.1532606054097414,
+          "distortion_advantage": 1.1112645193345008,
+          "equivalent_euclidean_dim": null,
+          "width_saving_factor": null,
+          "euclidean_never_matches_within_sweep": true
+        }
+      }
+    },
+    "depth6": {
+      "n_nodes": 127,
+      "euclidean_distortion_curve": {
+        "2": 0.3099265992641449,
+        "3": 0.22314715944230556,
+        "4": 0.18675344623625278,
+        "5": 0.17852789536118507,
+        "6": 0.1732657253742218,
+        "8": 0.16705229133367538,
+        "10": 0.16488285176455975,
+        "12": 0.16362805850803852,
+        "16": 0.16408594883978367,
+        "24": 0.16677087545394897,
+        "32": 0.16923531331121922
+      },
+      "by_reference_dim": {
+        "2": {
+          "hyperbolic_dim": 2,
+          "best_kappa": -0.5,
+          "hyperbolic_distortion": 0.21634262800216675,
+          "euclidean_distortion_at_same_dim": 0.3099265992641449,
+          "distortion_advantage": 1.4325729613538802,
+          "equivalent_euclidean_dim": 3.165782298945638,
+          "width_saving_factor": 1.582891149472819,
+          "euclidean_never_matches_within_sweep": false
+        },
+        "4": {
+          "hyperbolic_dim": 4,
+          "best_kappa": -0.5,
+          "hyperbolic_distortion": 0.1663999706506729,
+          "euclidean_distortion_at_same_dim": 0.18675344623625278,
+          "distortion_advantage": 1.122316581583469,
+          "equivalent_euclidean_dim": 8.55518680496937,
+          "width_saving_factor": 2.1387967012423426,
+          "euclidean_never_matches_within_sweep": false
+        },
+        "8": {
+          "hyperbolic_dim": 8,
+          "best_kappa": -0.5,
+          "hyperbolic_distortion": 0.18478653952479362,
+          "euclidean_distortion_at_same_dim": 0.16705229133367538,
+          "distortion_advantage": 0.9040284631298117,
+          "equivalent_euclidean_dim": 4.21923064325172,
+          "width_saving_factor": 0.527403830406465,
+          "euclidean_never_matches_within_sweep": false
+        }
+      }
+    }
+  },
+  "cells": [
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.21908177435398102
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.20582541823387146
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.21308372914791107
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.3326743543148041
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.25398391485214233
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.2525523900985718
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.24706631898880005
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.2103542685508728
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.2600056529045105
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.2471248060464859
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.28539472818374634
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.2547958791255951
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.2625845670700073
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.27162495255470276
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.26086515188217163
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.24315355718135834
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.32281216979026794
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.2814784049987793
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.3003556430339813
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.3046576976776123
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.3177014887332916
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.29259881377220154
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.3253777027130127
+    },
+    {
+      "kappa": 0.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.33443087339401245
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.1738319993019104
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.15953701734542847
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.17252814769744873
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.16644622385501862
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.16969344019889832
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.1649465709924698
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.17195181548595428
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.17024070024490356
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.1790575087070465
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1933584362268448
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.18442402780056
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.1834692358970642
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.18330270051956177
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.1865241974592209
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.18280155956745148
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.18167074024677277
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.20355382561683655
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.23155327141284943
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.2208728939294815
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.2419227957725525
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.21456775069236755
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.21580249071121216
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.21317604184150696
+    },
+    {
+      "kappa": 0.0,
+      "dim": 3,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.24372820556163788
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.16670221090316772
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.14949648082256317
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.16273032128810883
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.1562071442604065
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.16317038238048553
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.15846994519233704
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.16398568451404572
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15510545670986176
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.1661798655986786
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1739785522222519
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.16419564187526703
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.16853390634059906
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.16903121769428253
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.17197352647781372
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.17018809914588928
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.16837960481643677
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.19430075585842133
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.185979962348938
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.18491581082344055
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.18293707072734833
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.17922443151474
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.18089362978935242
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.19036990404129028
+    },
+    {
+      "kappa": 0.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.1954060047864914
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.1666819453239441
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.1465885490179062
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.16165633499622345
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.15346062183380127
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.1582675278186798
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.15428058803081512
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.15766948461532593
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15509654581546783
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.16034598648548126
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.16093768179416656
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.15982235968112946
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.16164660453796387
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.1605449765920639
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.16284315288066864
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.1620500534772873
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.1592162549495697
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.17749080061912537
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.17570452392101288
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.17510192096233368
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.17873412370681763
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.1781533807516098
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.18836206197738647
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.17601968348026276
+    },
+    {
+      "kappa": 0.0,
+      "dim": 5,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.178656667470932
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.1673184484243393
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.14621978998184204
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.15733182430267334
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.14920006692409515
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.15713228285312653
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.15245133638381958
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.15740257501602173
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15238532423973083
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.15795595943927765
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.155240997672081
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.15326611697673798
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.15451642870903015
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.1577969789505005
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.15945926308631897
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.15890683233737946
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.1572568714618683
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.18029311299324036
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.17344431579113007
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16907548904418945
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.16922125220298767
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.17001302540302277
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.17312560975551605
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.17419682443141937
+    },
+    {
+      "kappa": 0.0,
+      "dim": 6,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.17675617337226868
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.16338598728179932
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.14407525956630707
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.15183724462985992
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.15268735587596893
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.1517796814441681
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.14842408895492554
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.15814508497714996
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15173615515232086
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.15331624448299408
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.15277045965194702
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.15092509984970093
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.153645858168602
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.15182733535766602
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.15920782089233398
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.1525496393442154
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.1518423855304718
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.16970889270305634
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.16604389250278473
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16658592224121094
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.16785049438476562
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.1652282327413559
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.16252325475215912
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.16630631685256958
+    },
+    {
+      "kappa": 0.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.17217132449150085
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.16640397906303406
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.14996494352817535
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.15217840671539307
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.15511830151081085
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.15323512256145477
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.15378549695014954
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.1588030457496643
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.14912469685077667
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.15289783477783203
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.15064197778701782
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.14971183240413666
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.15149828791618347
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.15019384026527405
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.15537779033184052
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.15318088233470917
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.15088024735450745
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.16811005771160126
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.16654324531555176
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16469278931617737
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.16272448003292084
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.16048508882522583
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.16341733932495117
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.16413575410842896
+    },
+    {
+      "kappa": 0.0,
+      "dim": 10,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.1689540594816208
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.16654843091964722
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.1527193784713745
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.15704983472824097
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.15281064808368683
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.15154589712619781
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.1531328707933426
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.15948925912380219
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15124474465847015
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.15408441424369812
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.14869306981563568
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.1505776047706604
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.1523493379354477
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.15271218121051788
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.15743966400623322
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.15292710065841675
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.15299472212791443
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.1692967712879181
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.1688782423734665
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16162395477294922
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.16133810579776764
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.1576472818851471
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.1618569791316986
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.16572709381580353
+    },
+    {
+      "kappa": 0.0,
+      "dim": 12,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.1626560389995575
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.17029640078544617
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.15886305272579193
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.15702314674854279
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.15420614182949066
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.15084709227085114
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.15444892644882202
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.16092222929000854
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15279188752174377
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.15415535867214203
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1515732705593109
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.15032020211219788
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.15181317925453186
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.1521124690771103
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.15938320755958557
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.15597252547740936
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.15279576182365417
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.16322572529315948
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.16626355051994324
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16574996709823608
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.16469013690948486
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.15973059833049774
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.16308827698230743
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.1637377142906189
+    },
+    {
+      "kappa": 0.0,
+      "dim": 16,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.1662016212940216
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.1731206327676773
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.162267804145813
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.16977804899215698
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.15179388225078583
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.14961057901382446
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.15634788572788239
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.16412308812141418
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15194155275821686
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.16067449748516083
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1542297899723053
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.15548881888389587
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.15616220235824585
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.15439869463443756
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.1603953242301941
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.15977682173252106
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.15630559623241425
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.1680014729499817
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.17055761814117432
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16702038049697876
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.1639230102300644
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.16150222718715668
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.16584226489067078
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.1675707846879959
+    },
+    {
+      "kappa": 0.0,
+      "dim": 24,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.16974924504756927
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.17138192057609558
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.1613161265850067
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.17122867703437805
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.1536511480808258
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.15003186464309692
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.16798822581768036
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.16796010732650757
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.15772484242916107
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.16172784566879272
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1556704342365265
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.1588222235441208
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.15828105807304382
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.15502512454986572
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.16117636859416962
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.16207152605056763
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.1584787666797638
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.17129045724868774
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.17300818860530853
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16998040676116943
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.1669495403766632
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.16436262428760529
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.16823840141296387
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.1718149483203888
+    },
+    {
+      "kappa": 0.0,
+      "dim": 32,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.16823793947696686
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.1524198353290558
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.25578737258911133
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.23089322447776794
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.28236812353134155
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.3236272633075714
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.1430988609790802
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.1681230217218399
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.22331193089485168
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.35423579812049866
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.34926992654800415
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.36136823892593384
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.31895819306373596
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.3851265609264374
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.22864943742752075
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.2963094711303711
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.3021557331085205
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.35698673129081726
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.3204774260520935
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.33925312757492065
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.3199145197868347
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.33749154210090637
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.3251959979534149
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.35056179761886597
+    },
+    {
+      "kappa": -4.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.3626306354999542
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.15562023222446442
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.15299098193645477
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.15241529047489166
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.1579018384218216
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.15594401955604553
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.1635279506444931
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.15275096893310547
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.14746062457561493
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.18919289112091064
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.20232883095741272
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.19342009723186493
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.1922435313463211
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.20005245506763458
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.1956600546836853
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.2051292210817337
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.1915208250284195
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.24290741980075836
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.2385556697845459
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.23802374303340912
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.2423093467950821
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.23584100604057312
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.24500317871570587
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.23627059161663055
+    },
+    {
+      "kappa": -4.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.2527928054332733
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.17935049533843994
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.17543034255504608
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.17347776889801025
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.16883844137191772
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.17309331893920898
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.19169627130031586
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.17471244931221008
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.16943706572055817
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.21871788799762726
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.21860143542289734
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.21246041357517242
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.21351829171180725
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.21676099300384521
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.2216622233390808
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.22102020680904388
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.21342822909355164
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.25034284591674805
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.2563627362251282
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.25951310992240906
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.2536041736602783
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.25775426626205444
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.25327569246292114
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.2525445520877838
+    },
+    {
+      "kappa": -4.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.25979405641555786
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.14675144851207733
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.2580702304840088
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.22385583817958832
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.24400144815444946
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.3370232582092285
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.17210553586483002
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.18114711344242096
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.24533385038375854
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.2916964292526245
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.3277917206287384
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.34366652369499207
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.2968546450138092
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.3055818974971771
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.2546345591545105
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.2953506410121918
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.2928566634654999
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.3106369078159332
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.3032165467739105
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.31765905022621155
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.2675221562385559
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.281873494386673
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.2871021032333374
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.3052998185157776
+    },
+    {
+      "kappa": -2.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.3343909978866577
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.13857920467853546
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.12809088826179504
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.13480040431022644
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.11945740133523941
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.1275510936975479
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.12840184569358826
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.13495616614818573
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.12461432069540024
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.15704520046710968
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.16444993019104004
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.16610385477542877
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.15570634603500366
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.1613076627254486
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.1661890149116516
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.17321692407131195
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.1581590622663498
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.2110363245010376
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.20589607954025269
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.20454218983650208
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.2090330272912979
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.20227333903312683
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.2076892852783203
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.20933353900909424
+    },
+    {
+      "kappa": -2.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.21090923249721527
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.15336720645427704
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.14347690343856812
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.14807522296905518
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.13415952026844025
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.14068783819675446
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.152550607919693
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.14899703860282898
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.13512545824050903
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.17846208810806274
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.18598203361034393
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.1875629425048828
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.18049608170986176
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.18213041126728058
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.1839514672756195
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.18693791329860687
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.17631801962852478
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.2241145372390747
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.22793111205101013
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.2291630506515503
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.23024995625019073
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.22805069386959076
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.2263505607843399
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.2284379005432129
+    },
+    {
+      "kappa": -2.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.22857539355754852
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.14879481494426727
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.2698732614517212
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.2387288510799408
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.2621799409389496
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.36232537031173706
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.1891549527645111
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.19410912692546844
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.26538699865341187
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.2654816806316376
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.3219235837459564
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.35363781452178955
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.305115669965744
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.30501437187194824
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.21152034401893616
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.2588270604610443
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.2715321481227875
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.2872996926307678
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.289111465215683
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.29432886838912964
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.2308657020330429
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.2725238800048828
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.28419074416160583
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.2885778844356537
+    },
+    {
+      "kappa": -1.0,
+      "dim": 2,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.3166411519050598
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.1410757303237915
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.1115780919790268
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.1271536946296692
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.11769145727157593
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.1254672408103943
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.12129323184490204
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.13117292523384094
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.12185683101415634
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.13340163230895996
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1390501707792282
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.1378554254770279
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.13466869294643402
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.1362578272819519
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.14243167638778687
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.14627210795879364
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.13893969357013702
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.18606799840927124
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.1844024807214737
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.1809324324131012
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.1748252809047699
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.17709986865520477
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.18236032128334045
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.18788321316242218
+    },
+    {
+      "kappa": -1.0,
+      "dim": 4,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.18762752413749695
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.14738869667053223
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.1256912499666214
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.13576340675354004
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.12113967537879944
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.12602505087852478
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.13317540287971497
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.14004555344581604
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.12916848063468933
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.15243445336818695
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1530027985572815
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.15970730781555176
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.15267184376716614
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.1521858274936676
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.1562798172235489
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.15877079963684082
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.15080668032169342
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.2035459280014038
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.20809325575828552
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.20623661577701569
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.2076820284128189
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.20661768317222595
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.20285482704639435
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.20662139356136322
+    },
+    {
+      "kappa": -1.0,
+      "dim": 8,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.20639747381210327
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.1712963730096817
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.19610032439231873
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.1718897670507431
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.2817825675010681
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.37488117814064026
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.20633742213249207
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.21816322207450867
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.16215665638446808
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.19332073628902435
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.23536035418510437
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.22887378931045532
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.17643588781356812
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.14239028096199036
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.17966622114181519
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.24782779812812805
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.23337335884571075
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.2273017019033432
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.21383026242256165
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.2055048942565918
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.20755334198474884
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.19791990518569946
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.1899901181459427
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.23241914808750153
+    },
+    {
+      "kappa": -0.5,
+      "dim": 2,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.2562216520309448
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.14600491523742676
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.11873654276132584
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.13578040897846222
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.12390351295471191
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.1372404545545578
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.1311638504266739
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.1336228847503662
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.1315443366765976
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.12284708768129349
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.13187651336193085
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.1285802274942398
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.12942664325237274
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.12991462647914886
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.13581620156764984
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.1365339159965515
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.12936854362487793
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.17073257267475128
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.17184926569461823
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.16492189466953278
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.15884645283222198
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.1584557145833969
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.1595311164855957
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.17474409937858582
+    },
+    {
+      "kappa": -0.5,
+      "dim": 4,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.1721186488866806
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 0,
+      "n_nodes": 31,
+      "avg_distortion": 0.15185029804706573
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 1,
+      "n_nodes": 31,
+      "avg_distortion": 0.1246296763420105
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 2,
+      "n_nodes": 31,
+      "avg_distortion": 0.1393590122461319
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 3,
+      "n_nodes": 31,
+      "avg_distortion": 0.12648728489875793
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 4,
+      "n_nodes": 31,
+      "avg_distortion": 0.1303897500038147
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 5,
+      "n_nodes": 31,
+      "avg_distortion": 0.13491538166999817
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 6,
+      "n_nodes": 31,
+      "avg_distortion": 0.1425451785326004
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 4,
+      "seed": 7,
+      "n_nodes": 31,
+      "avg_distortion": 0.12856340408325195
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 0,
+      "n_nodes": 63,
+      "avg_distortion": 0.13919489085674286
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 1,
+      "n_nodes": 63,
+      "avg_distortion": 0.1374482661485672
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 2,
+      "n_nodes": 63,
+      "avg_distortion": 0.13933320343494415
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 3,
+      "n_nodes": 63,
+      "avg_distortion": 0.13808323442935944
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 4,
+      "n_nodes": 63,
+      "avg_distortion": 0.13406150043010712
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 5,
+      "n_nodes": 63,
+      "avg_distortion": 0.138692244887352
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 6,
+      "n_nodes": 63,
+      "avg_distortion": 0.14002400636672974
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 5,
+      "seed": 7,
+      "n_nodes": 63,
+      "avg_distortion": 0.13648667931556702
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 0,
+      "n_nodes": 127,
+      "avg_distortion": 0.1822308897972107
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 1,
+      "n_nodes": 127,
+      "avg_distortion": 0.18678221106529236
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 2,
+      "n_nodes": 127,
+      "avg_distortion": 0.18435367941856384
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 3,
+      "n_nodes": 127,
+      "avg_distortion": 0.1854994148015976
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 4,
+      "n_nodes": 127,
+      "avg_distortion": 0.18379619717597961
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 5,
+      "n_nodes": 127,
+      "avg_distortion": 0.1831076741218567
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 6,
+      "n_nodes": 127,
+      "avg_distortion": 0.1854970008134842
+    },
+    {
+      "kappa": -0.5,
+      "dim": 8,
+      "depth": 6,
+      "seed": 7,
+      "n_nodes": 127,
+      "avg_distortion": 0.187025249004364
+    }
+  ]
+}

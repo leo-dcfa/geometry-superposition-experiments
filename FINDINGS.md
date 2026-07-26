@@ -45,6 +45,20 @@ than the metric-supervised case**. Set against hyperbolic optimization's
 measured 2.3–3.5× seed spread (versus Euclidean's 1.2×), whether 1.3× justifies
 the cost is a genuine question rather than a rhetorical one.
 
+**What that 30% is worth in width (E7):** not 30% — the relationship is a cliff,
+not a ratio. Euclidean distortion on a tree metric **plateaus** (≈0.153 at d=8
+for a depth-4 tree) and does not improve with more width, because tree metrics
+are not ℓ₂-embeddable at any dimension. Hyperbolic at d=4 reaches 0.125, below
+that floor, so no Euclidean width in the sweep matches it. But at d=8 on a
+larger tree hyperbolic **loses** (0.185 vs 0.167): its optimization cost grows
+with parameter count while its representational benefit has already saturated.
+
+The advantage is a **narrow-width phenomenon**. Defensible claim: if the data is
+genuinely hierarchical, the objective scores distances, and you are
+width-constrained (d ≈ 2–4), curvature buys fidelity no amount of Euclidean
+width can. Outside that intersection — where most networks live — it buys little
+and costs stability.
+
 ## The three results that carry the argument
 
 **1. The advantage is real, in the right setting.** Optimizing coordinates
