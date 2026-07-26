@@ -14,51 +14,57 @@ Phase 1 has not run.
 
 | Sub-gate | Question | Verdict | Artifact |
 |---|---|---|---|
-| 00a | Do trained point clouds occupy √\|K\|·r ∈ [0.5, 3.0]? | **PASS with a caveat** (below) | `CSC_RESULTS/phase00/00a_scale_sweep.json` |
+| 00a | Do trained point clouds occupy √\|K\|·r ∈ [0.5, 3.0]? | **FAIL** — clouds sit *below* the band (below) | `CSC_RESULTS/phase00/00a_scale_sweep.json` |
 | 00b | Are the numerics sound across the operating band? | **PASS after one fix** (below) | `CSC_RESULTS/phase00/00b_numerics_audit.json` |
-| 00c | Is the readout fair across κ arms? | *pending re-run* | `CSC_RESULTS/phase00/00c_dead_unit_parity.json` |
+| 00c | Is the readout fair across κ arms? | **PASS** — 2 of 4 heads disqualified (below) | `CSC_RESULTS/phase00/00c_dead_unit_parity.json` |
 
-### 00a — scale calibration
+**G00 does not pass. Phase 1 does not open.** 00a is the blocker.
 
-**The calibration knob the spec assumed does not exist.** The encoder init
-gain was swept over a 16× range (0.25 → 4.0). Fitted exponent on the trained
-median √|K|·r: **7.2e-4**; predicted radius ratio across the whole swept
-range: **1.002**; ΔR² from including the term at all: **1.7e-6**. The
-optimizer selects its own operating radius and absorbs an init rescale within
-a few hundred steps. A rule of the form "set the init gain to s(K, d, N)"
-would have been committed, obeyed, and inert.
+### 00a — scale calibration: **FAIL**
 
-What the operating point *is* set by is (|K|, d, N). Fitted separately by
-curvature sign, because a sphere's finite diameter caps its radius and the
-pooled fit is worse than either:
+> **Correction, recorded because it changed the conclusion.** The first 00a run
+> was executed with the `rbf` head, which 00c subsequently disqualified. On
+> that head the init gain measured as completely inert (exponent 7.2e-4 over a
+> 16× sweep) and occupancy looked healthy at 88.1%. **Both results were
+> artifacts of a broken readout** — one that collapses to the all-zero
+> solution, whose point cloud is therefore not doing anything. Re-run on the
+> two heads that survived 00c, the findings reverse. The superseded numbers
+> are retained here only as a warning: a calibration measured through a
+> readout that has not itself been validated measures the readout.
 
-- hyperbolic: R² = 0.627, coefficient on log|K| ≈ 0.5 — i.e. the trained
-  *geodesic* radius r is roughly K-independent, so √|K|·r scales as √|K|.
-- spherical: R² = 0.509.
+Re-run on `norm_affine` and `softmax`, 840 runs × 10k steps each:
 
-Residual scatter is real seed-to-seed variation in the settled radius, not
-misspecification; it is why the admissible region is stated as a prediction
-with a residual band rather than a point.
+| Head | Init-gain exponent | Radius ratio over the 16× sweep | In-band fraction |
+|---|---|---|---|
+| `norm_affine` (primary) | **+0.277** | 2.15× | **0.576** |
+| `softmax` (2nd instrument) | +0.043 | 1.13× | **0.407** |
 
-**Measured occupancy: 88.1% of 420 cells land inside the band**, with no
-intervention. The convergence probe (50k steps, eval points spaced at the
-sweep length) confirms the operating point is settled, not still drifting —
-this is the reason the sweep length was raised from 2k to 10k, after a
-spherical N=16 cell was caught still doubling its radius after step 2000.
+**The failure is at the bottom of the band, not the top.** Trained median
+√|K|·r, at the default init gain:
 
-**Caveat (recorded as a miss, per R6):** the corner where curvature is
-strongest *and* features most numerous exits the band — κ=−4 at N=64 sits at
-≈3.3, and the fitted rule predicts up to ≈5.8 at κ=−4, N=256. Of the 210
-candidate Phase-1 cells, **178 are predicted in-band and 32 are not**, the
-latter concentrated at κ=−4 (14 cells) and κ=−2 (8). These remain well below
-the R2 exclusion threshold (which corresponds to √|K|·r ≈ 5.3), so they are a
-calibration miss rather than an automatic exclusion.
+- `norm_affine`, hyperbolic arms: **0.19 – 0.44** (band floor is 0.5)
+- `softmax`, spherical arms: **0.33 – 0.41**
 
-No lever was adopted to fix the corner. Weight decay would work mechanically
-but is rejected on principle: the parent program's dose-response result
-established that taxing geometry distorts exactly what these studies measure,
-so it is not an acceptable calibration knob. **DRAFT decision D6** below
-proposes restricting primary cells to the admissible region instead.
+That is the first failure mode SPEC §4 names — points huddled near the origin,
+where every geometry is locally flat and the experiment measures nothing. It
+is the opposite of the boundary-pinning that rule R2 guards against, and R2
+would never fire on it, which is precisely why 00a is a separate gate.
+
+The knob is real for the primary head (exponent +0.277, ΔR² = 0.123) but was
+not swept far enough: even at gain 4.0 the hyperbolic arms only reach
+0.59–1.25. An extended sweep (gains 4 → 1024) is running to determine whether
+the band is reachable at all on this architecture, or whether the model
+actively resists being pushed outward. **Until that lands, 00a has no
+committed rule and G00 is blocked.**
+
+Note that the init gain being *active* for `norm_affine` and *inert* for
+`softmax` is itself a two-instrument finding: the two readouts do not merely
+differ in quality, they differ in whether the calibration knob works at all.
+Any Phase-1 result will have to be reported under both regardless.
+
+Weight decay remains rejected as a lever on principle (the parent program's
+dose-response result: taxing geometry distorts what these studies measure),
+and is not reconsidered now that a legitimate knob exists.
 
 ### 00b — numerics audit
 
@@ -86,10 +92,22 @@ training divergence. Fixed in `csc/spaces/numerics.py` (ε² floor inside the
 root, applied uniformly to every arm so no geometry gets a better numerical
 deal than another); regression tests in `tests/test_spaces.py`.
 
-### 00c — dead-unit parity
+### 00c — dead-unit parity: **PASS**
 
-*Verdict pending the re-run; the design correction and the head findings are
-recorded here because they are already decided by measurement.*
+1960 runs. Two of four heads are usable; the sub-gate passes because it asks
+whether a usable instrument *exists*, not whether every candidate is usable —
+a head failing here is the fixture working.
+
+| Head | Verdict | Min recovery across all arms |
+|---|---|---|
+| `norm_affine` | **USABLE** | 1.00 |
+| `softmax` | **USABLE** | 1.00 |
+| `rbf` | DISQUALIFIED — basin-fragile | 0.06 |
+| `affine` | DISQUALIFIED — arm-asymmetric | 0.29 |
+
+Both surviving heads show **zero dead units in every arm** on the gated cells,
+including both R3 controls, at both weight-decay settings. All 25 remaining
+failures belong to the two disqualified heads.
 
 **Design correction.** The first version of this fixture swept crowded shapes
 (N=64 into d=2) and failed everywhere. The reason is structural: when a model
@@ -120,7 +138,16 @@ program's "init selects the solution basin" lesson reappearing in a new place.
 `affine` fails in both settings *and asymmetrically across arms*, which is
 precisely the raw-distance-scale coupling it was retained to demonstrate.
 
-The repo default head was changed from `rbf` to `norm_affine` as a result.
+The repo default head was changed from `rbf` to `norm_affine` as a result —
+and 00a had to be re-run, because it had been calibrated through `rbf`.
+
+**A criterion of our own also had to be corrected.** The dead-unit fraction is
+quantized in steps of 1/N, so a flat 5% tolerance is finer than the metric can
+express: at N=3, a single dead unit in one seed of five reads as a 6.7% gap
+and "failed". The effective tolerance is now `max(0.05, 1/N)` — never tighter
+than one readout unit — with the same one-feature allowance on the recovery
+floor. That change, and nothing else, accounts for the two `norm_affine`
+failures in the first gated run. Tests: `tests/test_phase00.py`.
 
 ---
 

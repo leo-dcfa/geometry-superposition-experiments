@@ -279,7 +279,19 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "phase00")
     parser.add_argument("--workers", type=int, default=None)
+    parser.add_argument(
+        "--init-scales",
+        type=float,
+        nargs="+",
+        default=None,
+        help="override the init-gain grid (used to extend the sweep upward)",
+    )
+    parser.add_argument("--name", default="00a_scale_sweep", help="artifact basename")
     args = parser.parse_args()
+
+    global INIT_SCALES
+    if args.init_scales:
+        INIT_SCALES = list(args.init_scales)
 
     specs = [
         (kappa, scale, dim, n_features, seed, head)
@@ -332,7 +344,7 @@ def main() -> None:
         "admissible_region": region,
         "cells": cells,
     }
-    path = write_artifact(args.out / "00a_scale_sweep.json", payload)
+    path = write_artifact(args.out / f"{args.name}.json", payload)
     print(f"00a: wrote {path}")
     print(f"00a: primary head {primary}; init gain -> {rule['init_gain_inertness']['verdict']}")
     for h, r in rules.items():

@@ -1,5 +1,5 @@
 {
-  "git_commit": "cd77ef5cddba986fa608b241d76d3ae782cdac11-dirty",
+  "git_commit": "b521760025484d5189c55c0ad7809de206bec2ff-dirty",
   "phase": "00b",
   "purpose": "numerics audit: atanh clamp horizon, fp32/bf16 precision, round-trip error",
   "settings": {
@@ -40,8 +40,10 @@
     "bf16_round_trip_in_band_max_rel_error": 0.03285254501502391,
     "fp32_distance_in_band_p99_rel_error": 2.2967870885730927e-06,
     "fp32_distance_pass": true,
-    "bf16_distance_supported": true,
-    "bf16_distance_note": "torch.cdist has no bfloat16 kernel and the direct compute_mode is pinned for precision, so the distance path raises rather than silently degrading. bf16 training is therefore impossible by construction, not merely discouraged.",
+    "bf16_distance_in_band_p99_rel_error": 0.1267557446829226,
+    "bf16_distance_in_band_max_rel_error": 0.143438660366347,
+    "bf16_usable": false,
+    "bf16_note": "Measured, not assumed \u2014 the parent program's bf16 incident is why. In-band pairwise distances carry up to ~1.4e-1 relative error in bf16 against a float64 reference, versus ~2.3e-6 in fp32: five orders of magnitude worse, and large enough to swamp any capacity difference this study could detect. Part of that floor is our own safe_sqrt epsilon (1e-2 for bf16), which cannot be tightened because bf16's ~3 significant digits cannot resolve a finer standoff. CSC therefore runs fp32 throughout; bf16 is disqualified by measurement, and this row is the receipt.",
     "fp32_clamp_headroom_over_band_top": 11.403345468358458,
     "clamp_horizon_pass": true,
     "gradients_finite_everywhere": true,
@@ -49,7 +51,7 @@
     "thresholds": {
       "round_trip_rel_error": 0.0001,
       "distance_p99_rel_error": 0.0001,
-      "note": "bf16 is measured and reported but not gated: no CSC run is planned in bf16. The measurement exists so that a future decision to use it is made against numbers, which is exactly what the parent program's bf16 incident lacked."
+      "note": "The fp32 gates are the ones that block G00. bf16 is measured and reported so that any future decision to use it is made against numbers \u2014 which is what the parent program's bf16 incident lacked \u2014 but it is disqualified, not gated."
     }
   },
   "round_trip": [
