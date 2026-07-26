@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+build/
+dist/
+
+# Tooling caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
+
+# Experiment outputs (checkpoints and raw logs; summary JSONs are COMMITTED,
+# see rule R5 — CSC_RESULTS/ is deliberately not ignored)
+runs/
+checkpoints/
+wandb/
+*.pt
+*.safetensors
+*.log
+
+# Editors / OS
+.idea/
+.vscode/
+.DS_Store
+
+# Top-level corpora ONLY. Anchored per rule R5: an unanchored `data/` also
+# matches `csc/data/` and silently keeps a source module out of the repo,
+# which is exactly what blocked the parent program's 05b audit.
+/data/
