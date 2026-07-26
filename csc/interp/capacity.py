@@ -139,6 +139,21 @@ def response_scale_report(model, batch: Tensor) -> dict:
     }
 
 
+def capacity_max_recovered(recovered_by_n: dict[int, float]) -> float:
+    """D15: the primary capacity metric — the most features any N cell recovered.
+
+    SPEC §5 defines N* as the largest N with ≥90% of features recovered. The
+    00d control showed that threshold is brittle: it peaked at sparsity 0.9 and
+    fell at 0.95 and 0.99 (8 → 4 → 3) while the raw recovered count moved
+    smoothly (11 → 12 → 10). A model in superposition recovers *most* features,
+    not 90% of them, so an all-or-nothing threshold injects noise unrelated to
+    curvature — and the raw count is what the volume-ratio prediction speaks to
+    directly. ``capacity_from_sweep`` remains available and is reported as the
+    secondary metric.
+    """
+    return max(recovered_by_n.values()) if recovered_by_n else 0.0
+
+
 def capacity_from_sweep(recovery_by_n: dict[int, float], threshold: float = 0.9) -> int | None:
     """N*: the top of the first contiguous run of feature counts that all pass.
 

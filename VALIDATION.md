@@ -5,7 +5,8 @@ weakens them. Every number below is either **SEALED** (fixed, with the commit
 that fixed it) or **DRAFT** (proposed, awaiting sign-off, not yet used to
 judge anything).
 
-Status: **G00 PASSED** (2026-07-26, commit recorded below). No
+Status: **G00 PASSED; all pre-registration SEALED; Phase 1 open.**
+Original status line: **G00 PASSED** (2026-07-26, commit recorded below). No
 hypothesis-relevant quantity has been read: the only capacity numbers measured
 so far are from the Euclidean positive control (00d), which is scored against
 published external behaviour rather than against a curved arm.
@@ -225,11 +226,85 @@ failures in the first gated run. Tests: `tests/test_phase00.py`.
 
 ## 2. Decisions
 
-**D2, D8 and D9 were approved on 2026-07-26 and are SEALED** — implemented in
-code, covered by tests, and not to be changed without a new ledger entry. The
-remainder are DRAFT: proposed, not yet used to judge anything.
+**All decisions D1–D15 were approved on 2026-07-26 and are SEALED** —
+implemented in code, covered by tests, and not to be changed without a new
+ledger entry. D12–D15 were forced by the 00e power analysis and three of them
+amend SPEC; each amendment is stated with its reason below.
 
-### Sealed
+### Sealed — forced by the power analysis (00e)
+
+**D12 — SEALED. Calibrate to a fixed geodesic radius R = 1.5, not to a fixed
+√|K|·r.** This corrects a defect in the rule committed earlier the same day.
+`scale_rule.init_gain` targeted a constant √|K|·r for every cell, but the
+predicted capacity advantage is a function of exactly that quantity — so every
+hyperbolic arm would have sat at the same predicted volume ratio (1.131×),
+N* would have been constant in κ, and **P1's monotone prediction would have
+read as falsified for a reason created entirely by the calibration
+procedure**. Holding R fixed instead lets x = √|K|·R vary with κ as P1
+intends, and at R = 1.5 the whole grid stays in band:
+
+| κ | x = √\|κ\|·R | in band | predicted V_H/V_E (d=2) |
+|---|---|---|---|
+| −4.0 | 3.00 | ✓ | 2.015 |
+| −2.0 | 2.12 | ✓ | 1.436 |
+| −1.0 | 1.50 | ✓ | 1.202 |
+| −0.5 | 1.06 | ✓ | 1.097 |
+
+This supersedes **D11** (band-position targeting), which is absorbed: fixing R
+determines the band position per arm, and R = 1.5 is essentially forced by the
+band ceiling together with the κ grid.
+
+**D13 — SEALED. The primary capacity claim moves to d ∈ {4, 6, 8}; d = 2 is
+illustrative.** *Amends SPEC §5, which pins d = 2.* Measured detection floor
+is 1.59× at 5 seeds (σ(log N*) = 0.26, from 00d). Predicted effect at d = 2 is
+1.13× at the band centre and 2.02× at its top — at or below the floor
+everywhere. The volume ratio scales roughly as e^((d−1)x), so:
+
+| dim | x=1.22 | x=2.0 | x=3.0 |
+|---|---|---|---|
+| 2 | 1.13× | 1.38× | 2.02× |
+| 4 | 1.64× | 3.66× | 16.3× |
+| 8 | 3.97× | 35.1× | 1752× |
+
+d = 2 still runs, still produces the Poincaré-disk figure, and is **reported as
+underpowered rather than as evidence**. Without this amendment a Phase-1 null
+at d = 2 could not distinguish "curvature does not buy capacity" from "we
+could not have seen it".
+
+**D14 — SEALED. Falsifier F1.1 is replaced by a monotone-trend test.**
+*Amends a pre-registered falsifier; logged prominently for that reason.* F1.1
+as written kills P1 on **any** adjacent-pair inversion in N*(κ). Against
+measured seed noise it fires with probability **0.533 when H-MAIN is exactly
+true**, because adjacent true gaps (0.09–0.34 in log units) are comparable to
+the noise. Seeds needed for a ≤10% false-rejection rate: **58** for F1.1 as
+written, versus **3** for an extreme-pair contrast testing the same claim.
+
+Replacement: Jonckheere–Terpstra ordered-alternative test across the curvature
+grid (permutation null), reported with Spearman(N*, κ) using midranks per SPEC
+§8, **plus** the extreme-pair contrast κ=−4 vs κ=−0.5. P1 dies if the trend
+test fails to reject, not if one adjacent pair inverts. Seeds: 10 (above the
+SPEC minimum of 5, below F1.1's 58).
+
+**D15 — SEALED. Primary capacity metric is max features recovered; SPEC's
+≥90% N\* is reported as secondary.** *Amends SPEC §5's definition.* In the 00d
+control the ≥90% threshold was brittle — it peaked at sparsity 0.9 and fell at
+0.95 and 0.99 (8 → 4 → 3) — while the raw recovered count moved smoothly
+(11 → 12 → 10). A model in superposition typically recovers *most* features,
+not 90% of them, so the all-or-nothing threshold injects noise unrelated to
+curvature. The raw count is also what the volume-ratio prediction speaks to
+directly. Both are computed on every cell.
+
+### Sealed — the remaining pre-registration
+
+**D1** primary head `norm_affine`, second instrument `softmax`.
+**D3** clamped-Euclidean control clips at 2× the matched arm's band-top radius.
+**D4** ε = 20% relative recovery tolerance on a probe value of 0.8.
+**D5** weight decay 0.0 in every arm.
+**D6** Phase-1 primary cells restricted to the 00a admissible region.
+**D7** Phase-0/1 runs pinned to CPU.
+**D10** α ∈ [0.5, 1.5] registered as a secondary value alongside α > 0.
+
+### Sealed — approved earlier
 
 **D2 — SEALED. The R2 exclusion applies to K < 0 only.** For K > 0 the same
 quantity is recorded as `diameter_filling` and never excludes; spherical
@@ -274,79 +349,6 @@ structural, not a tuning failure. Consequences, pre-registered now:
   (`two_instrument_availability`). On most **κ > 0 cells there is effectively
   one calibrated instrument**, which is a real limitation of the Phase-1
   design and is to be stated wherever spherical results appear.
-
-### DRAFT — awaiting sign-off
-
-Each changes what Phase 1 measures; sealing them is the researcher's call.
-
-**D1 — Primary readout head: `norm_affine`, second instrument `softmax`.**
-Both passed 00c cleanly in every arm. Two instruments, not one, because the
-parent's 01b audit measured a headline geometry result *flipping sign* between
-readouts. Every H-MAIN(toy) number would be reported under both.
-
-**D3 — Clamped-Euclidean matching rule.** R3 defines the control as flat with
-distances "clipped at the matched spherical/hyperbolic diameter", but
-hyperbolic space has infinite diameter, so there is no literal value to match.
-Proposed operationalization: clip at **2 × the top of the R2 operating band**
-in the matched arm's units — the diameter of the region the curved arm
-actually occupies. Also recorded: the clip is *hard*, so pairs beyond it get
-exactly zero gradient, whereas a sphere's metric saturates smoothly. The
-control reproduces the bounded *range* but not the smooth compression, so a
-clean F1.3 should not be over-read as ruling out every conditioning account.
-
-**D4 — Recovery tolerance ε.** Proposed: a feature counts as recovered when
-its own reconstruction is within **20% relative** of the probe value (probe
-value 0.8). Relative rather than absolute, because response scale is a free
-per-prototype parameter in every arm under R1, and an absolute tolerance would
-silently favour whichever arm learned the larger scale. F1.2's N* threshold
-stays at ≥ 90% of features recovered, per SPEC.
-
-**D5 — Weight decay fixed at 0.0 for all Phase-1 arms.** Curvature must not
-pay rent it is not being asked about; the parent's dose-response work is the
-reason. Now that `rbf` is dropped, no surviving head needs decay to train.
-
-**D6 — Phase-1 primary cells restricted to the 00a admissible region.**
-Out-of-band cells (chiefly κ=−4 at large N) are run and reported but not
-primary. The alternative — adding an architectural radius cap to every arm —
-is a larger design change and is not proposed.
-
-**D10 — Register α ≈ 1 as a secondary value for P1's functional form.** P1
-currently registers only the *sign* (`log N* = α·√|κ|·R + β`, α > 0). The
-packing bound gives a value: the area of a hyperbolic disc of radius R at
-curvature K is (2π/|K|)(cosh(√|K|·R) − 1), so packing N features at minimum
-separation δ gives, for large √|K|·R,
-
-    log N ≈ √|K|·R − log(2(cosh(√|K|·δ/2) − 1))
-
-i.e. **α → 1** asymptotically at fixed δ. As registered, α = 0.9 and α = 0.05
-both "pass", while meaning entirely different things. Proposed: keep α > 0 as
-the primary criterion and add α ∈ [0.5, 1.5] as a secondary, reported
-alongside. Caveat to state with it: δ is itself learned here rather than
-imposed, and the model is not doing ideal packing, so this is a scale
-expectation and not a tight prediction.
-
-**D11 — Run Phase-1 primary cells at the TOP of the operating band, not its
-centre.** Consequence of D10 that bears on statistical power. If
-log N ≈ √|K|·R, the band bounds the effect being measured: at the floor
-(√|κ|·r = 0.5) the available exponential-volume advantage is e^0.5 ≈ 1.6×; at
-the ceiling (3.0) it is e³ ≈ 20×. **R2's band, chosen for instrument-safety
-reasons, therefore caps the maximum detectable capacity gain**, and a null at
-the floor would be close to uninformative.
-
-`scale_rule.init_gain` currently targets the band's geometric centre (1.22,
-≈3.4× available), which is the safe default but costs power. Proposed: target
-≈2.5 for Phase-1 primary cells, keeping the centre for calibration runs. Not
-adopted unilaterally — it trades measurement power against saturation risk,
-and the 00a confirmation showed how quickly the transient appears once the
-gain rises.
-
-**D7 — All Phase-0/1 runs pinned to CPU.** Measured: the same config gives
-different losses on CPU and GPU (0.5086 vs 0.5057) from different RNG streams,
-and GPU gives no speedup at these model sizes (0.77–1.34× per run, versus ~14×
-throughput from running 16 models in parallel on CPU). Phase 2/3 will need the
-GPU and will re-pin then.
-
----
 
 ## 3. Scorecard — pre-registered numbers and their verdicts
 

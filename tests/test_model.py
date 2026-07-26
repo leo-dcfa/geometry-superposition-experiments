@@ -301,3 +301,89 @@ def test_train_toy_runs_and_serializes(arm, kappa, kwargs, tmp_path):
     assert run.summary["saturation"]["verdict"] in ("OK", "UNINTERPRETABLE")
     # R5: the summary must survive json.dump with no special-casing
     (tmp_path / "run.json").write_text(json.dumps(run.summary))
+
+
+# --------------------------------------------------------------------------
+# D12-D15: the power-analysis amendments
+# --------------------------------------------------------------------------
+
+
+def test_fixed_radius_calibration_varies_x_with_kappa():
+    """D12: the Phase-1 rule must let the independent variable actually vary.
+
+    Targeting a constant sqrt|K|*r gives every arm the same predicted capacity,
+    which would falsify P1 by construction. This is the regression test for
+    that defect.
+    """
+    from csc.calibration.scale_rule import (
+        init_gain_fixed_radius,
+        phase1_radius,
+        predicted_band_position,
+    )
+
+    dim, n = 8, 64
+    radius = phase1_radius(dim, n)
+    assert radius is not None
+    xs = []
+    for kappa in (-0.5, -1.0, -2.0, -4.0):  # ascending |kappa|
+        gain = init_gain_fixed_radius(kappa, dim, n, radius)
+        xs.append(predicted_band_position(kappa, dim, n, gain))
+    # x must increase with |kappa| -- this is what makes P1 testable at all
+    assert xs == sorted(xs), f"x must increase with |kappa|, got {xs}"
+    assert xs[-1] / xs[0] > 2.0, f"x must span a usable range, got {xs}"
+    # and every arm must sit inside the operating band
+    assert all(0.5 <= x <= 3.0 for x in xs), xs
+
+
+def test_unreachable_cells_are_excluded_rather_than_run_out_of_band():
+    """A below-band run measures nothing and R2 cannot detect it, so such
+    cells must be refused rather than silently included."""
+    from csc.calibration.scale_rule import phase1_radius
+
+    assert phase1_radius(4, 16) is None  # gain cap cannot reach the band floor
+    assert phase1_radius(8, 64) is not None
+
+
+def test_capacity_max_recovered_is_smooth_where_nstar_is_brittle():
+    """D15: the primary metric must not vanish when the >=90% bar is missed."""
+    from csc.interp.capacity import capacity_max_recovered
+
+    recovered = {4: 4, 8: 7, 16: 11, 32: 10}
+    assert capacity_max_recovered(recovered) == 11
+    # the secondary metric legitimately reports a miss on the same data
+    rates = {4: 1.0, 8: 0.875, 16: 0.69, 32: 0.31}
+    assert capacity_from_sweep(rates, threshold=0.9) == 4
+
+
+def test_jonckheere_detects_a_real_decreasing_trend():
+    from csc.interp.trend import jonckheere_terpstra
+
+    groups = [[10.0, 11, 12, 10.5, 11.5], [8.0, 9, 7.5, 8.5, 9.5], [5.0, 6, 4.5, 5.5, 6.5]]
+    out = jonckheere_terpstra(groups, n_permutations=2000, seed=0)
+    assert out["p_value"] < 0.01
+    assert out["normalized"] > 0.9
+
+
+def test_jonckheere_does_not_fire_on_noise():
+    """The criterion F1.1 replaced fired 53% of the time on a true hypothesis."""
+    import numpy as np
+
+    from csc.interp.trend import jonckheere_terpstra
+
+    rng = np.random.default_rng(0)
+    fired = 0
+    trials = 30
+    for t in range(trials):
+        groups = [list(rng.normal(0, 1, 5)) for _ in range(4)]
+        if jonckheere_terpstra(groups, n_permutations=500, seed=t)["p_value"] < 0.05:
+            fired += 1
+    assert fired <= 4, f"false-positive rate too high: {fired}/{trials}"
+
+
+def test_spearman_uses_midranks_for_ties():
+    from csc.interp.trend import spearman_midrank
+
+    out = spearman_midrank([1, 2, 2, 3], [1, 2, 2, 3])
+    assert out["rho"] == pytest.approx(1.0)
+    assert out["tie_policy"] == "midranks"
+    assert out["tied_mass_x"] == pytest.approx(0.25)

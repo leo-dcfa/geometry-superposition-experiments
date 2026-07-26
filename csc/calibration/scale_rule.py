@@ -112,21 +112,105 @@ def predicted_band_position(kappa: float, dim: int, n_features: int, gain: float
     )
 
 
-def init_gain(kappa: float, dim: int, n_features: int, head: str = PRIMARY_HEAD) -> float:
-    """The committed rule: encoder init gain for a curved cell.
+# Decision D12: Phase-1 arms are calibrated to a fixed GEODESIC RADIUS, not to
+# a fixed √|K|·r.
+#
+# R is fixed *across κ within a cell*, which is all P1's comparison needs; it
+# may differ between (d, N) cells, and must, because two constraints pull
+# against each other:
+#
+#   - the band ceiling caps √|K|·R ≤ 3.0, so R ≤ 1.5 given κ = −4 in the grid;
+#   - the gain cap (MAX_CALIBRATED_GAIN, set by the saturating transient) caps
+#     how far out a cell can be pushed at all, and that ceiling *rises* with d
+#     and N.
+#
+# The second constraint binds hardest at small d and small N. Rather than drag
+# the whole grid down to the worst cell's radius, each cell uses the largest R
+# it can reach, and cells that cannot even reach the band floor are excluded
+# from the primary grid rather than run out of band.
+PHASE1_MAX_RADIUS = 1.5
+BAND_FLOOR_CURVATURE = 0.5  # the weakest |κ| in the P1 grid sets the floor constraint
+P1_CURVATURES = (-4.0, -2.0, -1.0, -0.5)
 
-    Inverts the fit for the gain that lands the predicted median √|K|·r on
-    ``BAND_TARGET``, clipped to the calibrated range.
+
+def init_gain(
+    kappa: float,
+    dim: int,
+    n_features: int,
+    head: str = PRIMARY_HEAD,
+    target_scaled_radius: float | None = None,
+) -> float:
+    """Encoder init gain for a curved cell, inverting the fitted rule.
+
+    ``target_scaled_radius`` defaults to the band centre, which is the right
+    target for *calibration* runs. It is the wrong target for a Phase-1
+    comparison — see ``init_gain_fixed_radius`` and D12.
     """
+    target = BAND_TARGET if target_scaled_radius is None else target_scaled_radius
     c = COEFFICIENTS[head]
     log_gain = (
-        math.log(BAND_TARGET)
+        math.log(target)
         - c["intercept"]
         - c["log_abs_kappa"] * math.log(abs(kappa))
         - c["log_dim"] * math.log(dim)
         - c["log_n_features"] * math.log(n_features)
     ) / c["log_gain"]
     return min(MAX_CALIBRATED_GAIN, max(MIN_GAIN, math.exp(log_gain)))
+
+
+def max_reachable_radius(dim: int, n_features: int, head: str = PRIMARY_HEAD) -> float:
+    """Largest geodesic radius this cell can reach for EVERY curvature in the grid.
+
+    Bounded by the gain cap: the most strongly curved arm needs the largest
+    gain to reach a given R, so it is the binding one.
+    """
+    x_at_cap = {
+        k: predicted_band_position(k, dim, n_features, MAX_CALIBRATED_GAIN, head)
+        for k in P1_CURVATURES
+    }
+    return min(x_at_cap[k] / math.sqrt(abs(k)) for k in P1_CURVATURES)
+
+
+def phase1_radius(dim: int, n_features: int, head: str = PRIMARY_HEAD) -> float | None:
+    """The Phase-1 geodesic radius for a cell, or ``None`` if the cell is unusable.
+
+    Returns ``None`` when the cell cannot reach the band floor for the weakest
+    curvature even at the gain cap — such cells are excluded from the primary
+    grid rather than run out of band, since a below-band run measures nothing
+    (SPEC §4's first failure mode) and R2 cannot detect it.
+    """
+    reachable = min(PHASE1_MAX_RADIUS, max_reachable_radius(dim, n_features, head))
+    floor_radius = OPERATING_BAND[0] / math.sqrt(BAND_FLOOR_CURVATURE)
+    return reachable if reachable >= floor_radius else None
+
+
+def init_gain_fixed_radius(
+    kappa: float,
+    dim: int,
+    n_features: int,
+    radius: float,
+    head: str = PRIMARY_HEAD,
+) -> float:
+    """D12: the gain that lands the cloud at geodesic radius ``radius``.
+
+    **This is the Phase-1 rule, and the distinction from ``init_gain`` is the
+    difference between testing P1 and erasing it.**
+
+    P1 predicts N* varies with κ. The predicted capacity advantage is a
+    function of x = √|K|·R. Targeting a constant x — which is what a naive
+    reading of the R2 band invites, and what the first version of this module
+    did — gives every hyperbolic arm the same predicted advantage (1.131× at
+    the band centre), so N* would be constant in κ and P1 would read as
+    falsified by the calibration procedure rather than by nature.
+
+    Holding R fixed instead makes x = √|K|·R vary with κ exactly as P1
+    intends. At the maximum R = 1.5 the P1 grid spans x = 1.06 (κ=−0.5) to
+    x = 3.00 (κ=−4), all inside the operating band; smaller cells use the
+    largest R they can reach (see ``phase1_radius``).
+    """
+    return init_gain(
+        kappa, dim, n_features, head, target_scaled_radius=math.sqrt(abs(kappa)) * radius
+    )
 
 
 def matched_flat_gain(kappa: float, dim: int, n_features: int,

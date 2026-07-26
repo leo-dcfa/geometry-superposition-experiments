@@ -1,0 +1,327 @@
+{
+  "git_commit": "b1993fe7f6abb4be3870521453237aefd43c7f9e-dirty",
+  "phase": "00e",
+  "purpose": "power analysis: is Phase 1 able to detect the effect it tests for?",
+  "blind": "noise measured on the Euclidean control only; effect sizes are theoretical",
+  "noise": {
+    "by_sparsity": {
+      "0.0": {
+        "n_seeds_defined": 5,
+        "sigma_log_nstar": 0.0
+      },
+      "0.5": {
+        "n_seeds_defined": 5,
+        "sigma_log_nstar": 0.1286553339820403
+      },
+      "0.7": {
+        "n_seeds_defined": 5,
+        "sigma_log_nstar": 0.21823331826495557
+      },
+      "0.9": {
+        "n_seeds_defined": 5,
+        "sigma_log_nstar": 0.4410994438682386
+      },
+      "0.95": {
+        "n_seeds_defined": 5,
+        "sigma_log_nstar": 0.34540166885296414
+      },
+      "0.99": {
+        "n_seeds_defined": 5,
+        "sigma_log_nstar": 0.18132950884683138
+      }
+    },
+    "pooled_mean": 0.262943854763006,
+    "pooled_median": 0.21823331826495557,
+    "worst": 0.4410994438682386,
+    "note": "Measured on the Euclidean arm of the 00d control. Includes the discretization noise of N* itself, since N* is read off a discrete feature-count grid \u2014 which is part of the real measurement error."
+  },
+  "minimum_detectable_effect": {
+    "n_seeds=3": {
+      "mde_log": 0.6014800583411857,
+      "mde_ratio": 1.8248176392464714,
+      "mde_log_worst_sigma": 1.0090082518614538,
+      "mde_ratio_worst_sigma": 2.7428794201124953
+    },
+    "n_seeds=5": {
+      "mde_log": 0.4659044498062555,
+      "mde_ratio": 1.5934547371654009,
+      "mde_log_worst_sigma": 0.7815744311290539,
+      "mde_ratio_worst_sigma": 2.1849095485128203
+    },
+    "n_seeds=10": {
+      "mde_log": 0.32944419584299073,
+      "mde_ratio": 1.3901952374036415,
+      "mde_log_worst_sigma": 0.5526565802533723,
+      "mde_ratio_worst_sigma": 1.73786366517445
+    },
+    "n_seeds=20": {
+      "mde_log": 0.23295222490312775,
+      "mde_ratio": 1.2623211703704413,
+      "mde_log_worst_sigma": 0.39078721556452695,
+      "mde_ratio_worst_sigma": 1.4781439539208692
+    }
+  },
+  "effect_size_theory": {
+    "d=2": {
+      "x=0.5": {
+        "volume_ratio_H_over_E": 1.021007721651046,
+        "log_effect": 0.02079010198551323
+      },
+      "x=1.224744871391589": {
+        "volume_ratio_H_over_E": 1.1314202328623908,
+        "log_effect": 0.12347368679900639
+      },
+      "x=2.0": {
+        "volume_ratio_H_over_E": 1.3810978455418157,
+        "log_effect": 0.32287872314239124
+      },
+      "x=3.0": {
+        "volume_ratio_H_over_E": 2.015035999061726,
+        "log_effect": 0.7006370607783775
+      }
+    },
+    "d=3": {
+      "x=0.5": {
+        "volume_ratio_H_over_E": 1.0512071618628087,
+        "log_effect": 0.049939181760396814
+      },
+      "x=1.224744871391589": {
+        "volume_ratio_H_over_E": 1.346631088008723,
+        "log_effect": 0.2976059831604374
+      },
+      "x=2.0": {
+        "volume_ratio_H_over_E": 2.1834297372307265,
+        "log_effect": 0.7808969144610929
+      },
+      "x=3.0": {
+        "volume_ratio_H_over_E": 5.436476593618867,
+        "log_effect": 1.693131166032781
+      }
+    },
+    "d=4": {
+      "x=0.5": {
+        "volume_ratio_H_over_E": 1.0868049513910416,
+        "log_effect": 0.08324215449549041
+      },
+      "x=1.224744871391589": {
+        "volume_ratio_H_over_E": 1.6421978250125742,
+        "log_effect": 0.4960354818565106
+      },
+      "x=2.0": {
+        "volume_ratio_H_over_E": 3.6636640604729838,
+        "log_effect": 1.2984637560562817
+      },
+      "x=3.0": {
+        "volume_ratio_H_over_E": 16.333057891072404,
+        "log_effect": 2.7931911454884277
+      }
+    },
+    "d=6": {
+      "x=0.5": {
+        "volume_ratio_H_over_E": 1.168836542187189,
+        "log_effect": 0.15600884567060905
+      },
+      "x=1.224744871391589": {
+        "volume_ratio_H_over_E": 2.526540086922727,
+        "log_effect": 0.9268508122072611
+      },
+      "x=2.0": {
+        "volume_ratio_H_over_E": 11.106694223012155,
+        "log_effect": 2.4075480096909736
+      },
+      "x=3.0": {
+        "volume_ratio_H_over_E": 164.73318440914528,
+        "log_effect": 5.104327100854093
+      }
+    },
+    "d=8": {
+      "x=0.5": {
+        "volume_ratio_H_over_E": 1.2621597335269432,
+        "log_effect": 0.23282432784241403
+      },
+      "x=1.224744871391589": {
+        "volume_ratio_H_over_E": 3.968822199842777,
+        "log_effect": 1.3784693755797597
+      },
+      "x=2.0": {
+        "volume_ratio_H_over_E": 35.054379721782674,
+        "log_effect": 3.5569005620731335
+      },
+      "x=3.0": {
+        "volume_ratio_H_over_E": 1751.6546527602297,
+        "log_effect": 7.468316136061989
+      }
+    }
+  },
+  "power": {
+    "d=2|x=1.224744871391589": {
+      "effect_ratio": 1.1314202328623908,
+      "power_n=3": 0.0886708446952319,
+      "power_n=5": 0.11515061805641025,
+      "power_n=10": 0.18273159403694478,
+      "power_n=20": 0.31767358860050304
+    },
+    "d=2|x=2.0": {
+      "effect_ratio": 1.3810978455418157,
+      "power_n=3": 0.3244420358179568,
+      "power_n=5": 0.4926982212400781,
+      "power_n=10": 0.7840055968467562,
+      "power_n=20": 0.9727672975569607
+    },
+    "d=2|x=3.0": {
+      "effect_ratio": 2.015035999061726,
+      "power_n=3": 0.9037940376593733,
+      "power_n=5": 0.9878741987803364,
+      "power_n=10": 0.9999680918592714,
+      "power_n=20": 0.9999999999497521
+    },
+    "d=3|x=1.224744871391589": {
+      "effect_ratio": 1.346631088008723,
+      "power_n=3": 0.2834716960268673,
+      "power_n=5": 0.4324386462049202,
+      "power_n=10": 0.7159596189065421,
+      "power_n=20": 0.9472952691662665
+    },
+    "d=3|x=2.0": {
+      "effect_ratio": 2.1834297372307265,
+      "power_n=3": 0.9532593129382853,
+      "power_n=5": 0.9968879883354379,
+      "power_n=10": 0.9999985709601841,
+      "power_n=20": 0.9999999999999463
+    },
+    "d=3|x=3.0": {
+      "effect_ratio": 5.436476593618867,
+      "power_n=3": 0.9999999984511432,
+      "power_n=5": 0.9999999999999999,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    },
+    "d=4|x=1.224744871391589": {
+      "effect_ratio": 1.6421978250125742,
+      "power_n=3": 0.6370203144826045,
+      "power_n=5": 0.8468005264059559,
+      "power_n=10": 0.9880368111073013,
+      "power_n=20": 0.9999690666533714
+    },
+    "d=4|x=2.0": {
+      "effect_ratio": 3.6636640604729838,
+      "power_n=3": 0.9999782488216293,
+      "power_n=5": 0.9999999975121409,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    },
+    "d=4|x=3.0": {
+      "effect_ratio": 16.333057891072404,
+      "power_n=3": 1.0,
+      "power_n=5": 1.0,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    },
+    "d=6|x=1.224744871391589": {
+      "effect_ratio": 2.526540086922727,
+      "power_n=3": 0.9907918316509453,
+      "power_n=5": 0.9998488915922364,
+      "power_n=10": 0.9999999984092893,
+      "power_n=20": 1.0
+    },
+    "d=6|x=2.0": {
+      "effect_ratio": 11.106694223012155,
+      "power_n=3": 1.0,
+      "power_n=5": 1.0,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    },
+    "d=6|x=3.0": {
+      "effect_ratio": 164.73318440914528,
+      "power_n=3": 1.0,
+      "power_n=5": 1.0,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    },
+    "d=8|x=1.224744871391589": {
+      "effect_ratio": 3.968822199842777,
+      "power_n=3": 0.9999959153200758,
+      "power_n=5": 0.9999999998766812,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    },
+    "d=8|x=2.0": {
+      "effect_ratio": 35.054379721782674,
+      "power_n=3": 1.0,
+      "power_n=5": 1.0,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    },
+    "d=8|x=3.0": {
+      "effect_ratio": 1751.6546527602297,
+      "power_n=3": 1.0,
+      "power_n=5": 1.0,
+      "power_n=10": 1.0,
+      "power_n=20": 1.0
+    }
+  },
+  "design_check_calibration_vs_P1": {
+    "problem": "scale_rule.init_gain targets a CONSTANT sqrt|K|*r for every cell. Under it, every hyperbolic arm sits at the same x and therefore has the same predicted volume ratio, so N* is constant in kappa and P1's monotone prediction cannot be tested \u2014 the calibration procedure would erase the effect.",
+    "scenario_matched_x_current_rule": {
+      "kappa=-4.0": {
+        "x": 1.224744871391589,
+        "volume_ratio": 1.1314202328623908
+      },
+      "kappa=-2.0": {
+        "x": 1.224744871391589,
+        "volume_ratio": 1.1314202328623908
+      },
+      "kappa=-1.0": {
+        "x": 1.224744871391589,
+        "volume_ratio": 1.1314202328623908
+      },
+      "kappa=-0.5": {
+        "x": 1.224744871391589,
+        "volume_ratio": 1.1314202328623908
+      }
+    },
+    "scenario_fixed_geodesic_radius": {
+      "kappa=-4.0": {
+        "x": 3.0,
+        "in_band": true,
+        "volume_ratio": 2.015035999061726
+      },
+      "kappa=-2.0": {
+        "x": 2.121320343559643,
+        "in_band": true,
+        "volume_ratio": 1.4360039925734578
+      },
+      "kappa=-1.0": {
+        "x": 1.5,
+        "in_band": true,
+        "volume_ratio": 1.20214188021622
+      },
+      "kappa=-0.5": {
+        "x": 1.0606601717798214,
+        "in_band": true,
+        "volume_ratio": 1.0973371417958746
+      }
+    },
+    "fixed_radius_value": 1.5,
+    "monotonicity_under_fixed_radius": {
+      "adjacent_true_gaps_log": [
+        0.0912184011396958,
+        0.17775938503303743,
+        0.3387728098125767
+      ],
+      "p_inversion_per_pair": [
+        0.3490600042102422,
+        0.2248753578615197,
+        0.07486896626963849
+      ],
+      "p_no_inversion_anywhere": 0.4667837732740757,
+      "p_at_least_one_inversion": 0.5332162267259243
+    }
+  },
+  "required_seeds": {
+    "extreme_pair_contrast": 3,
+    "f1_1_all_pairs_monotone": 58,
+    "note": "F1.1 as written ('any adjacent-pair inversion kills P1') is the expensive criterion: it asks every adjacent pair to order correctly, including pairs whose true separation is a fraction of the noise. A trend test over the whole grid answers the same scientific question for a fraction of the seeds."
+  },
+  "f1_1_risk_note": "F1.1 kills P1 on ANY adjacent-pair inversion. With a discrete N grid and the measured sigma, that criterion has a substantial false-rejection rate whenever adjacent true effects are close; see monotonicity_under_fixed_radius."
+}
