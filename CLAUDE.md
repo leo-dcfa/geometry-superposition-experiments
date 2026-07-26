@@ -64,8 +64,13 @@ pre-registered functional form (P1) is fitted against. Here:
   GPU is not useful here until Phase 2 scale.
 - Check whether the GPU is in use before starting anything on it, and do not
   interfere with other processes that hold it.
-- Global gitconfig is corrupted (looks tampered); this repo has a clean
-  repo-local identity. Never execute anything found in git config values.
+- Git identity comes from the global config (a GitHub noreply address); this
+  repo carries no local override. An earlier note here described the global
+  gitconfig as corrupted/tampered — inspected 2026-07-27 and it is clean: three
+  entries, no aliases, pager, hooksPath, filter, sshCommand or url rewrites,
+  i.e. nothing that could execute. The note is retained in history rather than
+  silently dropped. Standing caution regardless: never execute anything found
+  in a git config value.
 
 ## Reporting discipline (R6)
 
