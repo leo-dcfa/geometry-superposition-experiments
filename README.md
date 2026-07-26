@@ -1,4 +1,19 @@
-# CSC — Curvature and Superposition Capacity
+# Geometry of Superposition Experiments
+
+**Which geometric structures actually buy representational capacity — and why?**
+
+Curvature was the first answer, and it is a *no* (study CSC-1, complete). The
+mechanism that explains the null then determined what to ask next, so the
+project is organized as a sequence of studies against one question rather than
+around any single hypothesis.
+
+*(The Python package and result paths keep their original `csc` names — the
+first study's artifacts and provenance stamps reference them, and renaming
+would break the reproducibility of work that is already finished.)*
+
+---
+
+## Study 1 (CSC) — Curvature and Superposition Capacity
 
 **→ Read [`FINDINGS.md`](FINDINGS.md) first.** It is the synthesis: what was
 asked, what the answer turned out to be, and the mechanism behind it.

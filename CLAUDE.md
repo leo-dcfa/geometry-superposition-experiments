@@ -1,6 +1,12 @@
-# CSC — working notes for Claude
+# Geometry of Superposition Experiments — working notes for Claude
 
-Study: **Curvature and Superposition Capacity**. Does a negatively curved
+Programme question: **which geometric structures buy representational
+capacity, and why?** Organized as studies, not as one hypothesis. `csc` remains
+the package name and `CSC_RESULTS/` the artifact root — the completed study's
+provenance stamps reference those paths, so renaming them would break
+reproducibility of finished work.
+
+Study 1 (CSC, complete — null): **Curvature and Superposition Capacity**. Does a negatively curved
 latent space need fewer dimensions to hold more features at fixed recovery
 quality? `SPEC_CSC1.md` is authoritative (H-MAIN, P1–P4, rules R1–R6, phases
 00–3); `VALIDATION.md` is the pre-registration ledger and the only place

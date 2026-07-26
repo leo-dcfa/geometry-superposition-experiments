@@ -1,4 +1,6 @@
-# Curvature and representational capacity: a null, and the mechanism behind it
+# Geometry of Superposition Experiments — findings
+
+## Study 1: curvature and representational capacity — a null, and the mechanism behind it
 
 **Status: CSC-1 complete (null). CSC-2 partial — its central result (E5) stands;
 its original hypothesis is untested.** All claims below are backed by committed
