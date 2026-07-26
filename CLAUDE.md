@@ -14,6 +14,8 @@ of this repo alone is runnable (rule R5).
 ## Commands
 
 - `uv sync` — env; `uv run pytest` — full suite (CPU-pinned via tests/conftest.py)
+- `uv run python tools/check_tracked_sources.py` — R5 check; run with the suite
+  before publishing (there is no CI, so this is manual)
 - `uv run ruff check csc tests experiments` — lint
 - `uv run python -m experiments.csc1.phase00.run_00a` — Phase 00 runners (a/b/c)
 

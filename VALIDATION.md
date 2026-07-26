@@ -434,6 +434,7 @@ Inherited from SPEC §8, restated so it is enforceable:
 | 00c ported "as-is" from parent 01b | Gated on non-binding shapes only | On crowded shapes the fixture measures capacity, not fairness, and would fail on the hypothesis being true |
 | R2 applies to "all curved arms" | D2 proposes K<0 only | No numerical clamp exists for K>0; see D2 |
 | κ as in parent program | κ is true sectional curvature (parent's × 4) | P1 fits √\|κ\|; the parent convention would put a factor of 2 into α |
+| R5 requires "a fresh-clone CI job runs `uv run pytest` on every push" | No CI; the same checks are run manually from a clean clone | The environment pulls 4.8 GB, of which 2.7 GB is NVIDIA CUDA libraries and 690 MB triton — for a codebase that hides the GPU in every sweep worker, pins the suite off it, and measured GPU throughput at 0.77–1.34× (no benefit at these sizes). The *substance* of R5 — no gitignored source, committed artifacts, green from a clean clone — is preserved and was verified; only the automation is dropped. Stated as a deviation rather than quietly downgraded, since R5 is a pre-registered rule. |
 
 ---
 

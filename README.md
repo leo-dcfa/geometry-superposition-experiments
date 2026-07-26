@@ -89,8 +89,14 @@ has the full statements.
   run UNINTERPRETABLE automatically.
 - **R3** — the clamped-Euclidean and normalized-Euclidean controls are built in
   the same sweep as the curved arm, never afterwards.
-- **R5** — CI runs the suite from a fresh clone and checks that no source module
-  is swallowed by `.gitignore`. That failure hid a whole module in the parent
-  repo until an auditor tried to reproduce it.
+- **R5** — `tools/check_tracked_sources.py` checks that no source module is
+  swallowed by `.gitignore`, and every runner commits a summary JSON stamped
+  with the git commit that produced it. That gitignore failure hid a whole
+  module in the parent repo until an auditor tried to reproduce it. There is no
+  CI, so run the check with the suite before publishing:
+
+  ```sh
+  uv run python tools/check_tracked_sources.py && uv run pytest -q
+  ```
 - **R6** — a number outside a pre-registered band is written as a MISS, in the
   table and the prose.

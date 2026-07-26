@@ -244,6 +244,7 @@ uv run python -m experiments.csc1.phase00.run_00a   # etc.
 ```
 
 Every runner writes a committed summary JSON carrying the git commit that
-produced it. CI runs the suite from a fresh clone and verifies no source module
-is gitignored — the failure mode that hid a whole module in the parent program
-until an external auditor tried to reproduce it.
+produced it. `tools/check_tracked_sources.py` verifies no source module is
+gitignored — the failure mode that hid a whole module in the parent program
+until an external auditor tried to reproduce it. Both were verified from a
+clean clone.
