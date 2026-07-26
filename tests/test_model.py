@@ -8,6 +8,8 @@ arms with different parameter counts is not a comparison).
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 import torch
 
@@ -387,3 +389,28 @@ def test_spearman_uses_midranks_for_ties():
     assert out["rho"] == pytest.approx(1.0)
     assert out["tie_policy"] == "midranks"
     assert out["tied_mass_x"] == pytest.approx(0.25)
+
+
+def test_figures_render(tmp_path):
+    """Figures are a SPEC 9 deliverable; a broken plotting path should fail
+    in CI rather than at write-up time."""
+    from csc.interp.viz import capacity_frontier, poincare_prototypes
+
+    model = ToySuperposition(StereographicSpace(2, -1.0), N_FEATURES, head="norm_affine")
+    out = poincare_prototypes(model, tmp_path / "disc.png")
+    assert out.exists() and out.stat().st_size > 1000
+
+    frontier = {
+        "euclidean": {"capacity": 20.0, "interference": 0.04},
+        "curved(K=-2)": {"capacity": 24.0, "interference": 0.03},
+    }
+    out = capacity_frontier(frontier, tmp_path / "frontier.png")
+    assert out.exists() and out.stat().st_size > 1000
+
+
+def test_poincare_figure_refuses_non_hyperbolic_arms():
+    from csc.interp.viz import poincare_prototypes
+
+    model = ToySuperposition(EuclideanSpace(2), N_FEATURES)
+    with pytest.raises(ValueError):
+        poincare_prototypes(model, Path("/tmp/never-written.png"))
