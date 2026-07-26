@@ -16,6 +16,7 @@ from __future__ import annotations
 import torch
 from torch import Tensor, nn
 
+from csc.spaces.numerics import safe_sqrt
 from csc.spaces.stereographic import StereographicSpace
 
 
@@ -28,7 +29,7 @@ class ProductSpace(nn.Module):
         self.dim = sum(f.dim for f in factors)
 
     @classmethod
-    def hyperbolic(cls, n_factors: int, dim_per_factor: int, kappa: float) -> "ProductSpace":
+    def hyperbolic(cls, n_factors: int, dim_per_factor: int, kappa: float) -> ProductSpace:
         """``n_factors`` copies of a curvature-K space of equal width."""
         return cls([StereographicSpace(dim_per_factor, kappa) for _ in range(n_factors)])
 
@@ -58,17 +59,17 @@ class ProductSpace(nn.Module):
 
     def dist(self, x: Tensor, y: Tensor) -> Tensor:
         per_factor = torch.stack([f.dist(x[..., s], y[..., s]) for f, s in self._slices()], dim=-1)
-        return per_factor.norm(dim=-1)
+        return safe_sqrt(per_factor.square().sum(-1))
 
     def dist_matrix(self, x: Tensor, y: Tensor) -> Tensor:
         per_factor = torch.stack(
             [f.dist_matrix(x[..., s], y[..., s]) for f, s in self._slices()], dim=-1
         )
-        return per_factor.norm(dim=-1)
+        return safe_sqrt(per_factor.square().sum(-1))
 
     def radius(self, x: Tensor) -> Tensor:
         per_factor = torch.stack([f.radius(x[..., s]) for f, s in self._slices()], dim=-1)
-        return per_factor.norm(dim=-1)
+        return safe_sqrt(per_factor.square().sum(-1))
 
     def saturation_fraction(self, x: Tensor) -> Tensor:
         """Worst factor's fraction — a single saturated factor invalidates the point."""

@@ -37,7 +37,7 @@ import math
 import torch
 from torch import Tensor, nn
 
-from csc.spaces.euclidean import euclidean_dist_matrix
+from csc.spaces.numerics import pairwise_sq_dist, safe_sqrt
 
 # Boundary standoff for the artanh/ball domain, per dtype. fp32's value is the
 # one Phase 00b audits; bf16 gets a far looser standoff because its ~3 decimal
@@ -125,7 +125,7 @@ class StereographicSpace(nn.Module):
     def expmap0(self, v: Tensor) -> Tensor:
         eps = _eps(v.dtype)
         s = self._s(v.dtype)
-        r = v.norm(dim=-1, keepdim=True).clamp_min(eps)
+        r = safe_sqrt(v.square().sum(-1, keepdim=True)).clamp_min(eps)
         arg = s * r
         if self.curvature_sign < 0:
             coeff = torch.tanh(arg) / arg
@@ -140,7 +140,7 @@ class StereographicSpace(nn.Module):
         eps = _eps(x.dtype)
         s = self._s(x.dtype)
         x = self.project(x)
-        n = x.norm(dim=-1, keepdim=True).clamp_min(eps)
+        n = safe_sqrt(x.square().sum(-1, keepdim=True)).clamp_min(eps)
         arg = s * n
         if self.curvature_sign < 0:
             coeff = torch.atanh(arg.clamp(max=1 - eps)) / arg
@@ -154,7 +154,7 @@ class StereographicSpace(nn.Module):
         eps = _eps(x.dtype)
         s = self._s(x.dtype)
         max_norm = (1 - eps) / s
-        n = x.norm(dim=-1, keepdim=True).clamp_min(_eps(x.dtype))
+        n = safe_sqrt(x.square().sum(-1, keepdim=True)).clamp_min(_eps(x.dtype))
         return torch.where(n > max_norm, x * (max_norm / n), x)
 
     # ---- distances --------------------------------------------------------
@@ -174,7 +174,7 @@ class StereographicSpace(nn.Module):
         # den vanishes exactly at antipodal spherical pairs, where the distance
         # has already saturated at π/√K; clamping keeps the gradient finite
         den = den.clamp_min(_eps(sq_diff.dtype))
-        return (sq_diff / den).clamp(0.0, _W_MAX**2).sqrt()
+        return safe_sqrt((sq_diff / den).clamp(0.0, _W_MAX**2))
 
     def dist(self, x: Tensor, y: Tensor) -> Tensor:
         x = self.project(x)
@@ -186,7 +186,7 @@ class StereographicSpace(nn.Module):
     def dist_matrix(self, x: Tensor, y: Tensor) -> Tensor:
         x = self.project(x)
         y = self.project(y)
-        sq_diff = euclidean_dist_matrix(x, y).square()
+        sq_diff = pairwise_sq_dist(x, y)
         nx2 = x.square().sum(-1).unsqueeze(-1)
         ny2 = y.square().sum(-1).unsqueeze(-2)
         return self._from_gyro(self._gyro_norm(sq_diff, nx2, ny2))
@@ -195,11 +195,11 @@ class StereographicSpace(nn.Module):
 
     def radius(self, x: Tensor) -> Tensor:
         """Geodesic radius from the origin, ``= ‖logmap0(x)‖`` by construction."""
-        return self.logmap0(x).norm(dim=-1)
+        return safe_sqrt(self.logmap0(x).square().sum(-1))
 
     def saturation_fraction(self, x: Tensor) -> Tensor:
         if self.curvature_sign < 0:
-            return x.norm(dim=-1) / self.ball_radius
+            return safe_sqrt(x.square().sum(-1)) / self.ball_radius
         return self.radius(x) / self.diameter
 
     def extra_repr(self) -> str:

@@ -236,7 +236,70 @@ def test_product_dist_matrix_matches_dist():
 
 
 # --------------------------------------------------------------------------
-# 6. independent cross-check against geoopt
+# 6. gradient safety (regression tests for the Phase-00b finding)
+# --------------------------------------------------------------------------
+
+
+ALL_SPACES = {
+    "euclidean": lambda: EuclideanSpace(3),
+    "hyperbolic": lambda: StereographicSpace(3, -1.0),
+    "spherical": lambda: StereographicSpace(3, +1.0),
+    "clamped": lambda: ClampedEuclideanSpace(3, max_dist=4.0),
+    "normalized": lambda: NormalizedEuclideanSpace(3),
+    "product": lambda: ProductSpace.hyperbolic(3, 1, -1.0),
+}
+
+
+@pytest.mark.parametrize("name", list(ALL_SPACES))
+def test_gradients_are_finite_at_coincident_points(name):
+    """The 00b finding: √· has an infinite derivative at 0, so a self-distance
+    or any exactly-coincident pair produced NaN gradients through the whole
+    batch, at every radius. Coincident prototypes are what a model out of room
+    actually does, so this had to be fixed everywhere, not guarded against."""
+    space = ALL_SPACES[name]()
+    x = torch.randn(16, 3, dtype=torch.float32) * 0.3
+    x[3] = x[2]  # an exactly coincident pair, in addition to the diagonal
+    x = x.requires_grad_(True)
+    space.dist_matrix(space.expmap0(x), space.expmap0(x)).sum().backward()
+    assert torch.isfinite(x.grad).all(), f"{name}: non-finite gradient at coincidence"
+
+
+@pytest.mark.parametrize("name", list(ALL_SPACES))
+def test_gradients_are_finite_at_the_origin(name):
+    """A zero tangent vector is the other place a norm's gradient blows up."""
+    space = ALL_SPACES[name]()
+    v = torch.zeros(4, 3, dtype=torch.float32, requires_grad=True)
+    space.dist_matrix(space.expmap0(v), space.expmap0(v) + 0.5).sum().backward()
+    assert torch.isfinite(v.grad).all(), f"{name}: non-finite gradient at the origin"
+
+
+@pytest.mark.parametrize("kappa", CURVATURES)
+def test_gradients_are_finite_across_and_beyond_the_operating_band(kappa):
+    space = StereographicSpace(4, kappa)
+    s = math.sqrt(abs(kappa))
+    for scaled in (0.1, 0.5, 1.5, 3.0, 6.0):
+        if kappa > 0 and scaled >= math.pi:
+            continue
+        v = torch.randn(32, 4, dtype=torch.float32)
+        v = (v / v.norm(dim=-1, keepdim=True) * (scaled / s)).requires_grad_(True)
+        pts = space.expmap0(v)
+        space.dist_matrix(pts, pts).sum().backward()
+        assert torch.isfinite(v.grad).all(), f"kappa={kappa} scaled_radius={scaled}"
+
+
+def test_safe_sqrt_bias_is_negligible_in_band():
+    """The ε² floor must not move a distance anyone will read."""
+    space = StereographicSpace(2, -1.0)
+    v = torch.tensor([[1.5, 0.0], [0.0, 1.5]], dtype=DTYPE)
+    pts = space.expmap0(v)
+    d = space.dist(pts[0], pts[1]).item()
+    # closed form: law of cosines at r=1.5, theta=pi/2, K=-1
+    expected = math.acosh(math.cosh(1.5) ** 2)
+    assert d == pytest.approx(expected, rel=1e-9)
+
+
+# --------------------------------------------------------------------------
+# 7. independent cross-check against geoopt
 # --------------------------------------------------------------------------
 
 

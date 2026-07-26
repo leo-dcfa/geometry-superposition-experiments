@@ -10,20 +10,21 @@ from __future__ import annotations
 import torch
 from torch import Tensor, nn
 
+from csc.spaces.numerics import pairwise_dist, safe_sqrt
+
 
 def euclidean_dist_matrix(x: Tensor, y: Tensor) -> Tensor:
     """``(..., n, d) x (m, d) -> (..., n, m)`` pairwise L2 distances.
 
-    ``compute_mode`` is pinned to the direct form. ``cdist``'s default silently
-    switches to the expanded ‖x‖²+‖y‖²−2⟨x,y⟩ matmul above 25 rows, which loses
-    catastrophic-cancellation precision exactly for *nearby* points — measured
-    here at 4e-8 on a self-distance in float64. Nearby points are the entire
-    subject of the interference metrics (P3) and of the minimum-pairwise-
-    distance metric, so the mm path is not an acceptable default for this
-    study. The latent widths here are d ≤ 8, where the matmul trick buys
-    almost nothing anyway.
+    Not ``torch.cdist``, for two measured reasons. Its default silently
+    switches to the expanded ‖x‖²+‖y‖²−2⟨x,y⟩ matmul above 25 rows, losing
+    catastrophic-cancellation precision exactly for *nearby* points (4e-8 on a
+    float64 self-distance); and every ``cdist`` mode produces NaN gradients at
+    coincident points, with no way to pass an epsilon. Nearby and coincident
+    points are the entire subject of the interference metrics (P3), so neither
+    is acceptable here. See ``spaces/numerics.py``.
     """
-    return torch.cdist(x, y, p=2, compute_mode="donot_use_mm_for_euclid_dist")
+    return pairwise_dist(x, y)
 
 
 class EuclideanSpace(nn.Module):
@@ -42,7 +43,7 @@ class EuclideanSpace(nn.Module):
         return x
 
     def dist(self, x: Tensor, y: Tensor) -> Tensor:
-        return (x - y).norm(dim=-1)
+        return safe_sqrt((x - y).square().sum(-1))
 
     def project(self, x: Tensor) -> Tensor:
         return x
@@ -51,7 +52,7 @@ class EuclideanSpace(nn.Module):
         return euclidean_dist_matrix(x, y)
 
     def radius(self, x: Tensor) -> Tensor:
-        return x.norm(dim=-1)
+        return safe_sqrt(x.square().sum(-1))
 
     def saturation_fraction(self, x: Tensor) -> Tensor:
         return torch.zeros(x.shape[:-1], dtype=x.dtype, device=x.device)

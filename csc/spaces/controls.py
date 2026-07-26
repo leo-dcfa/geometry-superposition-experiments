@@ -17,6 +17,7 @@ import torch
 from torch import Tensor, nn
 
 from csc.spaces.euclidean import euclidean_dist_matrix
+from csc.spaces.numerics import safe_sqrt
 
 
 class ClampedEuclideanSpace(nn.Module):
@@ -56,21 +57,21 @@ class ClampedEuclideanSpace(nn.Module):
         return x
 
     def dist(self, x: Tensor, y: Tensor) -> Tensor:
-        return (x - y).norm(dim=-1).clamp(max=self.max_dist)
+        return safe_sqrt((x - y).square().sum(-1)).clamp(max=self.max_dist)
 
     def dist_matrix(self, x: Tensor, y: Tensor) -> Tensor:
         return euclidean_dist_matrix(x, y).clamp(max=self.max_dist)
 
     def radius(self, x: Tensor) -> Tensor:
-        return x.norm(dim=-1)
+        return safe_sqrt(x.square().sum(-1))
 
     def saturation_fraction(self, x: Tensor) -> Tensor:
         """Radius as a fraction of the clip radius (``max_dist``/2 from centre)."""
-        return (2 * x.norm(dim=-1) / self.max_dist).clamp(max=1.0)
+        return (2 * self.radius(x) / self.max_dist).clamp(max=1.0)
 
     def clipped_fraction(self, x: Tensor, y: Tensor) -> Tensor:
         """Diagnostic: fraction of pairs sitting on the clip (zero-gradient)."""
-        return ((x - y).norm(dim=-1) >= self.max_dist).to(x.dtype).mean()
+        return (safe_sqrt((x - y).square().sum(-1)) >= self.max_dist).to(x.dtype).mean()
 
     def extra_repr(self) -> str:
         return f"dim={self.dim}, kappa=0.0, max_dist={self.max_dist:.4g}"
@@ -97,7 +98,7 @@ class NormalizedEuclideanSpace(nn.Module):
         return 0.0
 
     def expmap0(self, v: Tensor) -> Tensor:
-        return v / v.norm(dim=-1, keepdim=True).clamp_min(self.eps)
+        return v / safe_sqrt(v.square().sum(-1, keepdim=True)).clamp_min(self.eps)
 
     def logmap0(self, x: Tensor) -> Tensor:
         return x
@@ -106,14 +107,14 @@ class NormalizedEuclideanSpace(nn.Module):
         return self.expmap0(x)
 
     def dist(self, x: Tensor, y: Tensor) -> Tensor:
-        return (self.project(x) - self.project(y)).norm(dim=-1)
+        return safe_sqrt((self.project(x) - self.project(y)).square().sum(-1))
 
     def dist_matrix(self, x: Tensor, y: Tensor) -> Tensor:
         return euclidean_dist_matrix(self.project(x), self.project(y))
 
     def radius(self, x: Tensor) -> Tensor:
         """Identically 1 on the unit sphere — the control has no radial channel."""
-        return self.project(x).norm(dim=-1)
+        return safe_sqrt(self.project(x).square().sum(-1))
 
     def saturation_fraction(self, x: Tensor) -> Tensor:
         return torch.zeros(x.shape[:-1], dtype=x.dtype, device=x.device)

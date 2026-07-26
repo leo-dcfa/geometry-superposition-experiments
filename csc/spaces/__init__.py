@@ -13,12 +13,12 @@ from csc.spaces.product import ProductSpace
 from csc.spaces.stereographic import StereographicSpace
 
 __all__ = [
-    "Space",
-    "EuclideanSpace",
-    "StereographicSpace",
     "ClampedEuclideanSpace",
+    "EuclideanSpace",
     "NormalizedEuclideanSpace",
     "ProductSpace",
+    "Space",
+    "StereographicSpace",
     "make_space",
 ]
 
