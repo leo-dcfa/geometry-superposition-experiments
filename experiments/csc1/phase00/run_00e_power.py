@@ -173,7 +173,7 @@ def required_seeds(effects: list[float], sigma: float, max_n: int = 400) -> dict
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "phase00")
+    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "csc1" / "phase00")
     args = parser.parse_args()
 
     sigma_report = seed_sigma_from_control(args.out / "00d_positive_control.json")

@@ -22,6 +22,11 @@ from csc.interp.capacity import (
 from csc.models.toy import ToySuperposition, parameter_count
 from csc.spaces import make_space
 from csc.training.data import importance_spectrum, sample_batch, weighted_mse
+from csc.training.hierarchy import (
+    FeatureTree,
+    hierarchy_importance,
+    sample_hierarchical_batch,
+)
 from csc.training.monitor import SaturationMonitor
 from csc.training.seeding import data_generator, seed_everything
 
@@ -37,12 +42,18 @@ class ToyConfig:
     n_features: int = 16
     sparsity: float = 0.9  # P(feature off)
     importance_decay: float = 0.9
+    # CSC-2: tree-structured features. depth=0 is the flat, exchangeable
+    # setting CSC used, so the same loop covers both and the H2-a anchor is a
+    # config change rather than a separate code path.
+    hierarchy_depth: int = 0
+    hierarchy_branching: int = 2
+    hierarchy_level_decay: float = 0.7
     # model
     # norm_affine, not rbf: the 00c parity fixture measured rbf collapsing to
     # the all-zero solution at weight_decay=0 and recovering perfectly at
     # 0.01, i.e. the optimizer rather than the geometry selects its basin.
     # norm_affine and softmax were stable across both settings and both
-    # curvature signs. See CSC_RESULTS/phase00/00c_dead_unit_parity.json.
+    # curvature signs. See CSC_RESULTS/csc1/phase00/00c_dead_unit_parity.json.
     head: str = "norm_affine"
     encoder_init_scale: float = 1.0  # gain on the encoder weight init (00a knob)
     proto_init_scale: float = 0.2
@@ -62,11 +73,24 @@ class ToyConfig:
         return asdict(self)
 
 
+def build_tree(cfg: ToyConfig) -> FeatureTree | None:
+    """The feature tree for this config, or None in the flat (CSC) setting."""
+    if cfg.hierarchy_depth <= 0:
+        return None
+    return FeatureTree(cfg.hierarchy_depth, cfg.hierarchy_branching)
+
+
+def effective_n_features(cfg: ToyConfig) -> int:
+    """With a tree, the feature count is the node count, not cfg.n_features."""
+    tree = build_tree(cfg)
+    return tree.n_features if tree else cfg.n_features
+
+
 def build_model(cfg: ToyConfig) -> ToySuperposition:
     space = make_space(cfg.arm, cfg.dim, cfg.kappa, **cfg.space_kwargs)
     model = ToySuperposition(
         space,
-        cfg.n_features,
+        effective_n_features(cfg),
         head=cfg.head,
         proto_init_scale=cfg.proto_init_scale,
     )
@@ -95,13 +119,26 @@ def train_toy(cfg: ToyConfig, progress: bool = False) -> ToyRun:
     seed_everything(cfg.seed)
     model = build_model(cfg)
     gen = data_generator(cfg.seed, device=cfg.device)
-    importance = importance_spectrum(cfg.n_features, cfg.importance_decay, device=cfg.device)
+    tree = build_tree(cfg)
+    n_feat = effective_n_features(cfg)
+    if tree is not None:
+        importance = hierarchy_importance(tree, cfg.importance_decay, device=cfg.device)
+
+        def draw(bs: int):
+            return sample_hierarchical_batch(
+                bs, tree, cfg.sparsity, cfg.hierarchy_level_decay, gen, cfg.device
+            )
+    else:
+        importance = importance_spectrum(cfg.n_features, cfg.importance_decay, device=cfg.device)
+
+        def draw(bs: int):
+            return sample_batch(bs, cfg.n_features, cfg.sparsity, gen, cfg.device)
     opt = torch.optim.AdamW(model.parameters(), lr=cfg.lr, weight_decay=cfg.weight_decay)
     monitor = SaturationMonitor(eval_every=cfg.eval_every)
 
     losses: list[dict] = []
     for step in range(cfg.steps + 1):
-        batch = sample_batch(cfg.batch_size, cfg.n_features, cfg.sparsity, gen, cfg.device)
+        batch = draw(cfg.batch_size)
         loss = weighted_mse(model(batch), batch, importance)
         opt.zero_grad(set_to_none=True)
         loss.backward()
@@ -114,7 +151,7 @@ def train_toy(cfg: ToyConfig, progress: bool = False) -> ToyRun:
             if progress:
                 print(f"  step {step:>6} loss {float(loss.detach()):.5f}", flush=True)
 
-    eval_batch = sample_batch(4096, cfg.n_features, cfg.sparsity, gen, cfg.device)
+    eval_batch = draw(4096)
     with torch.no_grad():
         final_loss = float(weighted_mse(model(eval_batch), eval_batch, importance))
 
@@ -126,6 +163,7 @@ def train_toy(cfg: ToyConfig, progress: bool = False) -> ToyRun:
 
     summary = {
         "config": cfg.to_json(),
+        "n_features_effective": n_feat,
         "n_parameters": parameter_count(model),
         "final_loss": final_loss,
         "loss_curve": losses,

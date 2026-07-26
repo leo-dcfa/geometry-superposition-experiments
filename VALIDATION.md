@@ -1,6 +1,6 @@
 # CSC — pre-registration ledger and gate status
 
-Authoritative for thresholds. `SPEC.md` states the hypotheses; nothing here
+Authoritative for thresholds. `SPEC_CSC1.md` states the hypotheses; nothing here
 weakens them. Every number below is either **SEALED** (fixed, with the commit
 that fixed it) or **DRAFT** (proposed, awaiting sign-off, not yet used to
 judge anything).
@@ -18,7 +18,7 @@ published external behaviour rather than against a curved arm.
 
 P1 predicted N*(κ) decreasing in κ. It is not supported, and the Phase-1 run
 that appeared to show a trend is retracted as confounded. Full detail:
-`CSC_RESULTS/phase1/RESULTS.md` and `RESULTS_1b.md`.
+`CSC_RESULTS/csc1/phase1/RESULTS.md` and `RESULTS_1b.md`.
 
 | Finding | Measurement |
 |---|---|
@@ -56,7 +56,7 @@ best-performing geometry here is flat.
 | 00b | Are the numerics sound across the operating band? | **PASS after one fix** | `00b_numerics_audit.json` |
 | 00c | Is the readout fair across κ arms? | **PASS** — 2 of 4 heads disqualified | `00c_dead_unit_parity.json` |
 
-All artifacts under `CSC_RESULTS/phase00/`.
+All artifacts under `CSC_RESULTS/csc1/phase00/`.
 
 **G00 PASSES. Phase 1 may open**, subject to the remaining DRAFT decisions
 (D1, D3–D7) being sealed, since they fix what Phase 1 measures rather than

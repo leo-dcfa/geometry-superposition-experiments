@@ -8,7 +8,7 @@ locally flat and the experiment measures nothing, nor pinned to the rim, where
 the readout measures its own clamp (rule R2).
 
 Fitted from 1680 runs across two sweeps
-(`CSC_RESULTS/phase00/00a_scale_sweep*.json`) on
+(`CSC_RESULTS/csc1/phase00/00a_scale_sweep*.json`) on
 
     log(median √|K|·r) = a + b·log(gain) + c·log|K| + d·log(dim) + e·log(N)
 

@@ -2,7 +2,7 @@
 
 Study: **Curvature and Superposition Capacity**. Does a negatively curved
 latent space need fewer dimensions to hold more features at fixed recovery
-quality? `SPEC.md` is authoritative (H-MAIN, P1–P4, rules R1–R6, phases
+quality? `SPEC_CSC1.md` is authoritative (H-MAIN, P1–P4, rules R1–R6, phases
 00–3); `VALIDATION.md` is the pre-registration ledger and the only place
 thresholds are sealed. Read both before structural changes.
 
@@ -15,7 +15,7 @@ of this repo alone is runnable (rule R5).
 
 - `uv sync` — env; `uv run pytest` — full suite (CPU-pinned via tests/conftest.py)
 - `uv run ruff check csc tests experiments` — lint
-- `uv run python -m experiments.phase00.run_00a` — Phase 00 runners (a/b/c)
+- `uv run python -m experiments.csc1.phase00.run_00a` — Phase 00 runners (a/b/c)
 
 ## Curvature convention (differs from the parent program)
 

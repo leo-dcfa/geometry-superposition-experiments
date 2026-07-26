@@ -277,7 +277,7 @@ PHASE1_FEATURES = [8, 16, 32, 64, 128, 256]
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "phase00")
+    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "csc1" / "phase00")
     parser.add_argument("--workers", type=int, default=None)
     parser.add_argument(
         "--init-scales",

@@ -93,7 +93,7 @@ def _cell(spec: tuple) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "phase00")
+    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "csc1" / "phase00")
     parser.add_argument("--workers", type=int, default=None)
     args = parser.parse_args()
 

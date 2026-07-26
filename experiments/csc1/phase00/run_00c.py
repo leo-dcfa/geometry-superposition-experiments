@@ -270,7 +270,7 @@ def parity_table(cells: list[dict], gated_only: bool = True) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "phase00")
+    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "csc1" / "phase00")
     parser.add_argument("--workers", type=int, default=None)
     parser.add_argument(
         "--reanalyze",

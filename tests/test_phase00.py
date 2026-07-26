@@ -8,7 +8,7 @@ the meaning of the sub-gate's verdict.
 
 from __future__ import annotations
 
-from experiments.phase00.run_00c import PARITY_TOLERANCE, parity_table
+from experiments.csc1.phase00.run_00c import PARITY_TOLERANCE, parity_table
 
 
 def _cell(arm_label, head, n_features, dead_init, dead_trained, recovery, **kw):

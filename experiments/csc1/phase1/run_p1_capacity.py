@@ -233,7 +233,7 @@ def analyse(cells: list[dict]) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "phase1")
+    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "csc1" / "phase1")
     parser.add_argument("--workers", type=int, default=None)
     parser.add_argument("--dims", type=int, nargs="+", default=None)
     args = parser.parse_args()

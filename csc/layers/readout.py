@@ -33,10 +33,21 @@ space, so a head reading raw d is not scale-neutral across κ.
 
 from __future__ import annotations
 
+import math
+
 import torch
 from torch import Tensor, nn
 
-HEADS = ("rbf", "norm_affine", "softmax", "affine")
+HEADS = ("rbf", "norm_affine", "softmax", "affine", "abs_rbf")
+
+# Heads whose length scale is ABSOLUTE — no batch statistic enters the
+# response, so a distance of 1.0 means the same thing in every batch and every
+# arm. This is the axis CSC-2's E1 manipulates: CSC's null was measured under
+# relative-scale heads only, and the leading explanation for it is that
+# hyperbolic geometry inflates the batch-mean distance by the same exponential
+# property that creates its volume, so room and resolution cancel.
+ABSOLUTE_SCALE_HEADS = ("abs_rbf", "affine", "rbf")
+RELATIVE_SCALE_HEADS = ("norm_affine", "softmax")
 
 
 class DistanceReadout(nn.Module):
@@ -69,8 +80,22 @@ class ResponseHead(nn.Module):
         # R1: both are unconditional. Do not make either optional.
         self.scale = nn.Parameter(torch.ones(n_prototypes))
         self.bias = nn.Parameter(self._init_bias(kind, n_prototypes))
-        if kind == "rbf":
-            self.log_tau = nn.Parameter(torch.zeros(n_prototypes))
+        if kind in ("rbf", "abs_rbf"):
+            # tau is the absolute length scale. `rbf` starts it at 1.0, which
+            # 00c measured collapsing to the all-zero solution at
+            # weight_decay=0: at init the kernel is ~0.5 for EVERY prototype,
+            # so every unit answers the same thing regardless of input and the
+            # fastest descent direction is to switch them all off.
+            #
+            # `abs_rbf` starts tau small (0.3) so the kernel is already
+            # selective at init — near zero for all but the closest prototype.
+            # That matches the sparse target (mostly zeros) from step one, so
+            # "switch everything off" is no longer the steepest direction, and
+            # the geometry is load-bearing immediately.
+            init_tau = 0.3 if kind == "abs_rbf" else 1.0
+            self.log_tau = nn.Parameter(
+                torch.full((n_prototypes,), math.log(init_tau))
+            )
         elif kind == "softmax":
             self.log_temp = nn.Parameter(torch.zeros(()))
 
@@ -87,7 +112,7 @@ class ResponseHead(nn.Module):
         return torch.zeros(n)  # rbf/softmax responses are already in [0, 1]
 
     def forward(self, logits: Tensor) -> Tensor:
-        if self.kind == "rbf":
+        if self.kind in ("rbf", "abs_rbf"):
             kernel = torch.exp(-((logits / torch.exp(self.log_tau)).square()))
             return torch.relu(self.scale * kernel + self.bias)
         if self.kind == "norm_affine":

@@ -7,7 +7,7 @@ Negative curvature gives exponential volume growth with radius; positive
 curvature caps total volume. If representations are points and interference is
 proximity, curvature should directly control how many features fit in how few
 dimensions — the quantity mech interp calls superposition capacity. That is
-the whole claim (H-MAIN), and `SPEC.md` states it formally at three scales.
+the whole claim (H-MAIN), and `SPEC_CSC1.md` states it formally at three scales.
 
 This is a study within the KosmosLM program. It descends from that program's
 spacetime-curvature inspiration but tests a different question: **capacity**,
@@ -39,9 +39,9 @@ tests/            geometry contracts, R1/R2 enforcement, parity fixtures
 ```sh
 uv sync
 uv run pytest                                   # full suite, CPU-pinned
-uv run python -m experiments.phase00.run_00a    # scale calibration
-uv run python -m experiments.phase00.run_00b    # numerics audit
-uv run python -m experiments.phase00.run_00c    # dead-unit parity
+uv run python -m experiments.csc1.phase00.run_00a    # scale calibration
+uv run python -m experiments.csc1.phase00.run_00b    # numerics audit
+uv run python -m experiments.csc1.phase00.run_00c    # dead-unit parity
 ```
 
 ## The one convention worth knowing before reading any code
@@ -58,7 +58,7 @@ Distances are normalized so `d(0, expmap0(v)) = ‖v‖` — a tangent vector's 
 
 ## Design rules that are structural, not configurable
 
-Each comes from the parent program's July 2026 external audit; `SPEC.md` §3
+Each comes from the parent program's July 2026 external audit; `SPEC_CSC1.md` §3
 has the full statements.
 
 - **R1** — every readout in every arm, controls included, carries per-prototype

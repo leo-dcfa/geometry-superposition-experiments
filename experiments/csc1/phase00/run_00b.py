@@ -268,7 +268,7 @@ def verdicts(round_trip, distances, horizons, grads) -> dict:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "phase00")
+    parser.add_argument("--out", type=Path, default=RESULTS_ROOT / "csc1" / "phase00")
     args = parser.parse_args()
 
     torch.set_num_threads(4)

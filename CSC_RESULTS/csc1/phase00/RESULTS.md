@@ -162,6 +162,6 @@ the bug.
 | `00c_dead_unit_parity.json` | 1960 runs; per-head parity and per-arm dead-unit census |
 | `00d_positive_control.json` | 300 Euclidean-only runs; superposition phenomenology vs published behaviour |
 
-Reproduce: `uv run python -m experiments.phase00.run_00{a,b,c}` and
+Reproduce: `uv run python -m experiments.csc1.phase00.run_00{a,b,c}` and
 `run_00a_confirm`. All Phase-00 runs are CPU-pinned and seeded; CPU and GPU
 produce different RNG streams, so a sweep must not be split across devices.
