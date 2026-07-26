@@ -23,8 +23,8 @@ import os
 # Must precede the torch import: CUDA visibility is read at initialization.
 os.environ.setdefault("CUDA_VISIBLE_DEVICES", "")
 
-import pytest  # noqa: E402
-import torch  # noqa: E402
+import pytest
+import torch
 
 
 @pytest.fixture(autouse=True)
