@@ -14,11 +14,26 @@ Phase 1 has not run.
 
 | Sub-gate | Question | Verdict | Artifact |
 |---|---|---|---|
-| 00a | Do trained point clouds occupy √\|K\|·r ∈ [0.5, 3.0]? | **FAIL** — clouds sit *below* the band (below) | `CSC_RESULTS/phase00/00a_scale_sweep.json` |
-| 00b | Are the numerics sound across the operating band? | **PASS after one fix** (below) | `CSC_RESULTS/phase00/00b_numerics_audit.json` |
-| 00c | Is the readout fair across κ arms? | **PASS** — 2 of 4 heads disqualified (below) | `CSC_RESULTS/phase00/00c_dead_unit_parity.json` |
+| 00a | Do trained point clouds occupy √\|K\|·r ∈ [0.5, 3.0]? | **NEAR-MISS** — 99.2% in-band on the primary head, but 2.4% R2-flagged against a registered clause of zero | `00a_scale_sweep.json`, `00a_scale_sweep_extended.json`, `00a_confirm.json` |
+| 00b | Are the numerics sound across the operating band? | **PASS after one fix** | `00b_numerics_audit.json` |
+| 00c | Is the readout fair across κ arms? | **PASS** — 2 of 4 heads disqualified | `00c_dead_unit_parity.json` |
 
-**G00 does not pass. Phase 1 does not open.** 00a is the blocker.
+All artifacts under `CSC_RESULTS/phase00/`.
+
+**G00 does not pass yet, so Phase 1 does not open.** Nothing is blocked on
+compute or on a missing measurement: the instrument is calibrated, the primary
+head lands 99.2% in-band including 100% on held-out shapes, and the numerics
+and readout gates are clean. What blocks it is **three pre-registration
+decisions that are the researcher's to make, not the implementer's** — D2, D8
+and D9 below. D8 in particular is a criterion I set stricter than the study's
+own G1 bar without justification.
+
+**Ordering error in SPEC §4, found the hard way.** Sub-gate 00a must run
+*after* 00c, not before. 00a calibrates the point cloud through a readout; if
+that readout has not yet been validated, the calibration measures the readout.
+The first 00a run did exactly this via `rbf` and produced two headline numbers
+that both reversed on re-run. Recommended for any replication: run 00c → 00b →
+00a.
 
 ### 00a — scale calibration: **FAIL**
 
@@ -50,17 +65,70 @@ where every geometry is locally flat and the experiment measures nothing. It
 is the opposite of the boundary-pinning that rule R2 guards against, and R2
 would never fire on it, which is precisely why 00a is a separate gate.
 
-The knob is real for the primary head (exponent +0.277, ΔR² = 0.123) but was
-not swept far enough: even at gain 4.0 the hyperbolic arms only reach
-0.59–1.25. An extended sweep (gains 4 → 1024) is running to determine whether
-the band is reachable at all on this architecture, or whether the model
-actively resists being pushed outward. **Until that lands, 00a has no
-committed rule and G00 is blocked.**
+**The band is reachable.** An extended sweep (gains 4 → 1024, 840 runs)
+settled it. The model does not resist being pushed outward — it goes from
+below-band straight to the saturation ceiling, with a usable window between:
 
-Note that the init gain being *active* for `norm_affine` and *inert* for
-`softmax` is itself a two-instrument finding: the two readouts do not merely
-differ in quality, they differ in whether the calibration knob works at all.
-Any Phase-1 result will have to be reported under both regardless.
+| `norm_affine` gain | 0.25 | 1 | 2 | **4** | 16 | 64 | 256 |
+|---|---|---|---|---|---|---|---|
+| in band | 0.48 | 0.46 | 0.60 | **0.90** | 0.76 | 0.06 | 0.00 |
+| UNINTERPRETABLE | 0.00 | 0.00 | 0.00 | **0.00** | 0.68 | 1.00 | 1.00 |
+
+Past gain ~16 the clouds do not overshoot smoothly; they land *exactly* on the
+saturation ceiling — 14.5 for K<0 and π for K>0. The 14.5 is an independent
+confirmation of 00b's measured clamp horizon (14.4–14.6), which was obtained
+by a completely different method (walking the radius outward until the
+reported distance stops tracking). Two sub-gates agreeing on a number they
+derived independently is reassuring about both.
+
+**Committed rule:** `csc/calibration/scale_rule.py`, fitted over 1680 runs at
+gains ≤ 16 (above which there is no smooth regime to fit), inverted for the
+gain that lands the predicted median √|K|·r on the band's geometric centre.
+
+**The knob's ceiling is set by the transient, not the settled state** — a
+finding that came out of the confirmation run and changed the rule. At
+prescribed gains ≥ 10.4 the R2 gate fired on 14.3% of runs, yet 15 of those 18
+flagged runs still *ended* in-band: a high gain launches the cloud onto the
+boundary and lets it contract back, so the endpoint looks healthy while the
+early gradients were clamp-dominated. That is the parent program's
+path-dependence argument in a new place — a readout saturated at birth can
+shape what is learned before the model routes around it, and the endpoint
+cannot show you it happened. The cap was therefore set at **9.0**, below where
+the transient appears, rather than R2 being given a burn-in exemption.
+
+### 00a confirmation — **NEAR-MISS against the registered criterion**
+
+The rule is validated by *applying* it, on held-out shapes it was never fitted
+on (`experiments/phase00/run_00a_confirm.py`, 252 runs). A rule reported from
+its own fit data is only a description of that data.
+
+| Head | In band | Held-out shapes | Below floor | R2-clean |
+|---|---|---|---|---|
+| `norm_affine` (primary) | **0.992** | **1.000** | 0.008 | 0.976 |
+| `softmax` (2nd instrument) | 0.556 | 0.560 | 0.413 | 0.968 |
+
+Registered criterion (committed before the run): ≥ 80% in-band on the primary
+head **and zero runs flagged UNINTERPRETABLE**. Measured: 99.2% in-band, but
+**2.4% flagged — so the criterion is not met, and this is written as a miss**
+(R6). All three flagged runs sit at the gain cap and all three end in-band;
+exactly one run of 126 is out of band at all.
+
+**DRAFT decision D8 (below) proposes reconciling the clause with SPEC's own
+standard**, which is looser than the one I set: G1 requires the R2 gate clean
+in ≥ 95% of hypothesis-relevant runs, and 97.6% clears it. I set my clause
+stricter than the study's own bar without justifying why, which is a
+pre-registration error on my part; the fix is the researcher's call, not a
+silent edit, so the runner still reports FAIL until it is made.
+
+**`softmax` cannot be calibrated to the same standard, and this is
+structural.** Its gain exponent is 0.096 against `norm_affine`'s 0.367 — a
+100× gain change moves its radius ~1.6× — so 41% of its runs sit below the
+band floor at every curvature, and no gain within the safe range fixes it.
+This bears directly on the two-instrument rule (D1): the rule exists because
+the 01b audit measured a headline result flipping sign between readouts, but
+it presumes both instruments are sound. Here they demonstrably are not equally
+calibrated, so a Phase-1 disagreement between them would be confounded with
+that difference. See D9.
 
 Weight decay remains rejected as a lever on principle (the parent program's
 dose-response result: taxing geometry distorts what these studies measure),
@@ -213,6 +281,35 @@ reason. Now that `rbf` is dropped, no surviving head needs decay to train.
 Out-of-band cells (chiefly κ=−4 at large N) are run and reported but not
 primary. The alternative — adding an architectural radius cap to every arm —
 is a larger design change and is not proposed.
+
+**D8 — Reconcile the 00a confirmation clause with SPEC's own R2 standard.**
+I registered "zero runs flagged UNINTERPRETABLE" for the 00a confirmation.
+SPEC's G1 requires the R2 gate clean in **≥ 95%** of hypothesis-relevant runs.
+Measured: 97.6% clean on the primary head — clears the study's bar, misses
+mine. My clause was stricter than the standard the study applies to its own
+Phase-1 gate and I did not justify the difference, which is a
+pre-registration error. Proposed: restate the clause as **≥ 95% R2-clean**,
+matching G1, and record the current run as a PASS under it. Alternatives:
+hold the stricter clause and lower the gain cap further (which will push cells
+below the band floor — the two failure modes trade off directly), or accept
+the 2.4% as an R2 per-run exclusion, which is exactly what R2 is designed to
+do rather than something that should block a gate. **Not adopted unilaterally;
+the runner still reports FAIL until this is decided.**
+
+**D9 — What to do about `softmax` being under-calibrated.** The two-instrument
+rule (D1) presumes both readouts are sound. Measured, they are not: `softmax`
+puts 41% of runs below the band floor and its calibration knob is nearly
+inert (exponent 0.096), so this cannot be fixed by tuning. Options:
+
+- **(a) Recommended.** Keep `softmax` as the second instrument but state its
+  calibration deficit wherever the two-instrument comparison is reported, and
+  treat a disagreement between heads as *uninterpretable* rather than as
+  evidence about geometry — because the heads differ in band occupancy as
+  well as in form.
+- (b) Find a third head that calibrates as well as `norm_affine` and use that
+  as the second instrument. Costs a new head design plus a 00c re-run.
+- (c) Drop to a single instrument. Rejected: this is precisely what the 01b
+  audit showed can produce a sign-flipped headline.
 
 **D7 — All Phase-0/1 runs pinned to CPU.** Measured: the same config gives
 different losses on CPU and GPU (0.5086 vs 0.5057) from different RNG streams,
