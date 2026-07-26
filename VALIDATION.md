@@ -5,8 +5,10 @@ weakens them. Every number below is either **SEALED** (fixed, with the commit
 that fixed it) or **DRAFT** (proposed, awaiting sign-off, not yet used to
 judge anything).
 
-Status: **G00 in progress.** No hypothesis-relevant quantity has been read.
-Phase 1 has not run.
+Status: **G00 PASSED** (2026-07-26, commit recorded below). No
+hypothesis-relevant quantity has been read: the only capacity numbers measured
+so far are from the Euclidean positive control (00d), which is scored against
+published external behaviour rather than against a curved arm.
 
 ---
 
@@ -14,19 +16,24 @@ Phase 1 has not run.
 
 | Sub-gate | Question | Verdict | Artifact |
 |---|---|---|---|
-| 00a | Do trained point clouds occupy √\|K\|·r ∈ [0.5, 3.0]? | **NEAR-MISS** — 99.2% in-band on the primary head, but 2.4% R2-flagged against a registered clause of zero | `00a_scale_sweep.json`, `00a_scale_sweep_extended.json`, `00a_confirm.json` |
+| 00a | Do trained point clouds occupy √\|K\|·r ∈ [0.5, 3.0]? | **PASS** under D8; the original clause was a MISS (§5) | `00a_scale_sweep.json`, `00a_scale_sweep_extended.json`, `00a_confirm.json` |
 | 00b | Are the numerics sound across the operating band? | **PASS after one fix** | `00b_numerics_audit.json` |
 | 00c | Is the readout fair across κ arms? | **PASS** — 2 of 4 heads disqualified | `00c_dead_unit_parity.json` |
 
 All artifacts under `CSC_RESULTS/phase00/`.
 
-**G00 does not pass yet, so Phase 1 does not open.** Nothing is blocked on
-compute or on a missing measurement: the instrument is calibrated, the primary
-head lands 99.2% in-band including 100% on held-out shapes, and the numerics
-and readout gates are clean. What blocks it is **three pre-registration
-decisions that are the researcher's to make, not the implementer's** — D2, D8
-and D9 below. D8 in particular is a criterion I set stricter than the study's
-own G1 bar without justification.
+**G00 PASSES. Phase 1 may open**, subject to the remaining DRAFT decisions
+(D1, D3–D7) being sealed, since they fix what Phase 1 measures rather than
+whether the instrument works.
+
+Final numbers on the primary head (`norm_affine`), applying the committed
+calibration rule to held-out shapes: **99.2% in-band, 100% on shapes the rule
+was never fitted on, 0.8% R2-flagged** against the D8 bar of ≤ 5%.
+
+Recorded alongside, because it constrains Phase 1: the two-instrument rule can
+be applied on **19 of 24 hyperbolic cells but only 5 of 18 spherical ones**
+(`00a_confirm.json` → `two_instrument_availability`). On most of the spherical
+grid there is one calibrated instrument, not two (D9).
 
 **Ordering error in SPEC §4, found the hard way.** Sub-gate 00a must run
 *after* 00c, not before. 00a calibrates the point cloud through a readout; if
@@ -35,7 +42,7 @@ The first 00a run did exactly this via `rbf` and produced two headline numbers
 that both reversed on re-run. Recommended for any replication: run 00c → 00b →
 00a.
 
-### 00a — scale calibration: **FAIL**
+### 00a — scale calibration: **PASS** (after two reversals)
 
 > **Correction, recorded because it changed the conclusion.** The first 00a run
 > was executed with the `rbf` head, which 00c subsequently disqualified. On
@@ -96,7 +103,7 @@ shape what is learned before the model routes around it, and the endpoint
 cannot show you it happened. The cap was therefore set at **9.0**, below where
 the transient appears, rather than R2 being given a burn-in exemption.
 
-### 00a confirmation — **NEAR-MISS against the registered criterion**
+### 00a confirmation — **PASS** under D8; **MISS** against the clause as first registered
 
 The rule is validated by *applying* it, on held-out shapes it was never fitted
 on (`experiments/phase00/run_00a_confirm.py`, 252 runs). A rule reported from
@@ -104,21 +111,18 @@ its own fit data is only a description of that data.
 
 | Head | In band | Held-out shapes | Below floor | R2-clean |
 |---|---|---|---|---|
-| `norm_affine` (primary) | **0.992** | **1.000** | 0.008 | 0.976 |
-| `softmax` (2nd instrument) | 0.556 | 0.560 | 0.413 | 0.968 |
+| `norm_affine` (primary) | **0.992** | **1.000** | 0.008 | 0.992 |
+| `softmax` (2nd instrument) | 0.556 | 0.560 | 0.413 | 1.000 |
 
-Registered criterion (committed before the run): ≥ 80% in-band on the primary
-head **and zero runs flagged UNINTERPRETABLE**. Measured: 99.2% in-band, but
-**2.4% flagged — so the criterion is not met, and this is written as a miss**
-(R6). All three flagged runs sit at the gain cap and all three end in-band;
-exactly one run of 126 is out of band at all.
+(R2-clean shown post-D2. Under the pre-D2 gate the primary head read 0.976.)
 
-**DRAFT decision D8 (below) proposes reconciling the clause with SPEC's own
-standard**, which is looser than the one I set: G1 requires the R2 gate clean
-in ≥ 95% of hypothesis-relevant runs, and 97.6% clears it. I set my clause
-stricter than the study's own bar without justifying why, which is a
-pre-registration error on my part; the fix is the researcher's call, not a
-silent edit, so the runner still reports FAIL until it is made.
+Criterion as first registered: ≥ 80% in-band on the primary head **and zero
+runs flagged UNINTERPRETABLE**. Measured 99.2% in-band but 2.4% flagged, so
+**that clause was a MISS** and is recorded as one in §5 (R6). Under D8 —
+≥ 95% R2-clean, matching SPEC's own G1 bar — the sub-gate **PASSES**, and
+after D2 stopped counting spherical boundary-filling the flagged rate is
+**0.8%**. All flagged runs sat at the gain cap and all ended in-band; exactly
+one run of 126 was out of band at all.
 
 **`softmax` cannot be calibrated to the same standard, and this is
 structural.** Its gain exponent is 0.096 against `norm_affine`'s 0.367 — a
@@ -219,42 +223,66 @@ failures in the first gated run. Tests: `tests/test_phase00.py`.
 
 ---
 
-## 2. DRAFT decisions awaiting sign-off
+## 2. Decisions
 
-None of these are sealed. They are listed because each changes what Phase 1
-measures, and because sealing them is the researcher's call, not the
-implementer's.
+**D2, D8 and D9 were approved on 2026-07-26 and are SEALED** — implemented in
+code, covered by tests, and not to be changed without a new ledger entry. The
+remainder are DRAFT: proposed, not yet used to judge anything.
+
+### Sealed
+
+**D2 — SEALED. The R2 exclusion applies to K < 0 only.** For K > 0 the same
+quantity is recorded as `diameter_filling` and never excludes; spherical
+capacity results are reported with and without diameter-filling cells as a
+robustness panel. Rationale: R2's justification is numerical (a boundary-pinned
+readout reports its own clamp), which is real for `atanh` at the hyperbolic
+ball boundary and absent for `arctan`, whose gradients 00b measured as finite
+to the antipode. What the unmodified rule would have excluded for K > 0 is a
+cloud filling the diameter — the very mechanism H-MAIN predicts — so applied to
+both signs it could only ever discard evidence against the hypothesis, while
+being structurally unable to fire against the hyperbolic arm.
+*Implemented:* `csc/training/monitor.py`; *tests:*
+`test_spherical_runs_are_never_excluded_by_saturation`,
+`test_hyperbolic_runs_are_still_excluded_by_saturation`.
+
+**D8 — SEALED. The 00a confirmation clause is ≥ 95% R2-clean**, matching
+SPEC's own G1 bar, replacing the "zero flagged" clause I registered. The
+original clause was stricter than the standard the study applies to its own
+Phase-1 gate and I gave no justification for the difference — a
+pre-registration error on my part, recorded as a MISS in §5 rather than
+relabelled. The decisive argument for 95 over 0: tightening further means
+lowering the gain cap, which trades saturated runs for below-band runs, and
+those errors are not symmetric — above-band is caught automatically by R2,
+below-band is invisible to it and is exactly the condition that produces a
+confident-looking null. Prefer the error the instrument can see.
+*Implemented:* `experiments/phase00/run_00a_confirm.py`.
+
+**D9 — SEALED. `softmax` is retained as the second instrument, with its
+calibration deficit stated and its usable cells enumerated.** It is
+scale-invariant by construction (it normalizes across prototypes), which is
+both why it is geometry-fair and why no gain calibrates it — the deficit is
+structural, not a tuning failure. Consequences, pre-registered now:
+
+- Heads **agree** → report as robust. Agreement between a scale-sensitive and
+  a scale-invariant readout is stronger evidence than agreement between two
+  similar ones.
+- Heads **disagree** → **unresolved**, not adjudicated. The disagreement is
+  confounded with the calibration gap, so it cannot be read as evidence about
+  geometry. Escalates to designing a third head.
+- The two-instrument rule is only applied on cells where **both** heads land
+  in band; that set is enumerated per run in `00a_confirm.json`
+  (`two_instrument_availability`). On most **κ > 0 cells there is effectively
+  one calibrated instrument**, which is a real limitation of the Phase-1
+  design and is to be stated wherever spherical results appear.
+
+### DRAFT — awaiting sign-off
+
+Each changes what Phase 1 measures; sealing them is the researcher's call.
 
 **D1 — Primary readout head: `norm_affine`, second instrument `softmax`.**
 Both passed 00c cleanly in every arm. Two instruments, not one, because the
 parent's 01b audit measured a headline geometry result *flipping sign* between
 readouts. Every H-MAIN(toy) number would be reported under both.
-
-**D2 — R2's saturation gate must not be applied unmodified to the spherical
-arm.** This is the one that most needs a decision, because as written it
-biases the study toward its own hypothesis.
-
-R2 excludes runs whose points pin to the boundary of the model. For K < 0 that
-is a genuine numerical condition: `atanh` clamps, and the readout starts
-measuring its own guard. For K > 0 there is no such clamp — `arctan` is
-well-conditioned everywhere, and 00b confirms finite gradients right up to the
-antipode. What "saturation" means for a sphere is that the cloud has spread to
-fill the diameter, which is *exactly what H-MAIN predicts positive curvature
-does when the space runs out of room*. In the 00a sweep the gate already fired
-on 4 cells, all spherical.
-
-So the rule as written discards positive-curvature evidence for displaying the
-effect being tested, and cannot fire against the hyperbolic arm for the
-analogous reason. Options:
-
-- **(a) Recommended.** Keep the exclusion for K < 0, where it has a numerical
-  justification. For K > 0 report the diameter fraction as a diagnostic that
-  never excludes. Rationale: R2's stated purpose is "geometry meaningless",
-  which is a claim about arithmetic, and the arithmetic is sound for K > 0.
-- (b) Keep R2 unchanged, and additionally report every spherical result with
-  and without the excluded cells, so the bias is visible rather than removed.
-- (c) Keep R2 unchanged. Simplest, and wrong in a direction that flatters
-  H-MAIN.
 
 **D3 — Clamped-Euclidean matching rule.** R3 defines the control as flat with
 distances "clipped at the matched spherical/hyperbolic diameter", but
@@ -282,34 +310,35 @@ Out-of-band cells (chiefly κ=−4 at large N) are run and reported but not
 primary. The alternative — adding an architectural radius cap to every arm —
 is a larger design change and is not proposed.
 
-**D8 — Reconcile the 00a confirmation clause with SPEC's own R2 standard.**
-I registered "zero runs flagged UNINTERPRETABLE" for the 00a confirmation.
-SPEC's G1 requires the R2 gate clean in **≥ 95%** of hypothesis-relevant runs.
-Measured: 97.6% clean on the primary head — clears the study's bar, misses
-mine. My clause was stricter than the standard the study applies to its own
-Phase-1 gate and I did not justify the difference, which is a
-pre-registration error. Proposed: restate the clause as **≥ 95% R2-clean**,
-matching G1, and record the current run as a PASS under it. Alternatives:
-hold the stricter clause and lower the gain cap further (which will push cells
-below the band floor — the two failure modes trade off directly), or accept
-the 2.4% as an R2 per-run exclusion, which is exactly what R2 is designed to
-do rather than something that should block a gate. **Not adopted unilaterally;
-the runner still reports FAIL until this is decided.**
+**D10 — Register α ≈ 1 as a secondary value for P1's functional form.** P1
+currently registers only the *sign* (`log N* = α·√|κ|·R + β`, α > 0). The
+packing bound gives a value: the area of a hyperbolic disc of radius R at
+curvature K is (2π/|K|)(cosh(√|K|·R) − 1), so packing N features at minimum
+separation δ gives, for large √|K|·R,
 
-**D9 — What to do about `softmax` being under-calibrated.** The two-instrument
-rule (D1) presumes both readouts are sound. Measured, they are not: `softmax`
-puts 41% of runs below the band floor and its calibration knob is nearly
-inert (exponent 0.096), so this cannot be fixed by tuning. Options:
+    log N ≈ √|K|·R − log(2(cosh(√|K|·δ/2) − 1))
 
-- **(a) Recommended.** Keep `softmax` as the second instrument but state its
-  calibration deficit wherever the two-instrument comparison is reported, and
-  treat a disagreement between heads as *uninterpretable* rather than as
-  evidence about geometry — because the heads differ in band occupancy as
-  well as in form.
-- (b) Find a third head that calibrates as well as `norm_affine` and use that
-  as the second instrument. Costs a new head design plus a 00c re-run.
-- (c) Drop to a single instrument. Rejected: this is precisely what the 01b
-  audit showed can produce a sign-flipped headline.
+i.e. **α → 1** asymptotically at fixed δ. As registered, α = 0.9 and α = 0.05
+both "pass", while meaning entirely different things. Proposed: keep α > 0 as
+the primary criterion and add α ∈ [0.5, 1.5] as a secondary, reported
+alongside. Caveat to state with it: δ is itself learned here rather than
+imposed, and the model is not doing ideal packing, so this is a scale
+expectation and not a tight prediction.
+
+**D11 — Run Phase-1 primary cells at the TOP of the operating band, not its
+centre.** Consequence of D10 that bears on statistical power. If
+log N ≈ √|K|·R, the band bounds the effect being measured: at the floor
+(√|κ|·r = 0.5) the available exponential-volume advantage is e^0.5 ≈ 1.6×; at
+the ceiling (3.0) it is e³ ≈ 20×. **R2's band, chosen for instrument-safety
+reasons, therefore caps the maximum detectable capacity gain**, and a null at
+the floor would be close to uninformative.
+
+`scale_rule.init_gain` currently targets the band's geometric centre (1.22,
+≈3.4× available), which is the safe default but costs power. Proposed: target
+≈2.5 for Phase-1 primary cells, keeping the centre for calibration runs. Not
+adopted unilaterally — it trades measurement power against saturation risk,
+and the 00a confirmation showed how quickly the transient appears once the
+gain rises.
 
 **D7 — All Phase-0/1 runs pinned to CPU.** Measured: the same config gives
 different losses on CPU and GPU (0.5086 vs 0.5057) from different RNG streams,
@@ -319,7 +348,33 @@ GPU and will re-pin then.
 
 ---
 
-## 3. Standing statistical policy
+## 3. Scorecard — pre-registered numbers and their verdicts
+
+Every row: prediction, band, measured value, verdict, artifact (SPEC §8).
+Phase-00 rows only; no hypothesis-relevant row exists yet.
+
+| # | Prediction | Band | Measured | Verdict | Artifact |
+|---|---|---|---|---|---|
+| 00a-1 | trained clouds occupy the operating band, primary head | ≥ 80% in band | 99.2% | **HIT** | `00a_confirm.json` |
+| 00a-2 | rule generalizes to shapes it was not fitted on | ≥ 80% in band | 100% | **HIT** | `00a_confirm.json` |
+| 00a-3 | no run flagged UNINTERPRETABLE *(clause as first registered)* | 0% | 2.4% | **MISS** — clause superseded by D8; see note | `00a_confirm.json` |
+| 00a-4 | R2-clean fraction, primary head (D8 clause) | ≥ 95% | 99.2% | **HIT** | `00a_confirm.json` |
+| 00b-1 | fp32 round-trip error in band | < 1e-4 | < 1e-4 | **HIT** | `00b_numerics_audit.json` |
+| 00b-2 | fp32 pairwise-distance p99 error in band | < 1e-4 | 2.3e-6 | **HIT** | `00b_numerics_audit.json` |
+| 00b-3 | clamp horizon clears the band top | > 0 headroom | +11.4 | **HIT** | `00b_numerics_audit.json` |
+| 00c-1 | ≥ 1 head achieves arm-parity and recovers | ≥ 1 head | 2 heads | **HIT** | `00c_dead_unit_parity.json` |
+| 00d-1 | E1: dense inputs keep ≈ d features | ≤ d+1 | 2 (d=2) | **HIT** | `00d_positive_control.json` |
+| 00d-2 | E2: sparsity buys superposition | ≥ 2d | 12 (6d) | **HIT** | `00d_positive_control.json` |
+| 00d-3 | E3: recovery monotone in sparsity | ≤ 1 inversion | 0–1 | **HIT** | `00d_positive_control.json` |
+
+**Note on 00a-3.** This is my own pre-registration error, not a property of
+the instrument: I registered a clause stricter than SPEC's own G1 bar (≥ 95%
+clean) without justifying the difference. It is kept in the scorecard as a
+MISS rather than deleted, and D8 records the reasoning for the replacement
+clause. Under D2 (spherical boundary-filling no longer counts as instrument
+failure) the same runs read 0.8%.
+
+## 3b. Standing statistical policy
 
 Inherited from SPEC §8, restated so it is enforceable:
 
@@ -342,3 +397,34 @@ Inherited from SPEC §8, restated so it is enforceable:
 | 00c ported "as-is" from parent 01b | Gated on non-binding shapes only | On crowded shapes the fixture measures capacity, not fairness, and would fail on the hypothesis being true |
 | R2 applies to "all curved arms" | D2 proposes K<0 only | No numerical clamp exists for K>0; see D2 |
 | κ as in parent program | κ is true sectional curvature (parent's × 4) | P1 fits √\|κ\|; the parent convention would put a factor of 2 into α |
+
+---
+
+## 5. Proposed follow-up work (not scheduled, not scoped into any phase)
+
+**Importance as a curvature source — a P4 variant.** P4 sources demand-driven
+curvature from *local feature density*. An alternative source is *feature
+importance*. Recorded here so it is not lost; explicitly not scheduled, and
+gated behind P1 exactly as P4 is.
+
+Why density remains the better primary choice: in general relativity ordinary
+mass-energy sources *positive* curvature, so mapping importance → mass would
+predict more spherical geometry around important features, which under H-MAIN
+means *less* capacity there. The analogy runs backwards. What creates demand
+for room is crowding, not importance — a single important feature needs
+precision and isolation, a hundred neighbouring features need volume, and only
+the second is what negative curvature supplies.
+
+Why it is still worth testing, and worth testing *here*: importance and
+density are independently controllable in the toy setting (importance is the
+geometric spectrum I_i = decay^i; density is how many features share a
+region). In an LM they are entangled with token frequency, which is precisely
+the confound the parent program's audit flagged and which its 2×2
+{importance}×{frequency} factorization was meant to resolve but never ran. If
+the allocation question is ever reopened, the toy model is where it can be
+asked cleanly.
+
+Entry conditions if it is ever run: P1 confirmed; R1 (bias + scale present in
+all arms) and R4 (permutation damage reported per unit of channel leverage)
+enforced, since this is the family of hypothesis the audit found most prone to
+instrument artifacts.

@@ -2,16 +2,20 @@
 
 Gate G00. Purpose (SPEC §4): guarantee curvature is *felt* before any
 hypothesis-relevant number is looked at. **No capacity, recovery or
-interference number has been read.** Phase 1 has not run.
+interference number has been read from a curved arm.** The only capacity
+numbers measured are 00d's, on the Euclidean arm, scored against published
+external behaviour rather than against a curved comparison. Phase 1 has not run.
 
 | Sub-gate | Verdict | Headline |
 |---|---|---|
-| 00a scale calibration | **NEAR-MISS** | 99.2% in-band on the primary head (100% on held-out shapes); 2.4% R2-flagged against a registered clause of zero |
+| 00a scale calibration | **PASS** | 99.2% in-band on the primary head, 100% on shapes the rule was never fitted on |
 | 00b numerics | **PASS** | fp32 clean with 11.4 of headroom; one real bug found and fixed; bf16 disqualified |
 | 00c readout parity | **PASS** | 2 of 4 heads disqualified before any capacity number was read |
+| 00d positive control | **PASS** | the flat arm reproduces superposition: 2 features when dense, 12 when sparse, in d=2 |
 
-**G00 is not passed.** It is blocked on three pre-registration decisions
-(VALIDATION.md D2, D8, D9), not on compute or on any missing measurement.
+**G00 PASSES.** Decisions D2, D8 and D9 were approved and sealed on
+2026-07-26; the remaining DRAFT decisions (D1, D3–D7, D10–D11) fix what Phase 1
+measures rather than whether the instrument works.
 
 ---
 
@@ -90,6 +94,47 @@ quantized in steps of 1/N, so a flat 5% tolerance was finer than the metric
 could express and flagged single dead units at N=3 as unfairness. Effective
 tolerance is now `max(0.05, 1/N)`.
 
+### 00d — the positive control, and two bugs it caught
+
+The flat arm reproduces the phenomenon the whole study rests on. Median
+features recovered in **d = 2**:
+
+| sparsity | 0.0 | 0.5 | 0.7 | 0.9 | 0.95 | 0.99 |
+|---|---|---|---|---|---|---|
+| features recovered | 2 | 3 | 5 | 11 | 12 | 10 |
+| N* (≥90% recovery) | 2 | 3 | 4 | **8** | 4 | 3 |
+
+Dense inputs keep exactly d features and drop the rest; sparse inputs reach
+6× the dimension count. E1, E2 and E3 all pass. N* peaks at sparsity 0.9,
+which is where the capacity metric is most sensitive and therefore where
+Phase-1 primary cells should sit.
+
+It also caught two bugs in the measurement layer that no other gate could
+have, because both cancel between arms and would have looked plausible in a
+curved-vs-flat comparison:
+
+**The probe metric was measuring a different readout than the one that
+trained.** `norm_affine` normalizes distances by the batch mean, so evaluating
+the probes as their own tiny batch changes the normalization. The same trained
+model, same probes, reconstructing a 0.8 target: **0.60 alone vs 0.795 in
+context at N=2** (reported as "0 features recovered"), and the bias *reverses*
+to read high at N=8 (0.91 vs 0.84). A distortion whose magnitude and sign both
+depend on N is disqualifying, because N-dependence is exactly what H-MAIN(toy)
+and P1 measure. Probes are now evaluated inside a fixed background batch.
+`softmax` is immune — it normalizes across prototypes, not across the batch —
+which is a genuine point in its favour as the second instrument.
+
+**One degenerate cell was erasing N\* everywhere above it.**
+`capacity_from_sweep` scanned from the smallest N and stopped at the first
+failure, so the failing N=2 cell returned `None` for four of six sparsity
+levels — the study's primary capacity metric, undefined across most of its own
+grid. It now takes the first *contiguous* passing run, keeping the
+anti-inflation property without being hostage to the smallest grid point.
+
+Re-running 00c with the corrected metric reproduced its verdict exactly (same
+two heads usable, same two disqualified), so the head findings were robust to
+the bug.
+
 ---
 
 ## Two things a replication should change
@@ -115,6 +160,7 @@ tolerance is now `max(0.05, 1/N)`.
 | `00a_confirm.json` | 252 runs applying the committed rule, incl. held-out shapes |
 | `00b_numerics_audit.json` | round-trip, distance precision, clamp horizon, gradient health |
 | `00c_dead_unit_parity.json` | 1960 runs; per-head parity and per-arm dead-unit census |
+| `00d_positive_control.json` | 300 Euclidean-only runs; superposition phenomenology vs published behaviour |
 
 Reproduce: `uv run python -m experiments.phase00.run_00{a,b,c}` and
 `run_00a_confirm`. All Phase-00 runs are CPU-pinned and seeded; CPU and GPU

@@ -1,5 +1,5 @@
 {
-  "git_commit": "b521760025484d5189c55c0ad7809de206bec2ff",
+  "git_commit": "efc4e8f27d4e3f72529285d7b5b6212ff1df7feb-dirty",
   "phase": "00c",
   "purpose": "dead-unit parity across geometry arms, before any capacity number is read",
   "settings": {
@@ -85,6 +85,2620 @@
     "steps": 10000,
     "parity_tolerance": 0.05,
     "clamped_max_dist_rule": "2 x band-top radius of the matched curved arm (hyperbolic diameter is infinite; see _clamped_max_dist)"
+  },
+  "parity": {
+    "tolerance": 0.05,
+    "tolerance_rule": "max(0.05, 1/N) \u2014 never tighter than one readout unit",
+    "gated_on": "non-binding shapes only",
+    "min_recovery_by_head_with_one_feature_allowance": {
+      "affine": 0.2875,
+      "norm_affine": 1.05,
+      "rbf": 0.0625,
+      "softmax": 1.05
+    },
+    "min_recovery_by_head": {
+      "affine": 0.225,
+      "norm_affine": 0.800000011920929,
+      "rbf": 0.0,
+      "softmax": 0.8666666746139526
+    },
+    "heads_passing_parity_and_recovering": [
+      "norm_affine",
+      "softmax"
+    ],
+    "worst_abs_gap_at_init": 0.65,
+    "worst_abs_gap_after_training": 1.0,
+    "n_failures": 25,
+    "failures": [
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 4,
+        "n_features": 4,
+        "arm": "normalized",
+        "effective_tolerance": 0.25,
+        "gap_at_init": 0.65,
+        "gap_after_training": 0.09999999999999998
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.19999999999999998
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.4
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "normalized",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.475,
+        "gap_after_training": 0.65
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.2875
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.5499999999999999
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.13750000000000007
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.3,
+        "gap_after_training": 0.13750000000000007
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 4,
+        "n_features": 4,
+        "arm": "normalized",
+        "effective_tolerance": 0.25,
+        "gap_at_init": 0.65,
+        "gap_after_training": 0.3
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.175
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.39999999999999997
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "normalized",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.475,
+        "gap_after_training": 0.675
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.09999999999999999
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.16249999999999998
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.275
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.4125
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.3,
+        "gap_after_training": 0.5625
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 4,
+        "n_features": 4,
+        "arm": "normalized",
+        "effective_tolerance": 0.25,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.5
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.6000000000000001
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.19999999999999996
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.19999999999999996
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "normalized",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.75
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.4
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -1.0
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.9875
+      }
+    ],
+    "heads_passing_parity_in_every_arm_and_shape": [
+      "norm_affine",
+      "softmax"
+    ],
+    "verdict": "PASS",
+    "verdict_rule": "PASS iff >=1 head shows arm-parity within max(0.05, 1/N) in every gated cell and recovers >=90% of features in every arm",
+    "per_head_verdict": {
+      "affine": "DISQUALIFIED",
+      "norm_affine": "USABLE",
+      "rbf": "DISQUALIFIED",
+      "softmax": "USABLE"
+    },
+    "by_cell": {
+      "affine|wd0.0|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.3333333432674408,
+          "recovery_rate": 0.6666666865348816,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.26666667461395266,
+          "recovery_rate": 0.7333333492279053,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.06666666865348814
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.20000000596046447,
+          "recovery_rate": 0.800000011920929,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.13333333730697633
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.3333333432674408,
+          "recovery_rate": 0.6666666865348816,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.3333333432674408,
+          "recovery_rate": 0.6666666865348816,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.3333333432674408,
+          "recovery_rate": 0.6666666865348816,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.26666667461395266,
+          "dead_after_training": 0.06666666865348816,
+          "recovery_rate": 0.7333333492279053,
+          "gap_at_init": 0.26666667461395266,
+          "gap_after_training": -0.26666667461395266
+        }
+      },
+      "affine|wd0.0|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.65,
+          "dead_after_training": 0.5,
+          "recovery_rate": 0.5,
+          "gap_at_init": 0.65,
+          "gap_after_training": 0.09999999999999998
+        }
+      },
+      "affine|wd0.0|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.1,
+          "recovery_rate": 0.9,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.05,
+          "recovery_rate": 0.95,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.05
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.025,
+          "recovery_rate": 0.975,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.07500000000000001
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.3,
+          "recovery_rate": 0.7,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.19999999999999998
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.5,
+          "recovery_rate": 0.5,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.4
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.1,
+          "recovery_rate": 0.9,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.475,
+          "dead_after_training": 0.75,
+          "recovery_rate": 0.25,
+          "gap_at_init": 0.475,
+          "gap_after_training": 0.65
+        }
+      },
+      "affine|wd0.0|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6375,
+          "recovery_rate": 0.3625,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.35,
+          "recovery_rate": 0.65,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.2875
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0875,
+          "recovery_rate": 0.9125,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.5499999999999999
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.7,
+          "recovery_rate": 0.3,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0625
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.775,
+          "recovery_rate": 0.225,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.13750000000000007
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6375,
+          "recovery_rate": 0.3625,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.3,
+          "dead_after_training": 0.775,
+          "recovery_rate": 0.225,
+          "gap_at_init": 0.3,
+          "gap_after_training": 0.13750000000000007
+        }
+      },
+      "affine|wd0.01|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.13333333730697633,
+          "recovery_rate": 0.8666666746139526,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.13333333730697633
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.13333333730697633
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.13333333730697633,
+          "recovery_rate": 0.8666666746139526,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.13333333730697633,
+          "recovery_rate": 0.8666666746139526,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.13333333730697633,
+          "recovery_rate": 0.8666666746139526,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.26666667461395266,
+          "dead_after_training": 0.26666667461395266,
+          "recovery_rate": 0.6000000178813935,
+          "gap_at_init": 0.26666667461395266,
+          "gap_after_training": 0.13333333730697633
+        }
+      },
+      "affine|wd0.01|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.2,
+          "recovery_rate": 0.8,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.2,
+          "recovery_rate": 0.8,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.25,
+          "recovery_rate": 0.75,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.04999999999999999
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.25,
+          "recovery_rate": 0.75,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.04999999999999999
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.2
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.2,
+          "recovery_rate": 0.8,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.65,
+          "dead_after_training": 0.5,
+          "recovery_rate": 0.5,
+          "gap_at_init": 0.65,
+          "gap_after_training": 0.3
+        }
+      },
+      "affine|wd0.01|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.075,
+          "recovery_rate": 0.925,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.05,
+          "recovery_rate": 0.95,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.024999999999999994
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.075
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.25,
+          "recovery_rate": 0.75,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.175
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.475,
+          "recovery_rate": 0.525,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.39999999999999997
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.075,
+          "recovery_rate": 0.925,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.475,
+          "dead_after_training": 0.75,
+          "recovery_rate": 0.25,
+          "gap_at_init": 0.475,
+          "gap_after_training": 0.675
+        }
+      },
+      "affine|wd0.01|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.2125,
+          "recovery_rate": 0.7625,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.1125,
+          "recovery_rate": 0.8875,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.09999999999999999
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.05,
+          "recovery_rate": 0.95,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.16249999999999998
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4875,
+          "recovery_rate": 0.5125,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.275
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.625,
+          "recovery_rate": 0.375,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.4125
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.2125,
+          "recovery_rate": 0.7625,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.3,
+          "dead_after_training": 0.775,
+          "recovery_rate": 0.225,
+          "gap_at_init": 0.3,
+          "gap_after_training": 0.5625
+        }
+      },
+      "norm_affine|wd0.0|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.06666666865348816,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.800000011920929,
+          "gap_at_init": 0.06666666865348816,
+          "gap_after_training": 0.0
+        }
+      },
+      "norm_affine|wd0.0|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "norm_affine|wd0.0|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "norm_affine|wd0.0|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "norm_affine|wd0.01|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.06666666865348816,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.06666666865348816,
+          "gap_after_training": 0.0
+        }
+      },
+      "norm_affine|wd0.01|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "norm_affine|wd0.01|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "norm_affine|wd0.01|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9875,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "rbf|wd0.0|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.33333333730697634,
+          "recovery_rate": 0.6666666686534881,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.33333333730697634,
+          "recovery_rate": 0.6666666746139527,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.2,
+          "recovery_rate": 0.7333333373069764,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.13333333730697633
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.33333333730697634,
+          "recovery_rate": 0.6666666746139527,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.26666666865348815,
+          "recovery_rate": 0.7333333373069764,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.06666666865348819
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.33333333730697634,
+          "recovery_rate": 0.6666666686534881,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.20000000596046447,
+          "recovery_rate": 0.8000000059604645,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.13333333134651187
+        }
+      },
+      "rbf|wd0.0|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6,
+          "recovery_rate": 0.4,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6,
+          "recovery_rate": 0.4,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6,
+          "recovery_rate": 0.4,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6,
+          "recovery_rate": 0.4,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6,
+          "recovery_rate": 0.4,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6,
+          "recovery_rate": 0.4,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.1,
+          "recovery_rate": 0.9,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.5
+        }
+      },
+      "rbf|wd0.0|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.8,
+          "recovery_rate": 0.2,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.8,
+          "recovery_rate": 0.2,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.2,
+          "recovery_rate": 0.8,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.6000000000000001
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 1.0,
+          "recovery_rate": 0.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.19999999999999996
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 1.0,
+          "recovery_rate": 0.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.19999999999999996
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.8,
+          "recovery_rate": 0.2,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.05,
+          "recovery_rate": 0.95,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.75
+        }
+      },
+      "rbf|wd0.0|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 1.0,
+          "recovery_rate": 0.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.6,
+          "recovery_rate": 0.4,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.4
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": -1.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 1.0,
+          "recovery_rate": 0.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 1.0,
+          "recovery_rate": 0.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 1.0,
+          "recovery_rate": 0.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0125,
+          "recovery_rate": 0.9625,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.9875
+        }
+      },
+      "rbf|wd0.01|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.26666667461395266,
+          "recovery_rate": 0.7333333432674408,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.26666667461395266
+        }
+      },
+      "rbf|wd0.01|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.25,
+          "recovery_rate": 0.75,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.15000000000000002
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.4,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.15000000000000002
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.35,
+          "recovery_rate": 0.6,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.09999999999999998
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.45,
+          "recovery_rate": 0.55,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.2
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.25,
+          "recovery_rate": 0.75,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.1,
+          "recovery_rate": 0.9,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.15
+        }
+      },
+      "rbf|wd0.01|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.025,
+          "recovery_rate": 0.975,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.025
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.05,
+          "recovery_rate": 0.95,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.05
+        }
+      },
+      "rbf|wd0.01|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.05,
+          "recovery_rate": 0.7625,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.05
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.05
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0625,
+          "recovery_rate": 0.6875,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.012499999999999997
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.1125,
+          "recovery_rate": 0.4375,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0625
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.05,
+          "recovery_rate": 0.7625,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9625,
+          "gap_at_init": 0.0,
+          "gap_after_training": -0.05
+        }
+      },
+      "softmax|wd0.0|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9333333373069763,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "softmax|wd0.0|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "softmax|wd0.0|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "softmax|wd0.0|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9875,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9875,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "softmax|wd0.01|d2|N3": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.8666666746139526,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "softmax|wd0.01|d4|N4": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "softmax|wd0.01|d8|N8": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.975,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      },
+      "softmax|wd0.01|d8|N16": {
+        "clamped": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=+2)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-1)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 0.9875,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "curved(K=-4)": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "euclidean": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        },
+        "normalized": {
+          "dead_at_init": 0.0,
+          "dead_after_training": 0.0,
+          "recovery_rate": 1.0,
+          "gap_at_init": 0.0,
+          "gap_after_training": 0.0
+        }
+      }
+    }
+  },
+  "parity_all_shapes_decoration": {
+    "tolerance": 0.05,
+    "tolerance_rule": "max(0.05, 1/N) \u2014 never tighter than one readout unit",
+    "gated_on": "all shapes",
+    "min_recovery_by_head_with_one_feature_allowance": {
+      "affine": 0.015625,
+      "norm_affine": 0.065625,
+      "rbf": 0.015625,
+      "softmax": 0.071875
+    },
+    "min_recovery_by_head": {
+      "affine": 0.0,
+      "norm_affine": 0.05,
+      "rbf": 0.0,
+      "softmax": 0.05625
+    },
+    "heads_passing_parity_and_recovering": [],
+    "worst_abs_gap_at_init": 0.65,
+    "worst_abs_gap_after_training": 1.0,
+    "n_failures": 66,
+    "failures": [
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.1,
+        "gap_after_training": -0.19999999999999996
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.05312500000000009
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 4,
+        "n_features": 4,
+        "arm": "normalized",
+        "effective_tolerance": 0.25,
+        "gap_at_init": 0.65,
+        "gap_after_training": 0.09999999999999998
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.19999999999999998
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.4
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "normalized",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.475,
+        "gap_after_training": 0.65
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.2875
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.5499999999999999
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.13750000000000007
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.3,
+        "gap_after_training": 0.13750000000000007
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.16562500000000002
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.25
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0375,
+        "gap_after_training": -0.1875
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.1,
+        "gap_after_training": 0.475
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.09999999999999998
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.15000000000000002
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.10312499999999997
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.16874999999999996
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.46875
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 4,
+        "n_features": 4,
+        "arm": "normalized",
+        "effective_tolerance": 0.25,
+        "gap_at_init": 0.65,
+        "gap_after_training": 0.3
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.175
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.39999999999999997
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "normalized",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.475,
+        "gap_after_training": 0.675
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.09999999999999999
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.16249999999999998
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.275
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.4125
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.3,
+        "gap_after_training": 0.5625
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.26562499999999994
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.49687499999999996
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.09687500000000004
+      },
+      {
+        "head": "affine",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.10312500000000002
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.1375
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.05937500000000001
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.05312499999999998
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.0625
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.31562500000000004
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.11875
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.05000000000000002
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.06562500000000002
+      },
+      {
+        "head": "norm_affine",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.0875
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.17500000000000004
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.15000000000000002
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.07499999999999996
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.6375
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.09687500000000004
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.10625000000000007
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.446875
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 4,
+        "n_features": 4,
+        "arm": "normalized",
+        "effective_tolerance": 0.25,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.5
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.6000000000000001
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.19999999999999996
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.19999999999999996
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 8,
+        "arm": "normalized",
+        "effective_tolerance": 0.125,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.75
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+1)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.4
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -1.0
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.9875
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.7374999999999999
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.0,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.95
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.0875
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "curved(K=+2)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.056249999999999994
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.15312499999999998
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=-1)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.15
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "curved(K=-4)",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.278125
+      },
+      {
+        "head": "rbf",
+        "weight_decay": 0.01,
+        "dim": 8,
+        "n_features": 64,
+        "arm": "normalized",
+        "effective_tolerance": 0.05,
+        "gap_at_init": 0.0,
+        "gap_after_training": -0.053125
+      },
+      {
+        "head": "softmax",
+        "weight_decay": 0.0,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.175
+      },
+      {
+        "head": "softmax",
+        "weight_decay": 0.01,
+        "dim": 2,
+        "n_features": 16,
+        "arm": "normalized",
+        "effective_tolerance": 0.0625,
+        "gap_at_init": 0.0,
+        "gap_after_training": 0.1875
+      }
+    ],
+    "heads_passing_parity_in_every_arm_and_shape": [],
+    "verdict": "FAIL",
+    "verdict_rule": "PASS iff >=1 head shows arm-parity within max(0.05, 1/N) in every gated cell and recovers >=90% of features in every arm",
+    "per_head_verdict": {
+      "affine": "DISQUALIFIED",
+      "norm_affine": "DISQUALIFIED",
+      "rbf": "DISQUALIFIED",
+      "softmax": "DISQUALIFIED"
+    }
   },
   "cells": [
     {
@@ -1394,7 +4008,7 @@
       "capacity_binding": false,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.3333333432674408,
+      "recovery_rate": 0.6666666865348816,
       "final_loss": 0.027761509642004967,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -1698,7 +4312,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.171875,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.328125,
       "final_loss": 0.47930169105529785,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -1714,7 +4328,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.09375,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.3125,
       "final_loss": 0.4371570348739624,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -1730,7 +4344,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.203125,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.25,
       "final_loss": 0.5181610584259033,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -1746,7 +4360,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.234375,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.328125,
       "final_loss": 0.4960254430770874,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -1762,7 +4376,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.125,
-      "recovery_rate": 0.140625,
+      "recovery_rate": 0.3125,
       "final_loss": 0.5484750866889954,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -2098,7 +4712,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.625,
+      "recovery_rate": 0.5625,
       "final_loss": 0.23586547374725342,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -2210,7 +4824,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0625,
-      "recovery_rate": 0.125,
+      "recovery_rate": 0.15625,
       "final_loss": 1.1939901113510132,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -2258,7 +4872,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.15625,
+      "recovery_rate": 0.28125,
       "final_loss": 0.49344515800476074,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -2274,7 +4888,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.0625,
+      "recovery_rate": 0.296875,
       "final_loss": 0.43901798129081726,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -2290,7 +4904,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.0625,
+      "recovery_rate": 0.21875,
       "final_loss": 0.4938209056854248,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -2306,7 +4920,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.09375,
+      "recovery_rate": 0.296875,
       "final_loss": 0.47114384174346924,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -2322,7 +4936,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.078125,
+      "recovery_rate": 0.28125,
       "final_loss": 0.49801576137542725,
       "saturation_verdict": "OK",
       "arm_label": "euclidean"
@@ -5954,7 +8568,7 @@
       "capacity_binding": false,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.9375,
+      "recovery_rate": 1.0,
       "final_loss": 0.0441250205039978,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6194,7 +8808,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.375,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.265625,
       "final_loss": 0.7159557938575745,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6226,7 +8840,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.46875,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.265625,
       "final_loss": 0.6813518404960632,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6242,7 +8856,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.34375,
-      "recovery_rate": 0.234375,
+      "recovery_rate": 0.265625,
       "final_loss": 0.7374003529548645,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6722,7 +9336,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.25,
-      "recovery_rate": 0.09375,
+      "recovery_rate": 0.109375,
       "final_loss": 1.3276463747024536,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6738,7 +9352,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.046875,
-      "recovery_rate": 0.1875,
+      "recovery_rate": 0.234375,
       "final_loss": 0.5690194964408875,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6754,7 +9368,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.21875,
       "final_loss": 0.5808292031288147,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6770,7 +9384,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0625,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.234375,
       "final_loss": 0.5579947233200073,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6786,7 +9400,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.1875,
+      "recovery_rate": 0.265625,
       "final_loss": 0.5256859660148621,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -6802,7 +9416,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.015625,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.28125,
       "final_loss": 0.5548549890518188,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-4)"
@@ -10626,7 +13240,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.40625,
-      "recovery_rate": 0.09375,
+      "recovery_rate": 0.109375,
       "final_loss": 1.5959193706512451,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -10658,7 +13272,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.296875,
-      "recovery_rate": 0.234375,
+      "recovery_rate": 0.296875,
       "final_loss": 0.5536580085754395,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -10674,7 +13288,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.265625,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.265625,
       "final_loss": 0.6735199689865112,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -10690,7 +13304,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.203125,
-      "recovery_rate": 0.203125,
+      "recovery_rate": 0.25,
       "final_loss": 0.6371203660964966,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -10706,7 +13320,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.125,
-      "recovery_rate": 0.234375,
+      "recovery_rate": 0.3125,
       "final_loss": 0.5383907556533813,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -10722,7 +13336,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.25,
-      "recovery_rate": 0.265625,
+      "recovery_rate": 0.296875,
       "final_loss": 0.6363841891288757,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -11170,7 +13784,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.15625,
-      "recovery_rate": 0.125,
+      "recovery_rate": 0.15625,
       "final_loss": 1.2160999774932861,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -11218,7 +13832,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.140625,
+      "recovery_rate": 0.25,
       "final_loss": 0.5205892324447632,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -11234,7 +13848,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.09375,
+      "recovery_rate": 0.296875,
       "final_loss": 0.5130953788757324,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -11250,7 +13864,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.03125,
+      "recovery_rate": 0.203125,
       "final_loss": 0.5305651426315308,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -11266,7 +13880,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.203125,
+      "recovery_rate": 0.28125,
       "final_loss": 0.5123758316040039,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -11282,7 +13896,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.140625,
+      "recovery_rate": 0.28125,
       "final_loss": 0.4996078908443451,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=-1)"
@@ -14834,7 +17448,7 @@
       "capacity_binding": false,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.0,
+      "recovery_rate": 0.6666666865348816,
       "final_loss": 0.02785947546362877,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15138,7 +17752,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0625,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.296875,
       "final_loss": 0.440498948097229,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15154,7 +17768,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.171875,
-      "recovery_rate": 0.234375,
+      "recovery_rate": 0.28125,
       "final_loss": 0.4272230267524719,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15170,7 +17784,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.109375,
-      "recovery_rate": 0.15625,
+      "recovery_rate": 0.265625,
       "final_loss": 0.4880824685096741,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15186,7 +17800,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.15625,
-      "recovery_rate": 0.265625,
+      "recovery_rate": 0.296875,
       "final_loss": 0.44750386476516724,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15202,7 +17816,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.15625,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.296875,
       "final_loss": 0.41106513142585754,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15586,7 +18200,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.6875,
+      "recovery_rate": 0.625,
       "final_loss": 0.21323104202747345,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15650,7 +18264,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.109375,
-      "recovery_rate": 0.125,
+      "recovery_rate": 0.15625,
       "final_loss": 1.2999846935272217,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15682,7 +18296,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.109375,
-      "recovery_rate": 0.109375,
+      "recovery_rate": 0.125,
       "final_loss": 1.3404189348220825,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15698,7 +18312,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.1875,
+      "recovery_rate": 0.28125,
       "final_loss": 0.4060864746570587,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15714,7 +18328,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.265625,
       "final_loss": 0.40598931908607483,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15730,7 +18344,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.15625,
+      "recovery_rate": 0.265625,
       "final_loss": 0.4237191081047058,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15746,7 +18360,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.28125,
       "final_loss": 0.41297686100006104,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -15762,7 +18376,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.3125,
       "final_loss": 0.41944649815559387,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+1)"
@@ -18548,7 +21162,7 @@
       "dead_after_training": 1.0,
       "recovery_rate": 0.0,
       "final_loss": 2.156613349914551,
-      "saturation_verdict": "UNINTERPRETABLE",
+      "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
     },
     {
@@ -19314,7 +21928,7 @@
       "capacity_binding": false,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.3333333432674408,
+      "recovery_rate": 0.6666666865348816,
       "final_loss": 0.027827348560094833,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -19458,7 +22072,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.6875,
+      "recovery_rate": 0.625,
       "final_loss": 0.23534232378005981,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -19618,7 +22232,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.140625,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.28125,
       "final_loss": 0.4204672574996948,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -19634,7 +22248,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.15625,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.296875,
       "final_loss": 0.42140763998031616,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -19650,7 +22264,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.109375,
-      "recovery_rate": 0.234375,
+      "recovery_rate": 0.265625,
       "final_loss": 0.5192657709121704,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -19666,7 +22280,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.109375,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.296875,
       "final_loss": 0.40370118618011475,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -19682,7 +22296,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.1875,
-      "recovery_rate": 0.234375,
+      "recovery_rate": 0.3125,
       "final_loss": 0.41191190481185913,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -20034,7 +22648,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0625,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.625,
+      "recovery_rate": 0.5625,
       "final_loss": 0.2187691330909729,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -20050,7 +22664,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.625,
+      "recovery_rate": 0.5625,
       "final_loss": 0.2157188355922699,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -20178,7 +22792,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.296875,
       "final_loss": 0.41783028841018677,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -20194,7 +22808,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.265625,
       "final_loss": 0.41246920824050903,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -20210,7 +22824,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.1875,
+      "recovery_rate": 0.25,
       "final_loss": 0.42403897643089294,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -20226,7 +22840,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.140625,
+      "recovery_rate": 0.296875,
       "final_loss": 0.4130493700504303,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -20242,7 +22856,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.25,
       "final_loss": 0.42531049251556396,
       "saturation_verdict": "OK",
       "arm_label": "curved(K=+2)"
@@ -24066,7 +26680,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.484375,
-      "recovery_rate": 0.046875,
+      "recovery_rate": 0.078125,
       "final_loss": 1.4770113229751587,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24098,7 +26712,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.328125,
-      "recovery_rate": 0.296875,
+      "recovery_rate": 0.328125,
       "final_loss": 0.4593309462070465,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24114,7 +26728,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.28125,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.328125,
       "final_loss": 0.4694209694862366,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24130,7 +26744,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.3125,
-      "recovery_rate": 0.28125,
+      "recovery_rate": 0.3125,
       "final_loss": 0.4772835969924927,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24146,7 +26760,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.28125,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.3125,
       "final_loss": 0.4725748300552368,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24162,7 +26776,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.21875,
-      "recovery_rate": 0.296875,
+      "recovery_rate": 0.359375,
       "final_loss": 0.4628380537033081,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24354,7 +26968,7 @@
       "capacity_binding": false,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.6666666865348816,
+      "recovery_rate": 1.0,
       "final_loss": 0.009382497519254684,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24370,7 +26984,7 @@
       "capacity_binding": false,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.3333333432674408,
+      "recovery_rate": 0.6666666865348816,
       "final_loss": 0.008498809300363064,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24658,7 +27272,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.015625,
-      "recovery_rate": 0.296875,
+      "recovery_rate": 0.328125,
       "final_loss": 0.4561137855052948,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24674,7 +27288,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.28125,
+      "recovery_rate": 0.328125,
       "final_loss": 0.46114635467529297,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24690,7 +27304,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.03125,
-      "recovery_rate": 0.25,
+      "recovery_rate": 0.296875,
       "final_loss": 0.47431814670562744,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24706,7 +27320,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.015625,
-      "recovery_rate": 0.265625,
+      "recovery_rate": 0.296875,
       "final_loss": 0.47938013076782227,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -24722,7 +27336,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.265625,
+      "recovery_rate": 0.328125,
       "final_loss": 0.45558953285217285,
       "saturation_verdict": "OK",
       "arm_label": "normalized"
@@ -28274,7 +30888,7 @@
       "capacity_binding": false,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.3333333432674408,
+      "recovery_rate": 0.6666666865348816,
       "final_loss": 0.027761509642004967,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -28578,7 +31192,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.171875,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.328125,
       "final_loss": 0.47930169105529785,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -28594,7 +31208,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.09375,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.3125,
       "final_loss": 0.4371570348739624,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -28610,7 +31224,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.203125,
-      "recovery_rate": 0.171875,
+      "recovery_rate": 0.25,
       "final_loss": 0.5181610584259033,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -28626,7 +31240,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.234375,
-      "recovery_rate": 0.21875,
+      "recovery_rate": 0.328125,
       "final_loss": 0.49595800042152405,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -28642,7 +31256,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.125,
-      "recovery_rate": 0.140625,
+      "recovery_rate": 0.3125,
       "final_loss": 0.5484750866889954,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -28978,7 +31592,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.625,
+      "recovery_rate": 0.5625,
       "final_loss": 0.23586547374725342,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -29090,7 +31704,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0625,
-      "recovery_rate": 0.125,
+      "recovery_rate": 0.15625,
       "final_loss": 1.193990707397461,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -29138,7 +31752,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.15625,
+      "recovery_rate": 0.28125,
       "final_loss": 0.49344515800476074,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -29154,7 +31768,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.0625,
+      "recovery_rate": 0.296875,
       "final_loss": 0.43901798129081726,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -29170,7 +31784,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.0625,
+      "recovery_rate": 0.21875,
       "final_loss": 0.4938209056854248,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -29186,7 +31800,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.09375,
+      "recovery_rate": 0.296875,
       "final_loss": 0.47114384174346924,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -29202,7 +31816,7 @@
       "capacity_binding": true,
       "dead_at_init": 0.0,
       "dead_after_training": 0.0,
-      "recovery_rate": 0.078125,
+      "recovery_rate": 0.28125,
       "final_loss": 0.49801576137542725,
       "saturation_verdict": "OK",
       "arm_label": "clamped"
@@ -31447,2619 +34061,5 @@
       "saturation_verdict": "OK",
       "arm_label": "clamped"
     }
-  ],
-  "parity": {
-    "tolerance": 0.05,
-    "tolerance_rule": "max(0.05, 1/N) \u2014 never tighter than one readout unit",
-    "gated_on": "non-binding shapes only",
-    "min_recovery_by_head_with_one_feature_allowance": {
-      "affine": 0.2875,
-      "norm_affine": 1.05,
-      "rbf": 0.0625,
-      "softmax": 1.05
-    },
-    "min_recovery_by_head": {
-      "affine": 0.225,
-      "norm_affine": 0.8,
-      "rbf": 0.0,
-      "softmax": 0.8666666746139526
-    },
-    "heads_passing_parity_and_recovering": [
-      "norm_affine",
-      "softmax"
-    ],
-    "worst_abs_gap_at_init": 0.65,
-    "worst_abs_gap_after_training": 1.0,
-    "n_failures": 25,
-    "failures": [
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 4,
-        "n_features": 4,
-        "arm": "normalized",
-        "effective_tolerance": 0.25,
-        "gap_at_init": 0.65,
-        "gap_after_training": 0.09999999999999998
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.19999999999999998
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.4
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "normalized",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.475,
-        "gap_after_training": 0.65
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.2875
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.5499999999999999
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.13750000000000007
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.3,
-        "gap_after_training": 0.13750000000000007
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 4,
-        "n_features": 4,
-        "arm": "normalized",
-        "effective_tolerance": 0.25,
-        "gap_at_init": 0.65,
-        "gap_after_training": 0.3
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.175
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.39999999999999997
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "normalized",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.475,
-        "gap_after_training": 0.675
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.09999999999999999
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.16249999999999998
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.275
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.4125
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.3,
-        "gap_after_training": 0.5625
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 4,
-        "n_features": 4,
-        "arm": "normalized",
-        "effective_tolerance": 0.25,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.5
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.6000000000000001
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.19999999999999996
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.19999999999999996
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "normalized",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.75
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.4
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -1.0
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.9875
-      }
-    ],
-    "heads_passing_parity_in_every_arm_and_shape": [
-      "norm_affine",
-      "softmax"
-    ],
-    "verdict": "PASS",
-    "verdict_rule": "PASS iff >=1 head shows arm-parity within max(0.05, 1/N) in every gated cell and recovers >=90% of features in every arm",
-    "per_head_verdict": {
-      "affine": "DISQUALIFIED",
-      "norm_affine": "USABLE",
-      "rbf": "DISQUALIFIED",
-      "softmax": "USABLE"
-    },
-    "by_cell": {
-      "affine|wd0.0|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.3333333432674408,
-          "recovery_rate": 0.6666666865348816,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.26666667461395266,
-          "recovery_rate": 0.7333333492279053,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.06666666865348814
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.20000000596046447,
-          "recovery_rate": 0.800000011920929,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.13333333730697633
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.3333333432674408,
-          "recovery_rate": 0.6666666865348816,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.3333333432674408,
-          "recovery_rate": 0.6666666865348816,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.3333333432674408,
-          "recovery_rate": 0.6666666865348816,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.26666667461395266,
-          "dead_after_training": 0.06666666865348816,
-          "recovery_rate": 0.7333333492279053,
-          "gap_at_init": 0.26666667461395266,
-          "gap_after_training": -0.26666667461395266
-        }
-      },
-      "affine|wd0.0|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.65,
-          "dead_after_training": 0.5,
-          "recovery_rate": 0.5,
-          "gap_at_init": 0.65,
-          "gap_after_training": 0.09999999999999998
-        }
-      },
-      "affine|wd0.0|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.1,
-          "recovery_rate": 0.9,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.05,
-          "recovery_rate": 0.95,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.05
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.025,
-          "recovery_rate": 0.975,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.07500000000000001
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.3,
-          "recovery_rate": 0.7,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.19999999999999998
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.5,
-          "recovery_rate": 0.5,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.4
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.1,
-          "recovery_rate": 0.9,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.475,
-          "dead_after_training": 0.75,
-          "recovery_rate": 0.25,
-          "gap_at_init": 0.475,
-          "gap_after_training": 0.65
-        }
-      },
-      "affine|wd0.0|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6375,
-          "recovery_rate": 0.3625,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.35,
-          "recovery_rate": 0.65,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.2875
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0875,
-          "recovery_rate": 0.9125,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.5499999999999999
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.7,
-          "recovery_rate": 0.3,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0625
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.775,
-          "recovery_rate": 0.225,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.13750000000000007
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6375,
-          "recovery_rate": 0.3625,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.3,
-          "dead_after_training": 0.775,
-          "recovery_rate": 0.225,
-          "gap_at_init": 0.3,
-          "gap_after_training": 0.13750000000000007
-        }
-      },
-      "affine|wd0.01|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.13333333730697633,
-          "recovery_rate": 0.8666666746139526,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9333333373069763,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.13333333730697633
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.13333333730697633
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.13333333730697633,
-          "recovery_rate": 0.8666666746139526,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.13333333730697633,
-          "recovery_rate": 0.8666666746139526,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.13333333730697633,
-          "recovery_rate": 0.8666666746139526,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.26666667461395266,
-          "dead_after_training": 0.26666667461395266,
-          "recovery_rate": 0.6000000178813935,
-          "gap_at_init": 0.26666667461395266,
-          "gap_after_training": 0.13333333730697633
-        }
-      },
-      "affine|wd0.01|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.2,
-          "recovery_rate": 0.8,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.2,
-          "recovery_rate": 0.8,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.25,
-          "recovery_rate": 0.75,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.04999999999999999
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.25,
-          "recovery_rate": 0.75,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.04999999999999999
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.2
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.2,
-          "recovery_rate": 0.8,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.65,
-          "dead_after_training": 0.5,
-          "recovery_rate": 0.5,
-          "gap_at_init": 0.65,
-          "gap_after_training": 0.3
-        }
-      },
-      "affine|wd0.01|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.075,
-          "recovery_rate": 0.925,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.05,
-          "recovery_rate": 0.95,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.024999999999999994
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.075
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.25,
-          "recovery_rate": 0.75,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.175
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.475,
-          "recovery_rate": 0.525,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.39999999999999997
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.075,
-          "recovery_rate": 0.925,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.475,
-          "dead_after_training": 0.75,
-          "recovery_rate": 0.25,
-          "gap_at_init": 0.475,
-          "gap_after_training": 0.675
-        }
-      },
-      "affine|wd0.01|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.2125,
-          "recovery_rate": 0.7625,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.1125,
-          "recovery_rate": 0.8875,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.09999999999999999
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.05,
-          "recovery_rate": 0.95,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.16249999999999998
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4875,
-          "recovery_rate": 0.5125,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.275
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.625,
-          "recovery_rate": 0.375,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.4125
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.2125,
-          "recovery_rate": 0.7625,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.3,
-          "dead_after_training": 0.775,
-          "recovery_rate": 0.225,
-          "gap_at_init": 0.3,
-          "gap_after_training": 0.5625
-        }
-      },
-      "norm_affine|wd0.0|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.8666666686534882,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.8,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.8666666686534882,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9333333373069763,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9333333373069763,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.8666666686534882,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.06666666865348816,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.800000011920929,
-          "gap_at_init": 0.06666666865348816,
-          "gap_after_training": 0.0
-        }
-      },
-      "norm_affine|wd0.0|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "norm_affine|wd0.0|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "norm_affine|wd0.0|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9875,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "norm_affine|wd0.01|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.06666666865348816,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.8000000059604645,
-          "gap_at_init": 0.06666666865348816,
-          "gap_after_training": 0.0
-        }
-      },
-      "norm_affine|wd0.01|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "norm_affine|wd0.01|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "norm_affine|wd0.01|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9875,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "rbf|wd0.0|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.33333333730697634,
-          "recovery_rate": 0.6666666686534881,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.33333333730697634,
-          "recovery_rate": 0.6666666746139527,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.2,
-          "recovery_rate": 0.7333333373069764,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.13333333730697633
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.33333333730697634,
-          "recovery_rate": 0.6666666746139527,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.26666666865348815,
-          "recovery_rate": 0.7333333373069764,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.06666666865348819
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.33333333730697634,
-          "recovery_rate": 0.6666666686534881,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.20000000596046447,
-          "recovery_rate": 0.8000000059604645,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.13333333134651187
-        }
-      },
-      "rbf|wd0.0|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6,
-          "recovery_rate": 0.4,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6,
-          "recovery_rate": 0.4,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6,
-          "recovery_rate": 0.4,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6,
-          "recovery_rate": 0.4,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6,
-          "recovery_rate": 0.4,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6,
-          "recovery_rate": 0.4,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.1,
-          "recovery_rate": 0.9,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.5
-        }
-      },
-      "rbf|wd0.0|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.8,
-          "recovery_rate": 0.2,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.8,
-          "recovery_rate": 0.2,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.2,
-          "recovery_rate": 0.8,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.6000000000000001
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 1.0,
-          "recovery_rate": 0.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.19999999999999996
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 1.0,
-          "recovery_rate": 0.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.19999999999999996
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.8,
-          "recovery_rate": 0.2,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.05,
-          "recovery_rate": 0.95,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.75
-        }
-      },
-      "rbf|wd0.0|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 1.0,
-          "recovery_rate": 0.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.6,
-          "recovery_rate": 0.4,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.4
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": -1.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 1.0,
-          "recovery_rate": 0.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 1.0,
-          "recovery_rate": 0.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 1.0,
-          "recovery_rate": 0.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0125,
-          "recovery_rate": 0.9625,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.9875
-        }
-      },
-      "rbf|wd0.01|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.26666667461395266,
-          "recovery_rate": 0.7333333432674408,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.26666667461395266
-        }
-      },
-      "rbf|wd0.01|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.25,
-          "recovery_rate": 0.75,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.15000000000000002
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.4,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.15000000000000002
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.35,
-          "recovery_rate": 0.6,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.09999999999999998
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.45,
-          "recovery_rate": 0.55,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.2
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.25,
-          "recovery_rate": 0.75,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.1,
-          "recovery_rate": 0.9,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.15
-        }
-      },
-      "rbf|wd0.01|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.025,
-          "recovery_rate": 0.975,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.025
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.05,
-          "recovery_rate": 0.95,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.05
-        }
-      },
-      "rbf|wd0.01|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.05,
-          "recovery_rate": 0.7625,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.05
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.05
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0625,
-          "recovery_rate": 0.6875,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.012499999999999997
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.1125,
-          "recovery_rate": 0.4375,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0625
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.05,
-          "recovery_rate": 0.7625,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9625,
-          "gap_at_init": 0.0,
-          "gap_after_training": -0.05
-        }
-      },
-      "softmax|wd0.0|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9333333373069763,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "softmax|wd0.0|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "softmax|wd0.0|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "softmax|wd0.0|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9875,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9875,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "softmax|wd0.01|d2|N3": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.8666666746139526,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "softmax|wd0.01|d4|N4": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "softmax|wd0.01|d8|N8": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.975,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      },
-      "softmax|wd0.01|d8|N16": {
-        "clamped": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=+2)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-1)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 0.9875,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "curved(K=-4)": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "euclidean": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        },
-        "normalized": {
-          "dead_at_init": 0.0,
-          "dead_after_training": 0.0,
-          "recovery_rate": 1.0,
-          "gap_at_init": 0.0,
-          "gap_after_training": 0.0
-        }
-      }
-    }
-  },
-  "parity_all_shapes_decoration": {
-    "tolerance": 0.05,
-    "tolerance_rule": "max(0.05, 1/N) \u2014 never tighter than one readout unit",
-    "gated_on": "all shapes",
-    "min_recovery_by_head_with_one_feature_allowance": {
-      "affine": 0.015625,
-      "norm_affine": 0.059375,
-      "rbf": 0.015625,
-      "softmax": 0.071875
-    },
-    "min_recovery_by_head": {
-      "affine": 0.0,
-      "norm_affine": 0.04375,
-      "rbf": 0.0,
-      "softmax": 0.05625
-    },
-    "heads_passing_parity_and_recovering": [],
-    "worst_abs_gap_at_init": 0.65,
-    "worst_abs_gap_after_training": 1.0,
-    "n_failures": 66,
-    "failures": [
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.1,
-        "gap_after_training": -0.19999999999999996
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.05312500000000009
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 4,
-        "n_features": 4,
-        "arm": "normalized",
-        "effective_tolerance": 0.25,
-        "gap_at_init": 0.65,
-        "gap_after_training": 0.09999999999999998
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.19999999999999998
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.4
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "normalized",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.475,
-        "gap_after_training": 0.65
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.2875
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.5499999999999999
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.13750000000000007
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.3,
-        "gap_after_training": 0.13750000000000007
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.16562500000000002
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.25
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0375,
-        "gap_after_training": -0.1875
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.1,
-        "gap_after_training": 0.475
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.09999999999999998
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.15000000000000002
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.10312499999999997
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.16874999999999996
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.46875
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 4,
-        "n_features": 4,
-        "arm": "normalized",
-        "effective_tolerance": 0.25,
-        "gap_at_init": 0.65,
-        "gap_after_training": 0.3
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.175
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.39999999999999997
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "normalized",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.475,
-        "gap_after_training": 0.675
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.09999999999999999
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.16249999999999998
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.275
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.4125
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.3,
-        "gap_after_training": 0.5625
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.26562499999999994
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.49687499999999996
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.09687500000000004
-      },
-      {
-        "head": "affine",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.10312500000000002
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.1375
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.05937500000000001
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.05312499999999998
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.0625
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.31562500000000004
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.11875
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.05000000000000002
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.06562500000000002
-      },
-      {
-        "head": "norm_affine",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.0875
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.17500000000000004
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.15000000000000002
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.07499999999999996
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.6375
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.09687500000000004
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.10625000000000007
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.446875
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 4,
-        "n_features": 4,
-        "arm": "normalized",
-        "effective_tolerance": 0.25,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.5
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.6000000000000001
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.19999999999999996
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.19999999999999996
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 8,
-        "arm": "normalized",
-        "effective_tolerance": 0.125,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.75
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+1)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.4
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -1.0
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.9875
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.7374999999999999
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.0,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.95
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.0875
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "curved(K=+2)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.056249999999999994
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.15312499999999998
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=-1)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.15
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "curved(K=-4)",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.278125
-      },
-      {
-        "head": "rbf",
-        "weight_decay": 0.01,
-        "dim": 8,
-        "n_features": 64,
-        "arm": "normalized",
-        "effective_tolerance": 0.05,
-        "gap_at_init": 0.0,
-        "gap_after_training": -0.053125
-      },
-      {
-        "head": "softmax",
-        "weight_decay": 0.0,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.175
-      },
-      {
-        "head": "softmax",
-        "weight_decay": 0.01,
-        "dim": 2,
-        "n_features": 16,
-        "arm": "normalized",
-        "effective_tolerance": 0.0625,
-        "gap_at_init": 0.0,
-        "gap_after_training": 0.1875
-      }
-    ],
-    "heads_passing_parity_in_every_arm_and_shape": [],
-    "verdict": "FAIL",
-    "verdict_rule": "PASS iff >=1 head shows arm-parity within max(0.05, 1/N) in every gated cell and recovers >=90% of features in every arm",
-    "per_head_verdict": {
-      "affine": "DISQUALIFIED",
-      "norm_affine": "DISQUALIFIED",
-      "rbf": "DISQUALIFIED",
-      "softmax": "DISQUALIFIED"
-    }
-  }
+  ]
 }

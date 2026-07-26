@@ -142,10 +142,52 @@ def test_dead_unit_fraction_detects_a_fully_dead_head():
     assert dead_unit_fraction(model, batch) == 1.0
 
 
-def test_capacity_from_sweep_stops_at_first_failure():
+def test_capacity_from_sweep_takes_the_first_contiguous_run():
     # a non-monotone curve must not let a later lucky cell inflate N*
     assert capacity_from_sweep({4: 1.0, 8: 0.95, 16: 0.5, 32: 0.99}, threshold=0.9) == 8
-    assert capacity_from_sweep({4: 0.1, 8: 0.99}, threshold=0.9) is None
+    # ...but a degenerate cell at the BOTTOM of the grid must not erase N*
+    # above it. This returned None before the fix, for four of six sparsity
+    # levels in the 00d control.
+    assert capacity_from_sweep({2: 0.0, 4: 1.0, 8: 0.95, 16: 0.5}, threshold=0.9) == 8
+    # nothing passes anywhere -> a miss, not a zero
+    assert capacity_from_sweep({4: 0.1, 8: 0.2}, threshold=0.9) is None
+
+
+def test_probe_metrics_are_stable_under_probe_batch_size():
+    """Regression: the primary head normalizes by batch mean distance, so
+    evaluating probes as their own tiny batch measures a different readout than
+    the one that was trained. Measured at up to 25% error, with the direction
+    depending on N — disqualifying, since N-dependence is what H-MAIN measures.
+    """
+    torch.manual_seed(0)
+    model = ToySuperposition(EuclideanSpace(DIM), N_FEATURES, head="norm_affine")
+    small = sample_batch(64, N_FEATURES, sparsity=0.9)
+    large = sample_batch(4096, N_FEATURES, sparsity=0.9)
+    a = probe_metrics(model, context=small)["probe_rel_error_mean"]
+    b = probe_metrics(model, context=large)["probe_rel_error_mean"]
+    assert abs(a - b) < 0.02, "probe metric must not depend on the context batch size"
+
+
+def test_probe_context_matters_for_a_batch_normalized_head():
+    """The bug itself, pinned: without context the reading genuinely differs."""
+    torch.manual_seed(0)
+    model = ToySuperposition(EuclideanSpace(DIM), N_FEATURES, head="norm_affine")
+    ctx = sample_batch(2048, N_FEATURES, sparsity=0.9)
+    assert probe_metrics(model, context=None)["probe_rel_error_mean"] != pytest.approx(
+        probe_metrics(model, context=ctx)["probe_rel_error_mean"], abs=1e-6
+    )
+
+
+def test_softmax_head_is_batch_independent():
+    """softmax normalizes across prototypes, not across the batch — so it is
+    immune to this failure. Recorded because it is a genuine point in its
+    favour as the second instrument (D9)."""
+    torch.manual_seed(0)
+    model = ToySuperposition(EuclideanSpace(DIM), N_FEATURES, head="softmax")
+    ctx = sample_batch(2048, N_FEATURES, sparsity=0.9)
+    assert probe_metrics(model, context=None)["probe_rel_error_mean"] == pytest.approx(
+        probe_metrics(model, context=ctx)["probe_rel_error_mean"], abs=1e-6
+    )
 
 
 # --------------------------------------------------------------------------
@@ -153,11 +195,11 @@ def test_capacity_from_sweep_stops_at_first_failure():
 # --------------------------------------------------------------------------
 
 
-def _record(monitor, sat, scaled=1.0, step=0):
+def _record(monitor, sat, scaled=1.0, step=0, kappa=-1.0):
     monitor.record(
         step,
         {
-            "kappa": -1.0,
+            "kappa": kappa,
             "radius_median": scaled,
             "scaled_radius_median": scaled,
             "scaled_radius_quantiles": [scaled] * 5,
@@ -185,6 +227,45 @@ def test_monitor_passes_at_exactly_five_percent():
     assert monitor.saturated_fraction == pytest.approx(0.05)
     assert not monitor.uninterpretable
     assert monitor.summary()["verdict"] == "OK"
+
+
+def test_spherical_runs_are_never_excluded_by_saturation():
+    """Decision D2: the R2 exclusion applies to K < 0 only.
+
+    For K > 0 there is no clamp — arctan is well-conditioned to the antipode
+    (00b) — and what the rule would exclude is a cloud filling the diameter,
+    which is the mechanism H-MAIN predicts for positive curvature. Applied to
+    both signs, R2 could only ever discard evidence against the hypothesis.
+    """
+    monitor = SaturationMonitor(eval_every=10)
+    for i in range(100):
+        _record(monitor, sat=0.999, step=i, kappa=+1.0)
+    assert monitor.saturated_fraction == pytest.approx(1.0)
+    assert not monitor.uninterpretable
+    summary = monitor.summary()
+    assert summary["verdict"] == "OK"
+    assert summary["exclusion_applies"] is False
+    # the same measurement is still surfaced, under its own name
+    assert summary["diameter_filling_fraction"] == pytest.approx(1.0)
+
+
+def test_hyperbolic_runs_are_still_excluded_by_saturation():
+    """D2 narrows the gate; it must not disable it where it is justified."""
+    monitor = SaturationMonitor(eval_every=10)
+    for i in range(100):
+        _record(monitor, sat=0.999 if i < 20 else 0.3, step=i, kappa=-1.0)
+    assert monitor.uninterpretable
+    summary = monitor.summary()
+    assert summary["verdict"] == "UNINTERPRETABLE"
+    assert summary["exclusion_applies"] is True
+    assert summary["diameter_filling_fraction"] is None
+
+
+def test_flat_arms_are_never_excluded():
+    monitor = SaturationMonitor(eval_every=10)
+    for i in range(100):
+        _record(monitor, sat=1.0, step=i, kappa=0.0)
+    assert not monitor.uninterpretable
 
 
 def test_band_occupancy_is_separate_from_the_verdict():

@@ -1,25 +1,370 @@
 {
-  "git_commit": "2853eafc62d6ed66f66b46b539ea98aa893f9a7f-dirty",
+  "git_commit": "efc4e8f27d4e3f72529285d7b5b6212ff1df7feb-dirty",
   "phase": "00a-confirm",
+  "two_instrument_availability": {
+    "note": "cells where both heads land in band for a majority of seeds; the two-instrument rule (D1) can only be applied here",
+    "n_cells_both_usable": 24,
+    "n_cells": 42,
+    "hyperbolic_cells_both_usable": "19/24",
+    "by_cell": {
+      "K=-4|d2|N16": {
+        "kappa": -4.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-4|d2|N48": {
+        "kappa": -4.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-4|d3|N24": {
+        "kappa": -4.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=-4|d4|N32": {
+        "kappa": -4.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-4|d6|N48": {
+        "kappa": -4.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-4|d8|N128": {
+        "kappa": -4.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=-2|d2|N16": {
+        "kappa": -2.0,
+        "in_band_rate": {
+          "norm_affine": 0.6666666666666666,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=-2|d2|N48": {
+        "kappa": -2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=-2|d3|N24": {
+        "kappa": -2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-2|d4|N32": {
+        "kappa": -2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-2|d6|N48": {
+        "kappa": -2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-2|d8|N128": {
+        "kappa": -2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.3333333333333333
+        },
+        "both_usable": false
+      },
+      "K=-1|d2|N16": {
+        "kappa": -1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=-1|d2|N48": {
+        "kappa": -1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=-1|d3|N24": {
+        "kappa": -1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=-1|d4|N32": {
+        "kappa": -1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-1|d6|N48": {
+        "kappa": -1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-1|d8|N128": {
+        "kappa": -1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-0.5|d2|N16": {
+        "kappa": -0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=-0.5|d2|N48": {
+        "kappa": -0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=-0.5|d3|N24": {
+        "kappa": -0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.3333333333333333
+        },
+        "both_usable": false
+      },
+      "K=-0.5|d4|N32": {
+        "kappa": -0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=-0.5|d6|N48": {
+        "kappa": -0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=-0.5|d8|N128": {
+        "kappa": -0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=+0.5|d2|N16": {
+        "kappa": 0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+0.5|d2|N48": {
+        "kappa": 0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+0.5|d3|N24": {
+        "kappa": 0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.3333333333333333
+        },
+        "both_usable": false
+      },
+      "K=+0.5|d4|N32": {
+        "kappa": 0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.3333333333333333
+        },
+        "both_usable": false
+      },
+      "K=+0.5|d6|N48": {
+        "kappa": 0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+0.5|d8|N128": {
+        "kappa": 0.5,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=+1|d2|N16": {
+        "kappa": 1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+1|d2|N48": {
+        "kappa": 1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+1|d3|N24": {
+        "kappa": 1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+1|d4|N32": {
+        "kappa": 1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.6666666666666666
+        },
+        "both_usable": true
+      },
+      "K=+1|d6|N48": {
+        "kappa": 1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.3333333333333333
+        },
+        "both_usable": false
+      },
+      "K=+1|d8|N128": {
+        "kappa": 1.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=+2|d2|N16": {
+        "kappa": 2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.3333333333333333
+        },
+        "both_usable": false
+      },
+      "K=+2|d2|N48": {
+        "kappa": 2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+2|d3|N24": {
+        "kappa": 2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.3333333333333333
+        },
+        "both_usable": false
+      },
+      "K=+2|d4|N32": {
+        "kappa": 2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      },
+      "K=+2|d6|N48": {
+        "kappa": 2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 0.0
+        },
+        "both_usable": false
+      },
+      "K=+2|d8|N128": {
+        "kappa": 2.0,
+        "in_band_rate": {
+          "norm_affine": 1.0,
+          "softmax": 1.0
+        },
+        "both_usable": true
+      }
+    }
+  },
   "purpose": "validate the committed init-gain rule by applying it, incl. held-out shapes",
   "pass_criterion": {
     "threshold": 0.8,
     "applies_to": "norm_affine",
-    "also_requires": "zero runs flagged UNINTERPRETABLE"
+    "min_r2_clean": 0.95,
+    "superseded_clause": "zero runs flagged UNINTERPRETABLE \u2014 measured 2.4%, recorded as a MISS in VALIDATION.md; restated per decision D8"
   },
-  "verdict": "FAIL",
+  "verdict": "PASS",
   "by_head": {
     "norm_affine": {
       "n": 126,
       "in_band_fraction": 0.9920634920634921,
-      "uninterpretable_fraction": 0.023809523809523808,
+      "uninterpretable_fraction": 0.007936507936507936,
       "below_band_fraction": 0.007936507936507936,
       "above_band_fraction": 0.0
     },
     "softmax": {
       "n": 126,
       "in_band_fraction": 0.5555555555555556,
-      "uninterpretable_fraction": 0.031746031746031744,
+      "uninterpretable_fraction": 0.0,
       "below_band_fraction": 0.4126984126984127,
       "above_band_fraction": 0.031746031746031744
     }
@@ -28,14 +373,14 @@
     "norm_affine": {
       "n": 84,
       "in_band_fraction": 1.0,
-      "uninterpretable_fraction": 0.011904761904761904,
+      "uninterpretable_fraction": 0.0,
       "below_band_fraction": 0.0,
       "above_band_fraction": 0.0
     },
     "softmax": {
       "n": 84,
       "in_band_fraction": 0.5595238095238095,
-      "uninterpretable_fraction": 0.011904761904761904,
+      "uninterpretable_fraction": 0.0,
       "below_band_fraction": 0.39285714285714285,
       "above_band_fraction": 0.047619047619047616
     }
@@ -3147,7 +3492,7 @@
       "scaled_radius_median": 1.1545825004577637,
       "in_band": true,
       "saturation_median": 0.36751502752304077,
-      "verdict": "UNINTERPRETABLE",
+      "verdict": "OK",
       "dead_unit_fraction": 0.1875
     },
     {
@@ -3161,7 +3506,7 @@
       "scaled_radius_median": 0.6617098450660706,
       "in_band": true,
       "saturation_median": 0.21062879264354706,
-      "verdict": "UNINTERPRETABLE",
+      "verdict": "OK",
       "dead_unit_fraction": 0.0
     },
     {
@@ -3287,7 +3632,7 @@
       "scaled_radius_median": 1.288478970527649,
       "in_band": true,
       "saturation_median": 0.4101355969905853,
-      "verdict": "UNINTERPRETABLE",
+      "verdict": "OK",
       "dead_unit_fraction": 0.2916666567325592
     },
     {
@@ -3301,7 +3646,7 @@
       "scaled_radius_median": 0.9979300498962402,
       "in_band": true,
       "saturation_median": 0.31765100359916687,
-      "verdict": "UNINTERPRETABLE",
+      "verdict": "OK",
       "dead_unit_fraction": 0.0
     },
     {
@@ -3413,7 +3758,7 @@
       "scaled_radius_median": 0.6770394444465637,
       "in_band": true,
       "saturation_median": 0.2155083417892456,
-      "verdict": "UNINTERPRETABLE",
+      "verdict": "OK",
       "dead_unit_fraction": 0.0
     },
     {
@@ -3441,7 +3786,7 @@
       "scaled_radius_median": 1.0379469394683838,
       "in_band": true,
       "saturation_median": 0.33038875460624695,
-      "verdict": "UNINTERPRETABLE",
+      "verdict": "OK",
       "dead_unit_fraction": 0.0
     },
     {

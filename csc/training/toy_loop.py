@@ -118,7 +118,10 @@ def train_toy(cfg: ToyConfig, progress: bool = False) -> ToyRun:
     with torch.no_grad():
         final_loss = float(weighted_mse(model(eval_batch), eval_batch, importance))
 
-    probes = probe_metrics(model, value=cfg.probe_value, tol=cfg.probe_tol)
+    # probes are evaluated inside the eval batch, not alone: the primary head
+    # normalizes by batch mean distance, so an isolated probe batch measures a
+    # different readout than the one that was trained (see probe_metrics).
+    probes = probe_metrics(model, value=cfg.probe_value, tol=cfg.probe_tol, context=eval_batch)
     recovered_mask = probes.pop("recovered_mask")
 
     summary = {

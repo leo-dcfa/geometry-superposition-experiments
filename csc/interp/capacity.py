@@ -19,16 +19,37 @@ from torch import Tensor
 
 
 @torch.no_grad()
-def probe_metrics(model, value: float = 0.8, tol: float = 0.2) -> dict:
+def probe_metrics(model, value: float = 0.8, tol: float = 0.2, context: Tensor | None = None) -> dict:
     """Single-feature probes x = value·e_i, for every feature i.
 
     ``tol`` is the ε of H-MAIN(toy): a feature counts as recovered when its
     own reconstruction is within a relative ``tol`` of the probe value. The
     value used in hypothesis tests is sealed in VALIDATION.md.
+
+    ``context`` is not optional in spirit. The primary readout (`norm_affine`)
+    divides distances by the **batch mean**, so evaluating the probes as their
+    own tiny batch changes the readout's normalization and mis-scales its
+    output. Measured on one trained model (00d): probes alone reconstructed a
+    0.8 target at 0.60 for N=2 — a 25% error, reported as "0 features
+    recovered" — while the *same model* with the same probes embedded in a
+    realistic batch reconstructed 0.795. At N=8 the bias reverses and reads
+    high (0.91 vs 0.84).
+
+    A distortion whose size *and direction* depend on N is disqualifying here,
+    because N-dependence is exactly what H-MAIN(toy) and P1 measure. So probes
+    are evaluated inside a fixed background batch drawn from the training
+    distribution, and only the probe rows are read. Passing ``context=None``
+    reproduces the old, batch-size-dependent behaviour and is kept only so the
+    bug can be regression-tested.
     """
     device = next(model.parameters()).device
     probes = torch.eye(model.n_features, device=device) * value
-    response = model(probes)  # (nf, nf): row i is the reconstruction of probe i
+    if context is None:
+        response = model(probes)
+    else:
+        n = probes.shape[0]
+        response = model(torch.cat([probes, context.to(device)]))[:n]
+    # (nf, nf): row i is the reconstruction of probe i
     on_target = response.diagonal()
     off_target = response - torch.diag_embed(on_target)
     rel_error = (on_target - value).abs() / value
@@ -67,11 +88,19 @@ def prototype_geometry(model) -> dict:
 
 
 @torch.no_grad()
-def interference_matrix(model, value: float = 0.8) -> Tensor:
-    """Full (N, N) probe-response matrix for P3; diagonal is on-target."""
+def interference_matrix(model, value: float = 0.8, context: Tensor | None = None) -> Tensor:
+    """Full (N, N) probe-response matrix for P3; diagonal is on-target.
+
+    Takes ``context`` for the same reason ``probe_metrics`` does — P3's
+    contamination numbers are read off this matrix and would inherit the
+    batch-normalization distortion otherwise.
+    """
     device = next(model.parameters()).device
     probes = torch.eye(model.n_features, device=device) * value
-    return model(probes).cpu()
+    if context is None:
+        return model(probes).cpu()
+    n = probes.shape[0]
+    return model(torch.cat([probes, context.to(device)]))[:n].cpu()
 
 
 @torch.no_grad()
@@ -111,16 +140,28 @@ def response_scale_report(model, batch: Tensor) -> dict:
 
 
 def capacity_from_sweep(recovery_by_n: dict[int, float], threshold: float = 0.9) -> int | None:
-    """N*(κ): the largest N whose recovery rate meets ``threshold``.
+    """N*: the top of the first contiguous run of feature counts that all pass.
 
-    Returns ``None`` when even the smallest N misses the threshold — reported
-    as a miss rather than silently coerced to 0 (R6). The scan stops at the
-    first failure so that a non-monotone recovery curve cannot inflate N*.
+    SPEC §5 defines N* as "max N with ≥ 90% of features recovered". Taken
+    literally, one lucky cell far up the sweep sets N*, so the scan requires a
+    *contiguous* passing run — but it starts that run at the first N that
+    passes rather than at the smallest N in the grid.
+
+    The difference is not academic. An earlier version began at the smallest N
+    and stopped at the first failure, which returned ``None`` for four of six
+    sparsity levels in the 00d control: N=2 was failing for a reason unrelated
+    to capacity (a probe-metric bug, since fixed), and one degenerate cell at
+    the bottom of the grid silently erased N* everywhere above it. A capacity
+    metric must not be hostage to its smallest grid point.
+
+    Returns ``None`` only when no N passes at all — reported as a miss rather
+    than coerced to 0 (R6).
     """
+    passing = {n: recovery_by_n[n] >= threshold for n in sorted(recovery_by_n)}
     best = None
-    for n in sorted(recovery_by_n):
-        if recovery_by_n[n] >= threshold:
+    for n, ok in passing.items():
+        if ok:
             best = n
-        else:
-            break
+        elif best is not None:
+            break  # the contiguous run has ended
     return best
