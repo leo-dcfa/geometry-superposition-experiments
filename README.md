@@ -6,11 +6,17 @@ asked, what the answer turned out to be, and the mechanism behind it.
 Does a negatively curved latent space need **fewer dimensions to hold more
 features** at fixed recovery quality than a flat one?
 
-**Answer: no — and the reason generalizes.** A curvature advantage appears only
-when the training objective makes the metric load-bearing. Under a
-reconstruction objective, no metric-faithful structure is learned in *any*
-geometry, so curvature has nothing to act on. Same geometry, same code: 5.4×
-advantage under a distance-matching objective, 1.08× under reconstruction.
+**Answer: no — and the reason generalizes.** Two findings, both measured:
+
+1. **Curvature is a dial trading angular resolution against radial capacity.**
+   Superposition capacity is *angular*; negative curvature spends its budget on
+   a radial coordinate superposition cannot address, while degrading the
+   angular resolution it can. Hyperbolic space's extra room is real but
+   *angularly unresolvable*.
+2. **Any curvature advantage scales with how directly the objective specifies
+   distances** — 5.4× under explicit metric supervision, 1.31× under
+   contrastive, 1.00× under reconstruction, where no metric structure is
+   learned in any geometry.
 
 Negative curvature gives exponential volume growth with radius; positive
 curvature caps total volume. If representations are points and interference is
@@ -28,7 +34,7 @@ anything here and is not cited as support.
 | study | state |
 |---|---|
 | **CSC-1** (capacity) | **Complete — null.** H-MAIN pre-registered, tested, not supported. G1 failed; written up as a null per the spec's own stopping rule. |
-| **CSC-2** (mechanism) | **Partial.** E4 positive control passed, E1 and E5 landed; E5 is the headline result. E3's hypothesis (hierarchy) remains untested. |
+| **CSC-2** (mechanism) | **Complete for what it set out to explain.** E4 (positive control), E1, E5, E6, E7, E8 landed and jointly identify the mechanism. E3's original hierarchy-capacity hypothesis remains untested — its generator was confounded, and E5 later showed its objective could not have shown an effect regardless. |
 
 `VALIDATION.md` is the pre-registration ledger — gate status, sealed
 thresholds, and every amendment with the measurement that forced it.

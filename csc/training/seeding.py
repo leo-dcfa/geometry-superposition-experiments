@@ -18,9 +18,10 @@ def seed_everything(seed: int) -> None:
     np.random.seed(seed)
     torch.manual_seed(seed)
     # Guarded deliberately: an unconditional torch.cuda.manual_seed_all creates
-    # a CUDA context even for a CPU-only run, and a 12-worker CPU sweep then
-    # tries to allocate twelve contexts on a GPU another study is holding. That
-    # is how this line first announced itself (Phase 00a, OOM at launch).
+    # a CUDA context even for a CPU-only run, so a multi-worker CPU sweep tries
+    # to allocate one context per worker on a device it never uses. That fails
+    # outright whenever the GPU is already allocated, which is how this line
+    # first announced itself (Phase 00a, OOM at launch).
     if torch.cuda.is_available() and torch.cuda.is_initialized():
         torch.cuda.manual_seed_all(seed)
 

@@ -95,11 +95,49 @@ embedded distances off by ~80% from the target metric in *both* geometries. The
 ≈1.0 ratio at S4 does not mean curvature stops helping; it means **no metric
 structure is learned at all**, so there is nothing for curvature to help with.
 
-## Why the original intuition fails
+## Why the original intuition fails: curvature is a dial, and we picked the wrong end
 
-Two reasons, both supported by measurement rather than argument.
+The volume really is there — E7 confirms the classic result that trees embed in
+H² below a floor Euclidean space cannot reach at any width. So why does volume
+never become capacity? **Curvature does not distort angles** — the Poincaré
+model is conformal, local angles are exactly Euclidean. What changes is the
+*mapping from angle to distance* (`csc2/e8`, pure geometry, no model):
 
-**Superposition capacity is angular; curvature adds radial volume.** How many
+    euclidean    c = 2r·sin(θ/2)                   — LINEAR in the angle
+    hyperbolic   c ≈ 2r + (2/√|K|)·log sin(θ/2)    — LOGARITHMIC in it
+
+Differentiating: hyperbolic `∂c/∂θ = (1/√|K|)·cot(θ/2)` is **independent of r**,
+while Euclidean `∂c/∂θ = r·cos(θ/2)` grows with it. Measured as the ratio of
+angular sensitivity at r=3 versus r=0.5:
+
+| K | −4 | −2 | −1 | **0** | +1 | +2 |
+|---|---|---|---|---|---|---|
+| does moving outward buy resolution? | 1.97× | 2.79× | 3.89× | **6.00×** | 0.29× | 0.45× |
+
+Euclidean scores exactly 6.00×, the radius ratio. Hyperbolic degrades it
+monotonically with |K|; **spherical inverts it** — moving outward *costs*
+resolution. So hyperbolic space's exponentially many new points at large radius
+are all at nearly the same distance from one another, and a distance-based
+readout cannot rank them. **The extra room is angularly unresolvable.**
+
+> **Curvature is a dial trading angular resolution against radial capacity.**
+> Negative: radial capacity bought by giving up angular resolution — right for
+> hierarchy, containment, generality. Positive: all angle, no radius, bounded
+> total volume — right for independent features and similarity. Zero: the
+> neutral, scale-invariant point (the Euclidean profile is *identical* at every
+> radius; no other geometry has that).
+
+Superposition capacity is **angular** — it is set by how many near-orthogonal
+directions fit, and interference is directional overlap. CSC-1 asked an angular
+question and reached for the negative end of the dial. That is the whole error,
+and it is why the spherical arms did marginally *better* on capacity (E1:
+ρ(κ, capacity) = +0.51 to +0.85, consistent across every gain level for both
+absolute-scale heads) — a result SPEC §1 pre-committed to reading as
+**falsifying H-MAIN**, not as a curiosity.
+
+Two further observations, both measured rather than argued.
+
+**The models told us which coordinate they were paid for.** How many
 features fit is governed by how many near-orthogonal *directions* exist in d
 dimensions, and interference is directional overlap. Negative curvature leaves
 the direction sphere untouched and adds room *further out* — a different
@@ -122,6 +160,8 @@ exchangeable features, so the geometry had nothing to match.
 ## What is not established
 
 - Nothing here is about language models. No LM was trained.
+- E8 is exact geometry for the 2-D case at a common radius; the qualitative
+  conclusion extends to higher dimensions but the numbers quoted do not.
 - "Reconstruction objectives" is generalized from one instance.
 - Whether curvature helps for genuinely **hierarchical** features under a
   learned model remains **untested**: the experiment designed for it (`csc2/e3`)

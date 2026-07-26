@@ -50,10 +50,10 @@ def write_artifact(path: Path, payload: dict) -> Path:
 
 
 def _worker_init() -> None:
-    # Hide the GPU from sweep workers. Phase 00 and Phase 1 are CPU-sized, and
-    # this workstation's GPU is routinely held by another study — a pool of
-    # workers each opening a CUDA context is both wasteful and, as measured,
-    # enough to OOM the device. Set before torch is imported in the worker.
+    # Hide the GPU from sweep workers. These phases are CPU-sized, and a pool
+    # of workers each opening its own CUDA context is wasteful at best; if the
+    # device is already allocated by anything else it OOMs outright, as
+    # measured. Set before torch is imported in the worker.
     os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
     import torch
