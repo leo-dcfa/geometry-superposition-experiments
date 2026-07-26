@@ -15,8 +15,9 @@ would break the reproducibility of work that is already finished.)*
 
 ## Study 1 (CSC) — Curvature and Superposition Capacity
 
-**→ Read [`FINDINGS.md`](FINDINGS.md) first.** It is the synthesis: what was
-asked, what the answer turned out to be, and the mechanism behind it.
+**→ New here? Read [`EXPLAINER.md`](EXPLAINER.md).** Plain-language record of
+every hypothesis and result in the programme, kept current.
+[`FINDINGS.md`](FINDINGS.md) is the formal synthesis with the numbers.
 
 Does a negatively curved latent space need **fewer dimensions to hold more
 features** at fixed recovery quality than a flat one?
@@ -49,6 +50,7 @@ anything here and is not cited as support.
 | study | state |
 |---|---|
 | **CSC-1** (capacity) | **Complete — null.** H-MAIN pre-registered, tested, not supported. G1 failed; written up as a null per the spec's own stopping rule. |
+| **Study 3** (norms) | **In progress.** Curvature cannot change angular structure — at any point of a Riemannian manifold the direction sphere is metric-independent. Norms can. `csc/spaces/norms.py` adds ℓ^p and Finsler spaces (flat, zero curvature, differing only in distance); the capacity sweep is next. |
 | **CSC-2** (mechanism) | **Complete for what it set out to explain.** E4 (positive control), E1, E5, E6, E7, E8 landed and jointly identify the mechanism. E3's original hierarchy-capacity hypothesis remains untested — its generator was confounded, and E5 later showed its objective could not have shown an effect regardless. |
 
 `VALIDATION.md` is the pre-registration ledger — gate status, sealed

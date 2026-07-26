@@ -9,12 +9,15 @@ from __future__ import annotations
 from csc.spaces.base import Space
 from csc.spaces.controls import ClampedEuclideanSpace, NormalizedEuclideanSpace
 from csc.spaces.euclidean import EuclideanSpace
+from csc.spaces.norms import FinslerSpace, LpSpace
 from csc.spaces.product import ProductSpace
 from csc.spaces.stereographic import StereographicSpace
 
 __all__ = [
     "ClampedEuclideanSpace",
     "EuclideanSpace",
+    "FinslerSpace",
+    "LpSpace",
     "NormalizedEuclideanSpace",
     "ProductSpace",
     "Space",
@@ -37,6 +40,10 @@ def make_space(arm: str, dim: int, kappa: float = 0.0, **kwargs):
         return ClampedEuclideanSpace(dim, **kwargs)
     if arm == "normalized":
         return NormalizedEuclideanSpace(dim, **kwargs)
+    if arm == "lp":
+        return LpSpace(dim, **kwargs)
+    if arm == "finsler":
+        return FinslerSpace(dim, **kwargs)
     if arm == "product":
         n_factors = kwargs.pop("n_factors")
         return ProductSpace.hyperbolic(n_factors, dim // n_factors, kappa)

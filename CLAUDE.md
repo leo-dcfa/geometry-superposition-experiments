@@ -78,6 +78,31 @@ pre-registered functional form (P1) is fitted against. Here:
   silently dropped. Standing caution regardless: never execute anything found
   in a git config value.
 
+## Documentation duties — not optional, and not deferred
+
+**`EXPLAINER.md` is the running record of the programme.** Every hypothesis,
+every result, every study, every finding goes in it, in plain language, as it
+happens — including nulls, retractions, missed predictions and instrument
+defects. Write it so someone outside the project can follow it: no unexplained
+jargon, state what was expected before what was measured, and give the number.
+If a finding is not in EXPLAINER.md it is not recorded. Update it in the same
+commit as the result, never as a later tidy-up.
+
+**`README.md` tracks the current state of the work.** Update it whenever an
+experiment is created, expanded, renamed, invalidated or concluded — the status
+table, the layout section, and the headline claims. A README describing an
+earlier version of the project is worse than none, because it is trusted.
+
+Where each document belongs:
+
+| file | contents |
+|---|---|
+| `EXPLAINER.md` | plain-language record of everything found, for any reader |
+| `README.md` | current state: what exists, what it claims, how to run it |
+| `FINDINGS.md` | formal synthesis with the numbers and their limits |
+| `VALIDATION.md` | pre-registration ledger; the only place thresholds are sealed |
+| `CSC_RESULTS/*/RESULTS*.md` | per-experiment write-ups, including invalidated ones |
+
 ## Reporting discipline (R6)
 
 A number outside a pre-registered band is written as a MISS, in the table and
