@@ -50,7 +50,7 @@ anything here and is not cited as support.
 | study | state |
 |---|---|
 | **CSC-1** (capacity) | **Complete — null.** H-MAIN pre-registered, tested, not supported. G1 failed; written up as a null per the spec's own stopping rule. |
-| **Study 3** (norms) | **In progress.** Curvature cannot change angular structure — at any point of a Riemannian manifold the direction sphere is metric-independent. Norms can. `csc/spaces/norms.py` adds ℓ^p and Finsler spaces (flat, zero curvature, differing only in distance); the capacity sweep is next. |
+| **Study 3** (norms) | **Complete — null, and it closes the line.** No ℓ^p norm or learned anisotropy beats ℓ²; the registered ℓ^∞ prediction was falsified (0.75–0.94×, p=1.000). The packing measurement explains it: every arm sits **2.6× from the Welch bound**, differing by <2%. Models never approach what flat space already allows, so geometry was never the binding constraint. `CSC_RESULTS/norms/RESULTS.md`. |
 | **CSC-2** (mechanism) | **Complete for what it set out to explain.** E4 (positive control), E1, E5, E6, E7, E8 landed and jointly identify the mechanism. E3's original hierarchy-capacity hypothesis remains untested — its generator was confounded, and E5 later showed its objective could not have shown an effect regardless. |
 
 `VALIDATION.md` is the pre-registration ledger — gate status, sealed

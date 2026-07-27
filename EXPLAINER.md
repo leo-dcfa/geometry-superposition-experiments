@@ -142,7 +142,9 @@ distances, **and** you're constrained to a very narrow layer — curved geometry
 buys fidelity no amount of flat width can. Outside that intersection, which is
 where most networks live, it buys little and costs stability.
 
-## Study 3 (in progress) — Norms
+## Study 3 — Norms: the search for a better space is over
+
+*(Original plan and predictions, kept as written, followed by what happened.)*
 
 If capacity is angular and curvature can't change the angular structure, what
 can?
@@ -161,6 +163,61 @@ ever used (about 18 in 8 dimensions). If that's the real constraint, then the
 limit is the **readout's resolution**, not the geometry, and no distance measure
 will help either. That result would be more useful than a win: it would say stop
 studying spaces and start studying readouts.
+
+### What happened: the prediction was wrong, the counter-prediction was right
+
+**Max-coordinate distance didn't win — it came last.** Capacity relative to
+standard distance, across every setting we tested:
+
+| distance measure | capacity |
+|---|---|
+| max-coordinate (the prediction) | **0.75–0.94×** |
+| sum-of-coordinates | 0.87–0.97× |
+| **standard (control)** | **1.00×** |
+| learned per-axis weighting | 0.98–1.03× |
+| discard radius, keep direction only | **1.03–1.15×** |
+
+Not a near miss — the opposite ordering, in all eight settings. Recorded as a
+miss.
+
+**And here is why, in one number.** There's a mathematical limit on how spread
+out N directions can be in d dimensions. We measured how close our models get:
+
+> Every single geometry lands at **2.6× worse than the limit**, and they differ
+> from each other by under 2%.
+
+In plain terms: our models leave some concepts pointing in **nearly identical
+directions** (overlap 0.98, where 1.0 means identical) when the geometry would
+comfortably allow 0.39. They aren't running out of room. They're not using the
+room they have — and every geometry fails to use it by the same amount.
+
+**So changing the space was never going to work.** You cannot fix a constraint
+by changing something that isn't the constraint. That explains why curvature
+did nothing, why norms did nothing, and why every arm lands in the same place
+regardless of the shape of its unit ball.
+
+Why did max-coordinate distance actively *lose*? Its cube corners are real, but
+reaching them needs every coordinate pushed to an extreme *simultaneously*, and
+gradient descent through this readout has no way to find that arrangement. It's
+the same failure as hyperbolic space's unused volume: **room that exists and
+the learning process cannot reach.**
+
+### What all three studies say together
+
+1. **Curvature** doesn't help — capacity is angular, curvature moves the radius.
+2. **The objective** is what governs whether *any* geometry advantage appears.
+3. **Norms** don't help either — and the packing measurement says why: nothing
+   was ever geometry-limited.
+
+**The "find a better space" line of enquiry is closed.** What binds is the
+readout's ability to tell similar directions apart, and the optimiser's ability
+to arrange concepts well. Notably, the one arm that keeps winning — across all
+three studies — is the flat control that *throws away* the unused radial
+coordinate rather than adding anything.
+
+That gives a concrete next target: **the 2.6× gap is measurable.** Anything
+that closes it should raise capacity in *every* geometry, flat included. That's
+a far better experiment than another sweep over spaces.
 
 ---
 
